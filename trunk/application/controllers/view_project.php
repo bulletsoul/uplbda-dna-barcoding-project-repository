@@ -42,13 +42,13 @@ class View_project extends CI_Controller {
    $data['breed_name'] = $row->breed;
   }
   $dimgpath = $this->images->get_dfilepath($proj_id);
-  $data['dimgpath'] = $this->images->get_dfilepath($proj_id);
+  $data['dimgpath'] = $dimgpath;
   $vimgpath = $this->images->get_vfilepath($proj_id);
-  $data['vimgpath'] = $this->images->get_vfilepath($proj_id);
+  $data['vimgpath'] = $vimgpath;
   $limgpath = $this->images->get_lfilepath($proj_id);
-  $data['limgpath'] = $this->images->get_lfilepath($proj_id);
+  $data['limgpath'] = $limgpath;
   $oimgpath = $this->images->get_ofilepath($proj_id);
-  $data['oimgpath'] = $this->images->get_ofilepath($proj_id);
+  $data['oimgpath'] = $oimgpath;
   $videopath = $this->videos->get_videopath($proj_id);
   $data['videopath'] = $videopath;
   $docpath = $this->docs->get_path_name($proj_id);
@@ -122,15 +122,15 @@ class View_project extends CI_Controller {
   }
   $data['project_details'] = $proj_details;
   $dimgpath = $this->images->get_dfilepath($proj_id);
-  $data['dimgpath'] = $this->images->get_dfilepath($proj_id);
+  $data['dimgpath'] = $dimgpath;
   $vimgpath = $this->images->get_vfilepath($proj_id);
-  $data['vimgpath'] = $this->images->get_vfilepath($proj_id);
+  $data['vimgpath'] = $vimgpath;
   $limgpath = $this->images->get_lfilepath($proj_id);
-  $data['limgpath'] = $this->images->get_lfilepath($proj_id);
+  $data['limgpath'] = $limgpath;
   $oimgpath = $this->images->get_ofilepath($proj_id);
-  $data['oimgpath'] = $this->images->get_ofilepath($proj_id);
+  $data['oimgpath'] = $oimgpath;
   $videopath = $this->videos->get_videopath($proj_id);
-  $data['videopath'] = $this->videos->get_videopath($proj_id);
+  $data['videopath'] = $videopath;
   $docpath = $this->docs->get_path_name($proj_id);
   $data['docpath'] = $docpath;
   $proj_category = $this->project->get_proj_category($proj_id);
