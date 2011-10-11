@@ -248,7 +248,7 @@
         <THEAD ALIGN="center" class="table_header"><TR><TD colspan="2">Videos</TD></TR></THEAD>
           <tbody BGCOLOR="#E9F2F9">
           <tr>
-            <td align="center" >
+            <td align="center">
               <div id="vid_area">
               <?php
               if ($videopath != NULL){
@@ -264,31 +264,32 @@
               </div>
             </td>
           </tr>
+          <tr><td><?php echo $row->filedesc; ?></td></tr>
           </tbody>
         </table>
       <br/>
         
       <!-- Documents -->
       <table class="project_table" BGCOLOR="#B2D1E5">
-        <THEAD ALIGN="center" class="table_header"><TR><TD colspan="2">Documents</TD></TR></THEAD>
+        <THEAD ALIGN="center" class="table_header"><TR><TD colspan="2">Documents</TD></TR>
+            <tr><td width="200px">Files</td><td>Descriptions</td></tr></THEAD>
           <tbody BGCOLOR="#E9F2F9">
+            <?php
+                if ($docpath != NULL){
+                  foreach($docpath as $row){?>
           <tr>
             <td>
               <div id="docs_area">
-              <?php
-                if ($docpath){
-                  foreach($docpath as $row){
-                    $filepath = $row->filepath;
-                    $filename = $row->filename;
-                    //$data = file_get_contents($filepath);
-                    ?>
-                <a href="<?php echo $row->filepath;  ?>"> <?php echo $row->filename; ?></a><br/>
-              <?php } } 
-              else {
-                echo "Document not available.";
-              }?>
+                <a href="<?php echo $row->filepath;  ?>" target="_blank" > <?php echo $row->filename; ?><br/></a>
+            </td>
+            <td>
+                <?php echo $row->filedesc; ?>
               </div>
             </td>
+            <?php } } 
+              else {
+                echo "Document not available.";
+                }?>
           </tr>
           </tbody>
         </table>
