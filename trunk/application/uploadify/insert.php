@@ -8,7 +8,6 @@ mysql_select_db("uplbdadb", $dbc);
 
 if(isset($_POST)) {
 
-	//echo $_POST['name'];
 	$fileName = $_POST['name'];
 	$filepath = $_POST['path'];
         $fpath = dirname($filepath);
@@ -54,5 +53,7 @@ else if($filetype == "Document")
 	if($inserted_id > 0) { // if success
 		echo "Files uploaded successfully!";
 	}
+        
+        
 }
 ?>
