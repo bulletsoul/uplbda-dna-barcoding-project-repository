@@ -28,9 +28,7 @@
             <TR>
               <TD>Project ID</TD>
               <TD width="200" title="Sort"><?php echo anchor('sortby/my_projects/breed/poultry','BREED', $atts);?></TD>
-              <TD width="50" title="Sort"><?php echo anchor('sortby/my_projects/breed_code/poultry','BREED CODE', $atts);?></TD>
               <TD width="100" title="Sort"><?php echo anchor('sortby/my_projects/farm_animal/poultry','FARM ANIMAL', $atts);?></TD>
-              <TD width="50" title="Sort"><?php echo anchor('sortby/my_projects/fa_code/poultry','FA CODE', $atts);?></TD>
               <TD width="100">Place</TD>
               <TD width="40">Edit</TD>
               <TD width="40">Delete</TD>
@@ -43,9 +41,7 @@
             <TR>
               <td align="center"><?php echo $prow->proj_id; ?></td>
               <TD id="breed"><?php echo $prow->breed; ?>
-              <TD id="breed_code" ALIGN="center"><?php echo $prow->breed_code; ?></TD>
               <TD><?php echo $prow->farm_animal; ?></TD>
-              <TD ALIGN="center"><?php echo $prow->fa_code; ?></TD>
               <TD><?php echo $prow->place; ?></TD>
               <TD align="center"><?php
                 $$nw_url = $prow->proj_id;
@@ -95,9 +91,7 @@
                 <TR>
                   <td>Project ID</td>
                   <TD width="200" title="Sort"><?php echo anchor('sortby/my_projects/breed/livestock#livestock','BREED', $atts); ?></TD>
-                  <TD width="50" title="Sort"><?php echo anchor('sortby/my_projects/breed_code/livestock#livestock','BREED CODE', $atts); ?></TD>
                   <TD width="100" title="Sort"><?php echo anchor('sortby/my_projects/farm_animal/livestock#livestock','FARM ANIMAL', $atts); ?></TD>
-                  <TD width="50" title="Sort"><?php echo anchor('sortby/my_projects/fa_code/livestock#livestock','FA CODE', $atts); ?></TD>
                   <TD width="100">Place</TD>
                   <TD width="40">Edit</TD>
                   <TD width="40">Delete</TD>
@@ -111,9 +105,7 @@
                 <TR>
                   <td align="center"><?php echo $lrow->proj_id; ?></td>
                   <TD id="breed"><?php echo $lrow->breed; ?></TD>
-                  <TD id="breed_code" ALIGN="center"><?php echo $lrow->breed_code; ?></TD>
                   <TD><?php echo $lrow->farm_animal; ?></TD>
-                  <TD ALIGN="center"><?php echo $lrow->fa_code; ?></TD>
                   <TD><?php echo $lrow->place; ?></TD>
                   <TD align="center">
                     <?php
