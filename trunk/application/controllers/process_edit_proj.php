@@ -21,9 +21,9 @@ class Process_edit_proj extends CI_Controller {
  {
   $this->load->library('form_validation');
    $proj_id = $this->uri->segment(3);
-   //$weight = $this->input->post('weight');
    
    $data_project = array(
+    'weight' => $this->input->post('weight'),
     'sampling_date' => $this->input->post('sampling_date'),
     'sample_type' => $this->input->post('sample_type'),
     'origin' => $this->input->post('origin'),
@@ -80,6 +80,8 @@ class Process_edit_proj extends CI_Controller {
   $data['nw_url1'] = site_url('upload/doc');
   $data['nw_url2'] = site_url('upload/dorsal_img');
   $data['nw_url5'] = site_url('upload/ventral_img');
+  $data['nw_url6'] = site_url('upload/lateral_img');
+  $data['nw_url7'] = site_url('upload/other_img');
   $data['nw_url3'] = site_url('upload/vid');
   $data['proj_id'] = $proj_id;
   $proj_details = $this->project->get_project_details($proj_id);
@@ -88,15 +90,17 @@ class Process_edit_proj extends CI_Controller {
    $data['breed_name'] = $row->breed;
   }
   $dimgpath = $this->images->get_dfilepath($proj_id);
-  $data['dimgpath'] = $this->images->get_dfilepath($proj_id);
+  $data['dimgpath'] = $dimgpath;
   $vimgpath = $this->images->get_vfilepath($proj_id);
-  $data['vimgpath'] = $this->images->get_vfilepath($proj_id);
+  $data['vimgpath'] = $vimgpath;
+  $limgpath = $this->images->get_lfilepath($proj_id);
+  $data['limgpath'] = $limgpath;
+  $oimgpath = $this->images->get_ofilepath($proj_id);
+  $data['oimgpath'] = $oimgpath;
   $videopath = $this->videos->get_videopath($proj_id);
-  $data['videopath'] = $this->videos->get_videopath($proj_id);
-  $docpath = $this->docs->get_docpath($proj_id);
-  $data['docpath'] = $this->docs->get_docpath($proj_id);
-  $docname = $this->docs->get_docname($proj_id);
-  $data['docname'] = $this->docs->get_docname($proj_id);
+  $data['videopath'] = $videopath;
+  $docpath = $this->docs->get_path_name($proj_id);
+  $data['docpath'] = $docpath;
   $proj_category = $this->project->get_proj_category($proj_id);
   foreach($proj_category as $item){
    if($item->proj_category == "livestock")
@@ -119,6 +123,17 @@ class Process_edit_proj extends CI_Controller {
   $this->load->view('project_header_view', $data);
   $this->load->view('project_view', $data);
   $this->load->view('footer');
+ }
+ 
+ function dateformat_check($str)
+ {
+  if (!preg_match ("/(0[1-9]|1[012])[\/](0[1-9]|[12][0-9]|3[01])[\/]((19|20)\d\d)/", $str))
+  {
+   $this->form_validation->set_message('dateformat_check', 'Please enter the date in the mm/dd/yyyy format.');
+   return FALSE;
+  }
+  
+  else {return TRUE;}
  }
 }
 
