@@ -48,23 +48,9 @@
     </TD>
     <TD title="Sort">
     <?php
-      if ($ls_category == 'Bovidae') echo anchor('sortby/view_projects/breed_code/livestock/bovidae','BREED CODE', $atts);
-      if ($ls_category == 'Capridae') echo anchor('sortby/view_projects/breed_code/livestock/capridae','BREED CODE', $atts);
-      if ($ls_category == 'Monogastrics') echo anchor('sortby/view_projects/breed_code/livestock/monogastrics','BREED CODE', $atts);
-    ?>
-    </TD>
-    <TD title="Sort">
-    <?php
       if ($ls_category == 'Bovidae') echo anchor('sortby/view_projects/farm_animal/livestock/bovidae','FARM ANIMAL', $atts);
       if ($ls_category == 'Capridae') echo anchor('sortby/view_projects/farm_animal/livestock/capridae','FARM ANIMAL', $atts);
       if ($ls_category == 'Monogastrics') echo anchor('sortby/view_projects/farm_animal/livestock/monogastrics','FARM ANIMAL', $atts);
-    ?>
-    </TD>
-    <TD title="Sort">
-    <?php
-      if ($ls_category == 'Bovidae') echo anchor('sortby/view_projects/fa_code/livestock/bovidae','FA CODE', $atts);
-      if ($ls_category == 'Capridae') echo anchor('sortby/view_projects/fa_code/livestock/capridae','FA CODE', $atts);
-      if ($ls_category == 'Monogastrics') echo anchor('sortby/view_projects/fa_code/livestock/monogastrics','FA CODE', $atts);
     ?>
     </TD>
     <TD>PLACE</TD>
@@ -82,9 +68,7 @@
       $$nw_url = $row->proj_id;
       $proj_url = "$nw_url/${$nw_url}";
       echo anchor_popup($proj_url,$row->breed, $atts); ?></TD>
-    <TD><?php echo $row->breed_code; ?></TD>
     <TD><?php echo $row->farm_animal; ?></TD>
-    <TD><?php echo $row->fa_code; ?></TD>
     <TD><?php
     if($row->place){
       $nw_url1 = $new_url1; 
