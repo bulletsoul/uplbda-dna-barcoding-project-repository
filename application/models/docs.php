@@ -3,7 +3,7 @@ Class Docs extends CI_Model
 {
      function get_path_name($proj_id)
      {
-          $this->db->select('filepath, filename');
+          $this->db->select('filepath, filename, filedesc');
           $this->db->from('docs');
           $this->db->where('proj_id', $proj_id);
           $query = $this->db->get();
