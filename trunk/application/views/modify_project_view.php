@@ -4,6 +4,7 @@
     <div class="body_resize">
       <div class="left">
         <input type="hidden" id="proj_id" value="<?php echo $proj_id; ?>">
+        <input type="hidden" id="my_current_url" value="<?php echo $my_current_url; ?>">
         <!-- PROJECT DETAILS -->
         <?php 
           if($project_details){
@@ -101,7 +102,7 @@
                 <label>Earlobe color: </label><input id="earlobe_color" name="earlobe_color" value="<?php echo $row->earlobe_color; ?>"/><br/>
                 <label>Eye color: </label><input id="eye_color" name="eye_color" value="<?php echo $row->eye_color; ?>"/><br/>
                 <label>Shank color:</label><input id="shank_color" name="shank_color" value="<?php echo $row->shank_color; ?>"/><br/>
-                <label>Bill/Beak color: </label><input id="beak_color" name="beak_color" value="<?php echo $row->bill_beak_color; ?>"/><br/>
+                <label>Bill/Beak color: </label><input id="bill_beak_color" name="bill_beak_color" value="<?php echo $row->bill_beak_color; ?>"/><br/>
               </TD>
             </TR>
         <?php }} else echo 'Error.'; }}}?>
@@ -128,7 +129,59 @@
         <?php }} ?>
         </TBODY>
        </TABLE><br/>
-        <input type="submit" value="Update values"/>
+        <a href="javascript:edit_project('<?php echo $row->breed; ?>','<?php echo $row->proj_id; ?>')" ><button id="update_button">Update values</button></a>
+        <script type="text/javascript">
+        $.ajaxSetup ({  
+            cache: false
+        });
+        
+        function edit_project(breed_name, proj_id)
+        {
+          if(confirm('Are you sure you want to edit ' + breed_name + ' project?')){
+            var params = {
+            proj_id:proj_id,
+            proj_desc:proj_desc.value,
+            sampling_date:sampling_date.value,
+            sample_type:sample_type.value,
+            origin:origin.value,
+            owner:owner.value,
+            wing_length:wing_length.value,
+            neck_length:neck_length.value,
+            breast_length:breast_length.value,
+            shank_length:shank_length.value,
+            beak_length:beak_length.value,
+            comb_type:comb_type.value,
+            earlobe_color:earlobe_color.value,
+            eye_color:eye_color.value,
+            shank_color:shank_color.value,
+            bill_beak_color:bill_beak_color.value,
+            height:height.value,
+            weight:weight.value,
+            heart_girth:heart_girth.value,
+            midriff_girth:midriff_girth.value,
+            flank_girth:flank_girth.value,
+            female_maxweight:female_maxweight.value,
+            leg_length:leg_length.value,
+            body_length:body_length.value,
+            snout_length:snout_length.value,
+            ear_length:ear_length.value,
+            tail_length:tail_length.value,
+            male_maxweight:male_maxweight.value
+          }
+            $.ajax({
+              type: "GET",
+              data: (params),
+              url: "<?php echo site_url('process_edit_proj/edit_project');?>",
+              success: function(){
+                window.location = my_current_url.value;
+              },
+              error: function(){
+                alert(breed_name + ' was not edited. Please try again.');
+              }
+            });
+          } else window.location = my_current_url.value;
+        }
+            </script>
     </div>
   </div>
 </div>
