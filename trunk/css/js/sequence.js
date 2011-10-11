@@ -19,7 +19,7 @@
               }
               else $('#dna_seq_area').append('<img id="dash_bars" alt="-" src="../../css/images/barcodes/white.jpg" />');//white
             }
-      
+            
       if (dna_seq == '')
       {
         $('#dna_seq_text').html("DNA Sequence not yet available.");
