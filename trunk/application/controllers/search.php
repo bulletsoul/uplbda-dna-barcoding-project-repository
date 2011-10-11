@@ -36,8 +36,8 @@ class Search extends CI_Controller {
   
   $this->db->select('breed, proj_id, proj_desc')->where('is_deleted',0);
   $this->db->where('farm_animal',$search_text)->where('is_deleted',0);
-  $this->db->where('breed',$search_text)->where('is_deleted',0);
-  $this->db->where('proj_desc',$search_text)->where('is_deleted',0);
+  $this->db->or_where('breed',$search_text)->where('is_deleted',0);
+  $this->db->or_where('proj_desc',$search_text)->where('is_deleted',0);
   $this->db->limit($config['per_page'], $offset); // Only get the results for this "page"
   $query = $this->db->get('project');
 
