@@ -58,7 +58,7 @@ Class Poultry extends CI_Model
     function get_poultry_details($proj_id)
     {
         $this->db->from('poultry');
-        $this->db->where('proj_id', $proj_id)->where('is_deleted',0);
+        $this->db->where('proj_id', $proj_id);
         
         $query = $this->db->get();
         
