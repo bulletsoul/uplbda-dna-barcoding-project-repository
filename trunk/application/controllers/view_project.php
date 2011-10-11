@@ -83,6 +83,7 @@ class View_project extends CI_Controller {
   $this->load->helper(array('form', 'url'));
   $proj_id = $this->uri->segment(3);
   $data['redirect_url'] = site_url('signup/check_user');
+  $data['complete_proj_url'] = site_url('view_project/show_project_complete');
   $data['proj_id'] = $proj_id;
   $data['new_url'] = site_url('view_project/show_project');
   $proj_details = $this->project->get_project_details($proj_id);
