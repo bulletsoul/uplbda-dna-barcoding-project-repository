@@ -5,7 +5,7 @@ Class Poultry extends CI_Model
     {
         $this->db->from('project');
         $this->db->order_by('farm_animal', 'asc');
-        $this->db->where('proj_category', "poultry");
+        $this->db->where('proj_category', "poultry")->where('is_deleted',0);
         $this->db->join('poultry', 'poultry.proj_id = project.proj_id');
         
         $query = $this->db->get();
@@ -25,7 +25,7 @@ Class Poultry extends CI_Model
         if ($col_name == 'breed_code'){$this->db->order_by('breed_code', 'asc');}
         if ($col_name == 'fa_code'){$this->db->order_by('fa_code', 'asc');}
         $this->db->where('proj_category', "poultry");
-        $this->db->where('user_id', $user_id);
+        $this->db->where('user_id', $user_id)->where('is_deleted',0);
         $this->db->join('poultry', 'poultry.proj_id = project.proj_id');
         
         $query = $this->db->get();
@@ -42,7 +42,7 @@ Class Poultry extends CI_Model
     {
         $this->db->from('project');
         $this->db->order_by('breed','asc');
-        $this->db->where('user_id', $user_id);
+        $this->db->where('user_id', $user_id)->where('is_deleted',0);
         $this->db->join('poultry', 'poultry.proj_id = project.proj_id');
         
         $query = $this->db->get();
@@ -58,7 +58,7 @@ Class Poultry extends CI_Model
     function get_poultry_details($proj_id)
     {
         $this->db->from('poultry');
-        $this->db->where('proj_id', $proj_id);
+        $this->db->where('proj_id', $proj_id)->where('is_deleted',0);
         
         $query = $this->db->get();
         
