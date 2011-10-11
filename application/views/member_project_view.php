@@ -186,7 +186,7 @@
               <?php
               if ($dimgpath != NULL){
               foreach($dimgpath as $row){ ?>
-                <a href="<?php echo $row->filepath;  ?>" target="_blank"><img src="<?php echo $row->filepath;  ?>" id="image" width="100px" height="100px"></a>
+                <a href="<?php echo $row->filepath;  ?>" target="_blank"><img src="<?php echo $row->filepath;  ?>" id="image" width="50px" height="50px"></a>
               <?php } } 
               else {
                 echo "Image not available.";
