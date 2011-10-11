@@ -3,7 +3,7 @@ Class Videos extends CI_Model
 {    
      function get_videopath($proj_id)
     {
-        $this->db->select('filepath');
+        $this->db->select('filepath, filedesc');
         $this->db->from('videos');
         $this->db->where('proj_id', $proj_id);
         
