@@ -43,6 +43,7 @@
   <input type="hidden" id="nw_url6" value="<?php echo $nw_url6; ?>"/>
   <input type="hidden" id="nw_url7" value="<?php echo $nw_url7; ?>"/>
   <input type="hidden" id="nw_url8" value="<?php echo $nw_url8; ?>"/>
+  <input type="hidden" id="nw_url9" value="<?php echo $nw_url9; ?>"/>
 
   <?php
     $$new_url = $proj_id;
