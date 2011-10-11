@@ -42,11 +42,13 @@
   <input type="hidden" id="nw_url3" value="<?php echo $nw_url3; ?>"/>
   <input type="hidden" id="nw_url6" value="<?php echo $nw_url6; ?>"/>
   <input type="hidden" id="nw_url7" value="<?php echo $nw_url7; ?>"/>
-  
+  <input type="hidden" id="nw_url8" value="<?php echo $nw_url8; ?>"/>
+
   <?php
     $$new_url = $proj_id;
     $proj_url = "$new_url/${$new_url}";
   ?>
+  
   <div class="body">
     <div class="body_resize">
       <div class="right" id="home_right">
