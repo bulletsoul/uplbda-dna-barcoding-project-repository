@@ -70,6 +70,13 @@ Class Poultry extends CI_Model
         else return FALSE;
     }
     
+    function get_total_poultry()
+    {
+	$this->db->from('project')->where('is_deleted', 0)->where('proj_category',"poultry");
+        
+        $query = $this->db->get();
+	return $query->num_rows();
+    }
 }
 
 /* End of file poultry.php */
