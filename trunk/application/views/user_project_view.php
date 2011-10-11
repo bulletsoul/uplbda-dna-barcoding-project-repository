@@ -2,16 +2,18 @@
   
   <div class="body">
     <div class="user_project_view" id="user_project_view">
-        <input type="hidden" id="proj_id" value="<?php echo $proj_id; ?>"/>
-        <input type="hidden" id="redirect_url" value="<?php echo $redirect_url; ?>"/>
-        <?php
-        $nw_url = $redirect_url; ?>
+        <input type="hidden" id="proj_id" value="<?php echo $proj_id; ?>">
+        <input type="hidden" id="complete_proj_url" value="<?php echo $complete_proj_url; ?>">
         <!-- PROJECT DETAILS -->
         <?php 
           if($project_details){
             foreach($project_details as $row){
         ?>
-        <h2><?php echo $row->breed; ?></h2>
+        <h2><?php
+          $$complete_proj_url = $row->proj_id;
+          $my_complete_proj_url = "$complete_proj_url/${$complete_proj_url}";
+        echo $row->breed; ?></h2>
+        <input type="hidden" id="my_complete_proj_url" value="<?php echo $my_complete_proj_url; ?>">
         <TABLE BGCOLOR="#B2D1E5" class="project_table">
         <THEAD ALIGN="center" class="table_header"><TR><TD>Project Details</TD></TR></THEAD>
         <TBODY BGCOLOR="#E9F2F9">
@@ -71,10 +73,7 @@
               </TD>
             </TR>
             <tr>
-              <?php
-                $$nw_url = $proj_id;
-                $proj_url = "$nw_url/${$nw_url}#signup"; ?>
-              <td colspan="2" align="center"><?php echo anchor($proj_url,'Register to view complete details.'); ?></td>
+              <td colspan="2" align="center"><a href="javascript:signup();" id="basic_modal" class="basic" name="basic">Register to view complete details.</a></td>
             </tr>
           </TBODY>
         </TABLE><br/>
@@ -102,10 +101,7 @@
               </TD>
             </TR>
             <tr>
-              <?php
-                $$nw_url = $proj_id;
-                $proj_url = "$nw_url/${$nw_url}#signup"; ?>
-              <td colspan="2" align="center"><?php echo anchor($proj_url,'Register to view complete details.'); ?></td>
+              <td colspan="2" align="center"><a href="javascript:signup();" class="basic" name="basic">Register to view complete details.</a></td>
             </tr>
           </TBODY>
           <?php }}} ?>
@@ -131,3 +127,149 @@
         <?php }} ?>
         </TBODY>
        </TABLE>
+    </div>
+  </div>
+  <div class="hidden">
+    <div id="basic-modal-content" class="simplemodal-data" style="display: block; ">
+    <table id="signup">
+         <tr><td colspan="2"><label id="error_username"></label></td></tr>
+		<tr>
+			<td><label for="username">Username:</label></td>
+			<td><input type="text" size="20" id="username" name="username" /><span id="usr_verify" class="verify"></span></td>
+		</tr>
+                <tr><td colspan="2"><?php echo form_error('email'); ?></td></tr>
+		<tr>
+			<td><label for="email">Email address:</label></td>
+			<td><input type="text" size="20" id="email" name="email"/><span id="email_verify" class="verify"></span></td>
+		</tr>
+                <tr><td colspan="2"><?php echo form_error('password'); ?></td></tr>
+		<tr>
+			<td><label for="password">Password:</label></td>
+			<td><input type="password" size="20" id="password" name="password"/><span id="password_verify" class="verify"></span></td>
+		</tr>
+                <tr><td colspan="2"><?php echo form_error('passconf'); ?></td></tr>
+		<tr>
+			<td><label for="passconf">Retype password:</label></td>
+			<td><input type="password" size="20" id="passconf" name="passconf"/><span id="passconf_verify" class="verify"></span></td>
+		</tr>
+		<tr>
+			<td>&nbsp;</td>
+			<td align="right"><br/><a href="javascript:reg_user(username.value, email.value, password.value);"><button id="signup_button">Register</button></a></td>
+                </tr>
+    </table>
+  </div>
+  <div style='display:none'>
+			<img src='<?php echo base_url(); ?>css/images/x.png' alt='' />
+		</div>
+  </div>
+<!-- Load jQuery, SimpleModal and Basic JS files -->
+<script type='text/javascript' src='<?php echo base_url(); ?>css/js/jquery.js'></script>
+<script type='text/javascript' src='<?php echo base_url(); ?>css/js/jquery.simplemodal.js'></script>
+<script type='text/javascript'>
+$.ajaxSetup ({  
+            cache: false  
+        });
+	
+    function signup(){
+      $("#signup").modal({
+        overlayClose:true,
+        opacity:50,
+        overlayCss: {backgroundColor:"black"}
+      });
+      
+      
+      $('#username').keyup(function() {
+        
+          if($("#username").val().length >= 5 && $("#username").val().length <= 12)
+          {
+            $.ajax({
+              type: "GET",
+              url: "<?php echo site_url('signup/check_user'); ?>",
+              data: ({username:username.value}),
+              success: function(msg){
+                if(msg=="available")
+                {
+                    $("#usr_verify").css({ "background-image": "url('<?php echo base_url();?>css/images/yes.png')" });
+                    $('#error_username').html("Username is available.").css('color','yellow');
+                }
+                else
+		{
+                    $("#usr_verify").css({ "background-image": "url('<?php echo base_url();?>css/images/no.png')" });
+                    $("#error_username").html("Username already existing.").css('color','yellow');
+                }
+              },
+              error: function(){
+                alert('error');
+                }
+              });
+          }
+      }); //end of keyup  
+      
+      
+      $("#email").keyup(function(){
+        var email = $("#email").val();
+        if(email != 0){
+        if(isValidEmailAddress($("#email").val()))
+          {
+            $("#email_verify").css({"background-image": "url('<?php echo base_url();?>css/images/yes.png')"});
+          }
+          else
+          {
+            $("#email_verify").css({"background-image": "url('<?php echo base_url();?>css/images/no.png')"});
+          }
+          }
+          else $("#email_verify").css({ "background-image": "none" });
+        });
+      
+      $("#password").keyup(function(){
+        if($("#passconf").val().length >= 5)
+        {
+            if($("#passconf").val()!=$("#password").val())
+            {
+                $("#passconf_verify").css({ "background-image": "url('<?php echo base_url();?>css/images/no.png')" }); 
+                $("#password_verify").css({ "background-image": "url('<?php echo base_url();?>css/images/no.png')" });
+            }
+            else{
+                $("#passconf_verify").css({ "background-image": "url('<?php echo base_url();?>css/images/yes.png')" }); 
+                $("#password_verify").css({ "background-image": "url('<?php echo base_url();?>css/images/yes.png')" });
+            }
+        }
+    });
+    
+    $("#passconf").keyup(function(){
+        if($("#password").val().length >= 5)
+        {
+            if($("#passconf").val()!=$("#password").val())
+            {
+                $("#passconf_verify").css({ "background-image": "url('<?php echo base_url();?>css/images/no.png')" }); 
+                $("#password_verify").css({ "background-image": "url('<?php echo base_url();?>css/images/no.png')" });
+            }
+            else{
+                $("#passconf_verify").css({ "background-image": "url('<?php echo base_url();?>css/images/yes.png')" }); 
+                $("#password_verify").css({ "background-image": "url('<?php echo base_url();?>css/images/yes.png')" });
+            }
+        }
+    });
+  }
+  
+  function reg_user(username, email, password)
+  {
+    $.ajax({
+      type: "GET",
+      data: ({username:username, email:email, password:password}),
+      url: "<?php echo site_url('signup/register_user'); ?>",
+      success: function(){
+        window.location = my_complete_proj_url.value;
+      },
+      error: function(){
+        alert('mali');
+      }
+    });
+  }
+    
+ function isValidEmailAddress(emailAddress) {
+  var pattern = new RegExp(/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/i);
+  return pattern.test(emailAddress);
+ }
+ 
+</script>
