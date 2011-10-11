@@ -18,6 +18,24 @@ Class Images extends CI_Model
         else return FALSE;
     }
     
+    function get_single_dfilepath($proj_id)
+    {
+        $this->db->select('filepath');
+        $this->db->from('images');
+        $this->db->where('proj_id', $proj_id);
+        $this->db->where('view_type', "Dorsal");
+        $this->db->limit(1);
+        
+        $query = $this->db->get();
+        
+        if($query->num_rows() > 0)
+        {
+            return $query->result();
+        }
+        
+        else return FALSE;
+    }
+    
     function get_vfilepath($proj_id)
     {
         $this->db->select('filepath');
