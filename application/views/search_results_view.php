@@ -14,7 +14,7 @@
             );
           
           $nw_url = $new_url; ?>
-        <ul>
+        
         <?php
           if(!$results)
           {
@@ -30,15 +30,26 @@
         <?php
             foreach ($results as $row) {
         ?>
-            <li><?php
+        <table class="search_result_table" BGCOLOR="#B2D1E5">
+          <thead><tr rowspan="6"><td>&nbsp;</td><td>Breed</td></tr></thead>
+          <tbody BGCOLOR="#E9F2F9">
+            <tr rowspan="6"><td align="center"><?php $dimgpath = $this->images->get_dfilepath($row->proj_id);
+              if ($dimgpath) { foreach($dimgpath as $row){
+            ?>
+            <a href="<?php echo $row->filepath;  ?>" target="_blank"><img src="<?php echo $row->filepath;  ?>" id="image" width="100px" height="100px"></a>
+            <?php } } 
+              else {
+                echo "Image not available.";
+                } ?>
+            </td>
+            <td><?php
                     $$nw_url = $row->proj_id;
                     $proj_url = "$nw_url/${$nw_url}";
                     $string = $row->breed;
                     $string = highlight_phrase($string, $search_text, '<span style="color:#151538">', '</span>');
-                    echo anchor_popup($proj_url,$string, $atts); ?> - <?php $string = $row->proj_desc;
-                    $string = highlight_phrase($string, $search_text, '<span style="color:#151538; font-weight:bold">', '</span>');
-                    echo $string;?></li>
+                    echo anchor_popup($proj_url,$string, $atts); ?></td></tr>
+          </tbody>
+        </table>
         <?php }} ?>
-        </ul>
         <?php echo $this->pagination->create_links(); ?>
       </div>
