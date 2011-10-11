@@ -9,7 +9,7 @@ Class Livestock extends CI_Model
         if ($col_name == 'farm_animal'){$this->db->order_by('farm_animal','asc');}
         if ($col_name == 'breed_code'){$this->db->order_by('breed_code','asc');}
         if ($col_name == 'fa_code'){$this->db->order_by('fa_code','asc');}
-        $this->db->where('ls_category', $category);
+        $this->db->where('ls_category', $category)->where('is_deleted',0);
         $this->db->join('livestock', 'livestock.proj_id = project.proj_id');
       
         $query = $this->db->get();
@@ -28,7 +28,7 @@ Class Livestock extends CI_Model
         if ($col_name == 'farm_animal'){$this->db->order_by('farm_animal','asc');}
         if ($col_name == 'breed_code'){$this->db->order_by('breed_code','asc');}
         if ($col_name == 'fa_code'){$this->db->order_by('fa_code','asc');}
-        $this->db->where('user_id', $user_id);
+        $this->db->where('user_id', $user_id)->where('is_deleted',0);
         $this->db->join('livestock', 'livestock.proj_id = project.proj_id');
       
         $query = $this->db->get();
@@ -43,7 +43,7 @@ Class Livestock extends CI_Model
     function get_bovidae()
     {
         $this->db->from('project');
-        $this->db->where('ls_category', "Bovidae");
+        $this->db->where('ls_category', "Bovidae")->where('is_deleted',0);
         $this->db->join('livestock', 'livestock.proj_id = project.proj_id');
       
         $query = $this->db->get();
@@ -58,7 +58,7 @@ Class Livestock extends CI_Model
     function get_capridae()
     {
         $this->db->from('project');
-        $this->db->where('ls_category', "Capridae");
+        $this->db->where('ls_category', "Capridae")->where('is_deleted',0);
         $this->db->join('livestock', 'livestock.proj_id = project.proj_id');
       
         $query = $this->db->get();
@@ -73,7 +73,7 @@ Class Livestock extends CI_Model
     function get_monogastrics()
     {
         $this->db->from('project');
-        $this->db->where('ls_category', "Monogastrics");
+        $this->db->where('ls_category', "Monogastrics")->where('is_deleted',0);
         $this->db->join('livestock', 'livestock.proj_id = project.proj_id');
       
         $query = $this->db->get();
@@ -89,7 +89,7 @@ Class Livestock extends CI_Model
     {
         $this->db->from('project');
         $this->db->order_by('breed','asc');
-        $this->db->where('user_id', $user_id);
+        $this->db->where('user_id', $user_id)->where('is_deleted',0);
         $this->db->join('livestock', 'livestock.proj_id = project.proj_id');
         
         $query = $this->db->get();
