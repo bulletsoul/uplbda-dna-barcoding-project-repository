@@ -181,8 +181,9 @@
             <td width="80px" class="table_header">Dorsal Views</td>
             <td>
               <div id="img_area">
+              <input type="hidden">
               <?php
-              if ($dimgpath != NULL){
+              if ($dimgpath){
               foreach($dimgpath as $row){ ?>
                 <a href="<?php echo $row->filepath;  ?>" target="_blank"><img src="<?php echo $row->filepath;  ?>" id="image" width="100px" height="100px"></a>
               <?php } } 
@@ -227,7 +228,7 @@
             <td>
               <div id="img_area">
               <?php
-              if ($oimgpath!= NULL){
+              if ($oimgpath){
               foreach($oimgpath as $row){ ?>
                 <a href="<?php echo $row->filepath;  ?>" target="_blank"><img src="<?php echo $row->filepath;  ?>" id="image" width="100px" height="100px"></a>
               <?php } } 
