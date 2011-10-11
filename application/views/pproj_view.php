@@ -36,9 +36,7 @@
         Project ID
       </TD>
     <TD width="200" title="Sort"><?php echo anchor('sortby/view_projects/breed/poultry','BREED', $atts);?></TD>
-    <TD title="Sort"><?php echo anchor('sortby/view_projects/breed_code/poultry','BREED CODE', $atts);?></TD>
     <TD title="Sort"><?php echo anchor('sortby/view_projects/farm_animal/poultry','FARM ANIMAL', $atts);?></TD>
-    <TD title="Sort"><?php echo anchor('sortby/view_projects/fa_code/poultry','FA CODE', $atts);?></TD>
     <TD>PLACE</TD>
     </TR>    
         
@@ -56,9 +54,7 @@
       $proj_url = "$nw_url/${$nw_url}";
       echo anchor_popup($proj_url,$row->breed, $atts); ?>
       </TD>
-      <TD><?php echo $row->breed_code; ?></TD>
       <TD><?php echo $row->farm_animal; ?></TD>
-      <TD><?php echo $row->fa_code; ?></TD>
       <TD><?php echo $row->place; ?></TD> 
     </TR><?php
     }
