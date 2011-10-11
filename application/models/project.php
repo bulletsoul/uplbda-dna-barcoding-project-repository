@@ -5,6 +5,7 @@ Class Project extends CI_Model
  {
     $this->db->from('project');
     $this->db->where('breed', $breed);
+    $this->db->where('is_deleted',0);
     $query = $this->db->get();
     
     if($query->num_rows() == 1)
@@ -113,6 +114,7 @@ Class Project extends CI_Model
  {
     $this->db->from('project');
     $this->db->where('proj_category', "poultry");
+    $this->db->where('is_deleted',0);
     
     $query = $this->db->get();
 
@@ -128,6 +130,7 @@ Class Project extends CI_Model
  {
     $this->db->from('project');
     $this->db->where('proj_category', "livestock");
+    $this->db->where('is_deleted',0);
     
     $query = $this->db->get();
 
@@ -141,10 +144,11 @@ Class Project extends CI_Model
  
  function delete_project($proj_id)
  {
-    $tables = array('project', 'poultry', 'livestock');
+    $data = array(
+     'is_deleted' => 1
+    );
     $this->db->where('proj_id', $proj_id);
-    $this->db->delete($tables);    
-    
+    $this->db->update('project', $data);    
  }
  
  function get_proj_category($proj_id)
@@ -194,6 +198,7 @@ Class Project extends CI_Model
     $this->db->from('project');
     $this->db->like('farm_animal',$search_text);
     $this->db->like('breed',$search_text);
+    $this->db->where('is_deleted',0);
     
     $query = $this->db->get();
     
@@ -210,6 +215,7 @@ Class Project extends CI_Model
     {
         $this->db->from('project');
         $this->db->order_by('breed','asc');
+	$this->db->where('is_deleted',0);
         
         $query = $this->db->get();
         
