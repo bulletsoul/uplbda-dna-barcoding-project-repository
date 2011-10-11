@@ -278,7 +278,7 @@
               <?php
                 if ($docpath != NULL){
                   foreach($docpath as $row){?>
-                <a href="<?php echo $row->filepath;  ?>" target="_blank" > <?php echo $row->filename; ?></a>
+                <a href="<?php echo $row->filepath;  ?>" target="_blank" > <?php echo $row->filename; ?><br/></a>
               <?php } } 
               else {
                 echo "Document not available.";
