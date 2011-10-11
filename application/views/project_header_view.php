@@ -38,8 +38,10 @@
   <input type="hidden" id="new_url" value="<?php echo $new_url; ?>"/>
   <input type="hidden" id="nw_url" value="<?php echo $nw_url; ?>"/><!--from view_project: site_url('my_projects/edit_project')-->
   <input type="hidden" id="nw_url1" value="<?php echo $nw_url1; ?>"/>
-  <input type="hidden" id="nw_url1" value="<?php echo $nw_url2; ?>"/>
-  <input type="hidden" id="nw_url1" value="<?php echo $nw_url3; ?>"/>
+  <input type="hidden" id="nw_url2" value="<?php echo $nw_url2; ?>"/>
+  <input type="hidden" id="nw_url3" value="<?php echo $nw_url3; ?>"/>
+  <input type="hidden" id="nw_url6" value="<?php echo $nw_url6; ?>"/>
+  <input type="hidden" id="nw_url7" value="<?php echo $nw_url7; ?>"/>
   
   <?php
     $$new_url = $proj_id;
