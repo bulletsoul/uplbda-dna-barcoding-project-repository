@@ -100,6 +100,8 @@ class Search extends CI_Controller {
   
   $data['search_text'] = $search_text;
   $data['results'] = $query->result();
+  $dimgpath = $this->images->get_dfilepath($proj_id);
+  $data['dimgpath'] = $dimgpath;
   $this->load->view('search_header');
   $this->load->view('search_results_view', $data);
   $this->load->view('footer');
