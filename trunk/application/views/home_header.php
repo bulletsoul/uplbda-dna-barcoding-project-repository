@@ -41,24 +41,14 @@
             </ul>
         <li>View all projects</li>
         <ul>
-            <li>Livestock [<?php echo $this->db->count_all_results('livestock'); ?>]</li>
+            <li>Livestock [<?php echo $this->livestock->get_total_livestock(); ?>]</li>
             <ul>
-                <li><?php echo anchor('view_ls_category/bovidae', 'Bovidae'); ?> [<?php
-        $this->db->where('ls_category', 'Bovidae');
-        $this->db->from('livestock');
-        echo $this->db->count_all_results(); ?>]</li>
-                <li><?php echo anchor('view_ls_category/capridae', 'Capridae'); ?> [<?php
-        $this->db->where('ls_category', 'Capridae');
-        $this->db->from('livestock');
-        echo $this->db->count_all_results(); ?>]</li>
-                <li><?php echo anchor('view_ls_category/monogastrics', 'Monogastrics'); ?> [<?php
-        $this->db->where('ls_category', 'Monogastrics');
-        $this->db->from('livestock');
-        echo $this->db->count_all_results(); ?>]</li>
+                <li><?php echo anchor('view_ls_category/bovidae', 'Bovidae'); ?> [<?php echo $this->livestock->get_total_bovidae(); ?>]</li>
+                <li><?php echo anchor('view_ls_category/capridae', 'Capridae'); ?> [<?php echo $this->livestock->get_total_capridae(); ?>]</li>
+                <li><?php echo anchor('view_ls_category/monogastrics', 'Monogastrics'); ?> [<?php echo $this->livestock->get_total_monogastrics(); ?>]</li>
             </ul>
-            <li><?php echo anchor('view_pproj', 'Poultry'); ?> [<?php echo $this->db->count_all_results('poultry'); ?>]</li>
+            <li><?php echo anchor('view_pproj', 'Poultry'); ?> [<?php echo $this->poultry->get_total_poultry(); ?>]</li>
         </ul>
-        <li><?php echo anchor('my_projects/view_gallery', 'Gallery'); ?></li>
     </ul>
     </div>
     
