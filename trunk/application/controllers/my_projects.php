@@ -17,6 +17,8 @@ class My_projects extends CI_Controller {
     $data['my_redirect']= current_url();
     $data['baseurl']= base_url();
     $data['new_url'] = site_url('view_project/show_project');
+    $data['nw_url6'] = site_url('upload/lateral_img');
+    $data['nw_url7'] = site_url('upload/other_img');
     if($this->session->userdata('logged_in'))
     {
       $session_data = $this->session->userdata('logged_in');
@@ -33,12 +35,15 @@ class My_projects extends CI_Controller {
   {
     $this->load->helper(array('form', 'url'));
     $proj_id = $this->uri->segment(3);
+    $data['my_current_url'] = current_url();
     $data['new_url'] = site_url('view_project/show_project');
     $data['nw_url'] = site_url('my_projects/edit_project');
     $data['edit_proj_url'] = site_url('process_edit_proj/edit_project');
     $data['nw_url1'] = site_url('upload/doc');
     $data['nw_url2'] = site_url('upload/dorsal_img');
     $data['nw_url5'] = site_url('upload/ventral_img');
+    $data['nw_url6'] = site_url('upload/lateral_img');
+    $data['nw_url7'] = site_url('upload/other_img');
     $data['nw_url3'] = site_url('upload/vid');
     $data['proj_id'] = $proj_id;
     $proj_details = $this->project->get_project_details($proj_id);
@@ -77,6 +82,8 @@ class My_projects extends CI_Controller {
     $data['nw_url2'] = site_url('upload/dorsal_img');
     $data['nw_url5'] = site_url('upload/ventral_img');
     $data['nw_url3'] = site_url('upload/vid');
+    $data['nw_url6'] = site_url('upload/lateral_img');
+    $data['nw_url7'] = site_url('upload/other_img');
     $data['proj_id'] = $proj_id;
     $result = $this->project->get_breed($proj_id);
     foreach ($result as $item){
