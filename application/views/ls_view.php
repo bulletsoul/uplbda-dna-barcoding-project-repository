@@ -75,9 +75,11 @@
       $$nw_url1 = $row->proj_id;
       $proj_url = "$nw_url1/${$nw_url1}";
       echo anchor_popup($proj_url,$row->place, $atts);} ?></TD> 
-    </TR><?php
+    </TR>
+    <?php
     }
     } else echo "No published $ls_category project yet!"; ?>
+    <tr><td colspan="5" align="center"><?php echo $this->pagination->create_links(); ?></td></tr>
     </TBODY>
    </TABLE>
 </div>
