@@ -10,6 +10,15 @@
         <input type="hidden" id="my_redirect" value="<?php echo $my_redirect; ?>"/>
         <input type="hidden" id="baseurl" value="<?php echo $baseurl; ?>"/>
         <input type="hidden" id="new_url" value="<?php echo $new_url; ?>"/>
+        <input type="hidden" id="my_redirect" value="<?php echo $my_redirect; ?>"/>
+        <input type="hidden" id="sortby_breed_asc" value="<?php echo $sortby_breed_asc; ?>"/>
+        <input type="hidden" id="sortby_breed_desc" value="<?php echo $sortby_breed_desc; ?>"/>
+        <input type="hidden" id="sortby_pid_asc" value="<?php echo $sortby_pid_asc; ?>"/>
+        <input type="hidden" id="sortby_pid_desc" value="<?php echo $sortby_pid_desc; ?>"/>
+        <input type="hidden" id="sortby_fa_asc" value="<?php echo $sortby_fa_asc; ?>"/>
+        <input type="hidden" id="sortby_fa_desc" value="<?php echo $sortby_fa_desc; ?>"/>
+        <input type="hidden" id="sortby_place_asc" value="<?php echo $sortby_place_asc; ?>"/>
+        <input type="hidden" id="sortby_place_desc" value="<?php echo $sortby_place_desc; ?>"/>
         <?php
           $atts = array(
               'width'      => '800',
@@ -28,18 +37,42 @@
     
     if ($list){
       ?>
-      
+      <script language="JavaScript"><!--
+function onClick() {
+  var Current = document.formName4.selectName4.selectedIndex;
+  
+  if (Current == 0) window.location = sortby_pid_asc.value;
+  if (Current == 1) window.location = sortby_pid_desc.value;
+  if (Current == 2) window.location = sortby_breed_asc.value;
+  if (Current == 3) window.location = sortby_breed_desc.value;
+  if (Current == 4) window.location = sortby_fa_asc.value;
+  if (Current == 5) window.location = sortby_fa_desc.value;
+  if (Current == 6) window.location = sortby_place_asc.value;
+  if (Current == 7) window.location = sortby_place_desc.value;  
+}
+//--></script>
+
+<form name="formName4" onSubmit="return false;" align="right">
+<select name="selectName4">
+<option value="a_pid">Project ID (Ascending)
+<option value="d_pid">Project ID (Descending)
+<option value="a_breed">Breed (Ascending)
+<option value="d_breed">Breed (Descending)
+<option value="a_fa">Farm Animal (Ascending)
+<option value="d_fa">Farm Animal (Descending)
+<option value="a_place">Place (Ascending)
+<option value="d_place">Place (Descending)
+</select>
+<input name="submitName4" type="submit" value="Sort" onClick="onClick();return false;">
+</form>
       <TABLE BGCOLOR="#B2D1E5" class="project_table">
-          <THEAD ALIGN="center" class="table_header">
+      <THEAD ALIGN="center" class="table_header">
     <TR>
-      <TD>
-        Project ID
-      </TD>
-    <TD width="200" title="Sort"><?php echo anchor('sortby/view_projects/breed/poultry','BREED', $atts);?></TD>
-    <TD title="Sort"><?php echo anchor('sortby/view_projects/farm_animal/poultry','FARM ANIMAL', $atts);?></TD>
-    <TD>PLACE</TD>
+      <TD>Project ID</TD>
+      <TD width="200">Breed</TD>
+      <TD>Farm Animal</TD>
+      <TD>Place</TD>
     </TR>    
-        
     </THEAD>
       <?php
    foreach ($list as $row)
