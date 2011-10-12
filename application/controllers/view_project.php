@@ -21,7 +21,7 @@ class View_project extends CI_Controller {
   $proj_id = $this->input->get('proj_id');
  }
  
- function show_project()
+  function show_project()
  {
   $proj_id = $this->uri->segment(3);
   $data['redirect_url'] = site_url('signup/check_user');
