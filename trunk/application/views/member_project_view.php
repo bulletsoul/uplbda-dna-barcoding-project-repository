@@ -118,6 +118,7 @@
             <label>Sex: </label><?php if ($row->sex == "M") echo "Male"; else echo "Female"; ?><br/>
             <label>Sample type: </label><?php echo $row->sample_type; ?><br/>
             <label>Sampling Date:</label> <?php echo $row->sampling_date; ?><br/>
+            <label>Place:</label> <?php echo $row->place; ?><br/>
             <label>Origin:</label> <?php echo $row->origin; ?><br/>
             <label>Owner:</label> <?php echo $row->owner; ?>
         </TD>
