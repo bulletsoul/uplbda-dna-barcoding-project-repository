@@ -1,14 +1,13 @@
 <?php
 Class Poultry extends CI_Model
 {
-    function get_poultry()
+    function get_poultry($num, $offset)
     {
-        $this->db->from('project');
         $this->db->order_by('farm_animal', 'asc');
         $this->db->where('proj_category', "poultry")->where('is_deleted',0);
         $this->db->join('poultry', 'poultry.proj_id = project.proj_id');
         
-        $query = $this->db->get();
+        $query = $this->db->get('project', $num, $offset);
         
         if($query->num_rows() > 0)
         {
@@ -38,12 +37,13 @@ Class Poultry extends CI_Model
         else return FALSE;
     }
     
-    function get_user_pproj($user_id)
+    function get_user_pproj($num, $offset, $user_id)
     {
         $this->db->from('project');
         $this->db->order_by('breed','asc');
         $this->db->where('user_id', $user_id)->where('is_deleted',0);
         $this->db->join('poultry', 'poultry.proj_id = project.proj_id');
+        $this->db->limit($num, $offset);
         
         $query = $this->db->get();
         
@@ -53,6 +53,15 @@ Class Poultry extends CI_Model
         }
         
         else return FALSE;
+    }
+    
+    function get_total_user_pproj($user_id)
+    {
+        $this->db->from('project');
+        $this->db->where('user_id', $user_id)->where('is_deleted',0);
+        $query = $this->db->get();
+        
+        return $query->num_rows();
     }
     
     function get_poultry_details($proj_id)
