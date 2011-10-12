@@ -21,7 +21,7 @@
           <li><a href="<?php echo base_url(); ?>home/logout"><span>Logout</span></a></li>
           <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
           <li><?php echo form_open('search/basic_search'); ?><input name="search_text" type="text" size="20" maxlength="80" id="search_text" value="Search animal or breed..." onFocus="{value=''}" class="input-text"></li>
-	  <li><input type="image" src="<?php echo base_url(); ?>css/images/search.png" alt="Search" value="Go" id="search_submit" class="input-button" caption="Search"><?php echo form_close(); ?></a></li>
+	  <li><input type="image" src="<?php echo base_url(); ?>css/images/search.png" alt="Search" value="Go" id="search_submit" class="input-button" caption="Search"><?php echo form_close(); ?></li>
         </ul>
       </div>
       <div class="clr"></div>
