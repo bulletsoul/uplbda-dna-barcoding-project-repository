@@ -34,7 +34,7 @@ $(document).ready(function(){
           <li><a href="<?php echo base_url(); ?>home/about" id="about"><span>About</span></a></li>
           <li><a href="<?php echo base_url(); ?>home/contact" id="contact"><span>Contact</span></a></li>
 	  <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-	  <li><?php echo form_open('search'); ?><input name="search_text" type="text" size="20" maxlength="80" id="search_text" value="Search animal or breed..." onFocus="{value=''}" class="input-text"></li>
+	  <li><?php echo form_open('search/basic_search'); ?><input name="search_text" type="text" size="20" maxlength="80" id="search_text" value="Search animal or breed..." onFocus="{value=''}" class="input-text"></li>
 	  <li><input type="image" src="<?php echo base_url(); ?>css/images/search.png" alt="Search" value="Go" id="search_submit" class="input-button"><?php echo form_close(); ?></li>
         </ul>
       </div>
