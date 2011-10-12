@@ -21,10 +21,10 @@
           if($type == "Documents"){?>
             <input type="hidden" id="filetype" name="filetype" value="<?php echo $type?>"/>
             
-            <?php
+            <?php $ctr = 0;
             $ftype = "Documents";
               if ($docname != NULL){
-                $ctr = 0;
+                
                   foreach($docname as $row){ $ctr++;
                   $str[$ctr] = "filedesc".$ctr;
                   
@@ -42,10 +42,9 @@
           else if($type == "Videos"){?>
             <input type="hidden" id="filetype" name="filetype" value="<?php echo $type?>"/>
             
-            <?php
+            <?php $ctr = 0;
             $ftype = "Videos";
               if ($vidname !=NULL){
-                $ctr = 0;
                 foreach($vidname as $row){ $ctr++;
                 $str[$ctr] = "filedesc".$ctr;
                 ?>
