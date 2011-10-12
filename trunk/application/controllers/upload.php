@@ -222,6 +222,7 @@ class Upload extends CI_Controller {
                 $data['nw_url4'] = site_url('my_projects/view_sequence');
                 $data['nw_url8'] = site_url('upload/set_doc_file_desc');
                 $data['nw_url9'] = site_url('upload/set_vid_file_desc');
+                $data['nw_url10'] = site_url('process_add_filedesc/add_filedesc');
                 $docname = $this->docs->get_docname($proj_id);
                 $data['docname'] = $this->docs->get_docname($proj_id);
                 $vidname = $this->videos->get_vidname($proj_id);
@@ -256,6 +257,7 @@ class Upload extends CI_Controller {
                 $data['nw_url4'] = site_url('my_projects/view_sequence');
                 $data['nw_url8'] = site_url('upload/set_doc_file_desc');
                 $data['nw_url9'] = site_url('upload/set_vid_file_desc');
+                $data['nw_url10'] = site_url('process_add_filedesc/add_filedesc');
                 $docname = $this->docs->get_docname($proj_id);
                 $data['docname'] = $this->docs->get_docname($proj_id);
                 $vidname = $this->videos->get_vidname($proj_id);
