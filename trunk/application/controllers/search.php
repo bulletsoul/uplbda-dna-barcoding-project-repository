@@ -14,38 +14,7 @@ class Search extends CI_Controller {
  /* default search is animal or breed */
  function index()
  {
-  $this->load->helper(array('form'));
-  if($this->session->userdata('logged_in'))
-  {
-   $data['new_url'] = site_url('view_project/show_project_complete'); 
-  }
-  else $data['new_url'] = site_url('view_project/show_project_inc');
-  $search_text = $this->input->post('search_text');
-  $count = $this->project->count_keyword_result($search_text);
   
-  $offset = $this->uri->segment(2,0);
-  
-  $this->load->library('pagination');
-  
-  $config['uri_segment'] = 2;
-  $config['base_url'] = base_url().'search';
-  $config['total_rows'] = $count;
-  $config['per_page'] = 10;
-  
-  $this->pagination->initialize($config);
-  
-  $this->db->select('breed, proj_id, proj_desc')->where('is_deleted',0);
-  $this->db->where('farm_animal',$search_text)->where('is_deleted',0);
-  $this->db->or_where('breed',$search_text)->where('is_deleted',0);
-  $this->db->or_where('proj_desc',$search_text)->where('is_deleted',0);
-  $this->db->limit($config['per_page'], $offset); // Only get the results for this "page"
-  $query = $this->db->get('project');
-
-  $data['search_text'] = $search_text;
-  $data['results'] = $query->result();
-  $this->load->view('search_header');
-  $this->load->view('search_results_view', $data);
-  $this->load->view('footer');
  }
  
  function advanced_search()
@@ -63,8 +32,8 @@ class Search extends CI_Controller {
   
   $this->load->library('pagination');
   
-  $config['uri_segment'] = 2;
-  $config['base_url'] = base_url().'search';
+  $config['uri_segment'] = 3;
+  $config['base_url'] = base_url().'search/basic_search';
   $config['total_rows'] = $count;
   $config['per_page'] = $count;
   
@@ -102,6 +71,38 @@ class Search extends CI_Controller {
   $data['results'] = $query->result();
   $dimgpath = $this->images->get_dfilepath($proj_id);
   $data['dimgpath'] = $dimgpath;
+  $this->load->view('search_header');
+  $this->load->view('search_results_view', $data);
+  $this->load->view('footer');
+ }
+ 
+ function basic_search()
+ {
+  $this->load->helper(array('form'));
+  if($this->session->userdata('logged_in'))
+  {
+   $data['new_url'] = site_url('view_project/show_project_complete'); 
+  }
+  else $data['new_url'] = site_url('view_project/show_project_inc');
+  $search_text = $this->input->post('search_text');
+  $count = $this->project->count_keyword_result($search_text);
+    
+  $this->load->library('pagination');
+  
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'search/basic_search';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 10;
+  $data['results'] = $this->project->get_basic_search_result($config['per_page'], $offset, $search_text);
+  $data['search_text'] = $search_text;
+  $this->pagination->initialize($config);
+  
+  /*$this->db->select('breed, proj_id, proj_desc')->where('is_deleted',0);
+  $this->db->where('farm_animal',$search_text)->where('is_deleted',0);
+  $this->db->or_where('breed',$search_text)->where('is_deleted',0);
+  $this->db->limit($config['per_page'], $offset); // Only get the results for this "page"
+  $query = $this->db->get('project');*/
+
   $this->load->view('search_header');
   $this->load->view('search_results_view', $data);
   $this->load->view('footer');
