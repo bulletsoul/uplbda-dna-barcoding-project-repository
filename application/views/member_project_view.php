@@ -264,7 +264,7 @@
               </div>
             </td>
           </tr>
-          <tr><td><?php echo $row->filedesc; ?></td></tr>
+          <tr><td><?php echo "Video Description: ".$row->filedesc; ?></td></tr>
           </tbody>
         </table>
       <br/>
@@ -284,12 +284,12 @@
             </td>
             <td>
                 <?php echo $row->filedesc; ?>
-              </div>
-            </td>
-            <?php } } 
+                <?php } } 
               else {
                 echo "Document not available.";
                 }?>
+              </div>
+            </td>
           </tr>
           </tbody>
         </table>
