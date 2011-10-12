@@ -20,7 +20,7 @@
           <li><a href="<?php echo base_url(); ?>home/contact" id="contact"><span>Contact</span></a></li>
           <li><a href="<?php echo base_url(); ?>home/logout"><span>Logout</span></a></li>
           <li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li>
-          <li><?php echo form_open('search'); ?><input name="search_text" type="text" size="20" maxlength="80" id="search_text" value="Search animal or breed..." onFocus="{value=''}" class="input-text"></li>
+          <li><?php echo form_open('search/basic_search'); ?><input name="search_text" type="text" size="20" maxlength="80" id="search_text" value="Search animal or breed..." onFocus="{value=''}" class="input-text"></li>
 	  <li><input type="image" src="<?php echo base_url(); ?>css/images/search.png" alt="Search" value="Go" id="search_submit" class="input-button" caption="Search"><?php echo form_close(); ?></a></li>
         </ul>
       </div>
@@ -33,7 +33,11 @@
   <div class="right" id="home_right">
     <h2>Project Options</h2>
     <ul>
-        <li><?php echo anchor('my_projects', 'My Projects'); ?></li>
+        <li>My Projects</li>
+        <ul>
+            <li><?php echo anchor('my_projects/my_livestock_projects', 'Livestock'); ?></li>
+            <li><?php echo anchor('my_projects/my_poultry_projects', 'Poultry'); ?></li>
+        </ul>
         <li>Add project</li>
             <ul>
             <li><?php echo anchor('add_lproj', 'Livestock'); ?></li>
