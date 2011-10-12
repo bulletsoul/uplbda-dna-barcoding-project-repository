@@ -40,13 +40,13 @@ Class Livestock extends CI_Model
         else return FALSE;           
     }
     
-    function get_bovidae()
+    function get_bovidae($num, $offset)
     {
-        $this->db->from('project');
+        //$this->db->from('project');
         $this->db->where('ls_category', "Bovidae")->where('is_deleted',0);
         $this->db->join('livestock', 'livestock.proj_id = project.proj_id');
-      
-        $query = $this->db->get();
+	      
+        $query = $this->db->get('project', $num, $offset);
       
         if($query->num_rows() > 0)
         {
@@ -64,13 +64,12 @@ Class Livestock extends CI_Model
         return $query->num_rows();
     }
     
-    function get_capridae()
+    function get_capridae($num, $offset)
     {
-        $this->db->from('project');
         $this->db->where('ls_category', "Capridae")->where('is_deleted',0);
         $this->db->join('livestock', 'livestock.proj_id = project.proj_id');
       
-        $query = $this->db->get();
+        $query = $this->db->get('project', $num, $offset);
         
         if($query->num_rows() > 0)
 	{
@@ -88,14 +87,13 @@ Class Livestock extends CI_Model
         return $query->num_rows();
     }
     
-    function get_monogastrics()
+    function get_monogastrics($num, $offset)
     {
-        $this->db->from('project');
         $this->db->where('ls_category', "Monogastrics");
 	$this->db->where('is_deleted', 0)->where('is_deleted',0);
         $this->db->join('livestock', 'livestock.proj_id = project.proj_id');
       
-        $query = $this->db->get();
+        $query = $this->db->get('project', $num, $offset);
         
         if($query->num_rows() > 0)
 	{
@@ -113,13 +111,13 @@ Class Livestock extends CI_Model
         return $query->num_rows();
     }
     
-    function get_user_lproj($user_id)
+    function get_user_lproj($num, $offset, $user_id)
     {
         $this->db->from('project');
         $this->db->order_by('breed','asc');
-        $this->db->where('user_id', $user_id);
-	$this->db->where('is_deleted', 0);
+        $this->db->where('user_id', $user_id)->where('is_deleted', 0);
         $this->db->join('livestock', 'livestock.proj_id = project.proj_id');
+	$this->db->limit($num, $offset);
         
         $query = $this->db->get();
         
@@ -129,6 +127,18 @@ Class Livestock extends CI_Model
         }
         
         else return FALSE;
+    }
+    
+    function get_total_user_lproj($user_id)
+    {
+        $this->db->from('project');
+        $this->db->order_by('breed','asc');
+        $this->db->where('user_id', $user_id)->where('is_deleted', 0);
+        $this->db->join('livestock', 'livestock.proj_id = project.proj_id');
+	
+	$query = $this->db->get();
+        
+        return $query->num_rows();
     }
     
     function get_total_livestock()
