@@ -13,22 +13,143 @@ class My_projects extends CI_Controller {
   //method for loading the view for user's own projects
   function index()
   {
-    $this->load->helper('url');
+    
+  }
+  
+  function sortby()
+  {
     $data['my_redirect']= current_url();
     $data['baseurl']= base_url();
     $data['new_url'] = site_url('view_project/show_project');
-    $data['nw_url6'] = site_url('upload/lateral_img');
-    $data['nw_url7'] = site_url('upload/other_img');
-    if($this->session->userdata('logged_in'))
+    $this->load->library('pagination');
+    $category = $this->uri->segment(3);
+    $column = $this->uri->segment(4);
+    $order = $this->uri->segment(5);
+    $offset = $this->uri->segment(6);
+    
+    $session_data = $this->session->userdata('logged_in');
+    $user_id = $session_data['user_id'];
+    
+    $config['per_page'] = 15;
+    if ($category == "poultry")
     {
-      $session_data = $this->session->userdata('logged_in');
-      $user_id = $session_data['user_id'];
-      $data['result_poultry'] = $this->poultry->get_user_pproj($user_id);
-      $data['result_livestock'] = $this->livestock->get_user_lproj($user_id);
-      $this->load->view('home_header');
-      $this->load->view('edit_proj_view', $data);
-      $this->load->view('footer');
+      $data['sortby_breed_asc'] = site_url('my_projects/sortby/poultry/breed/asc');
+      $data['sortby_breed_desc'] = site_url('my_projects/sortby/poultry/breed/desc');
+      $data['sortby_pid_asc'] = site_url('my_projects/sortby/poultry/pid/asc');
+      $data['sortby_pid_desc'] = site_url('my_projects/sortby/poultry/pid/desc');
+      $data['sortby_fa_asc'] = site_url('my_projects/sortby/poultry/fa/asc');
+      $data['sortby_fa_desc'] = site_url('my_projects/sortby/poultry/fa/desc');
+      $data['sortby_place_asc'] = site_url('my_projects/sortby/poultry/place/asc');
+      $data['sortby_place_desc'] = site_url('my_projects/sortby/poultry/place/desc');
+      $count = $this->poultry->get_total_user_pproj($user_id);
+      if (($column == "breed") && ($order == "asc")) $config['base_url'] = base_url().'my_projects/sortby/poultry/breed/asc';
+      if (($column == "breed") && ($order == "desc")) $config['base_url'] = base_url().'my_projects/sortby/poultry/breed/desc';
+      if (($column == "pid") && ($order == "asc")) $config['base_url'] = base_url().'my_projects/sortby/poultry/pid/asc';
+      if (($column == "pid") && ($order == "desc")) $config['base_url'] = base_url().'my_projects/sortby/poultry/pid/desc';
+      if (($column == "fa") && ($order == "asc")) $config['base_url'] = base_url().'my_projects/sortby/poultry/fa/asc';
+      if (($column == "fa") && ($order == "desc")) $config['base_url'] = base_url().'my_projects/sortby/poultry/fa/desc';
+      if (($column == "place") && ($order == "asc")) $config['base_url'] = base_url().'my_projects/sortby/poultry/place/asc';
+      if (($column == "place") && ($order == "desc")) $config['base_url'] = base_url().'my_projects/sortby/poultry/place/desc';
+      $data['result_poultry'] = $this->poultry->get_sorted_by($config['per_page'], $offset, $user_id, $column, $order);
+    } else {
+      $data['sortby_breed_asc'] = site_url('my_projects/sortby/livestock/breed/asc');
+      $data['sortby_breed_desc'] = site_url('my_projects/sortby/livestock/breed/desc');
+      $data['sortby_pid_asc'] = site_url('my_projects/sortby/livestock/pid/asc');
+      $data['sortby_pid_desc'] = site_url('my_projects/sortby/livestock/pid/desc');
+      $data['sortby_fa_asc'] = site_url('my_projects/sortby/livestock/fa/asc');
+      $data['sortby_fa_desc'] = site_url('my_projects/sortby/livestock/fa/desc');
+      $data['sortby_place_asc'] = site_url('my_projects/sortby/livestock/place/asc');
+      $data['sortby_place_desc'] = site_url('my_projects/sortby/livestock/place/desc');
+      $count = $this->livestock->get_total_user_lproj($user_id);
+      if (($column == "breed") && ($order == "asc")) $config['base_url'] = base_url().'my_projects/sortby/livestock/breed/asc';
+      if (($column == "breed") && ($order == "desc")) $config['base_url'] = base_url().'my_projects/sortby/livestock/breed/desc';
+      if (($column == "pid") && ($order == "asc")) $config['base_url'] = base_url().'my_projects/sortby/livestock/pid/asc';
+      if (($column == "pid") && ($order == "desc")) $config['base_url'] = base_url().'my_projects/sortby/livestock/pid/desc';
+      if (($column == "fa") && ($order == "asc")) $config['base_url'] = base_url().'my_projects/sortby/livestock/fa/asc';
+      if (($column == "fa") && ($order == "desc")) $config['base_url'] = base_url().'my_projects/sortby/livestock/fa/desc';
+      if (($column == "place") && ($order == "asc")) $config['base_url'] = base_url().'my_projects/sortby/livestock/place/asc';
+      if (($column == "place") && ($order == "desc")) $config['base_url'] = base_url().'my_projects/sortby/livestock/place/desc';
+      $data['result_livestock'] = $this->livestock->get_all_sorted_by($config['per_page'], $offset, $user_id, $column, $order);
     }
+    $config['last_link'] = FALSE;
+    $config['total_rows'] = $count;
+    
+    $this->pagination->initialize($config);
+  
+    $this->load->view('home_header');
+    if ($category == "poultry") $this->load->view('my_poultry_projects_view',$data);
+    else $this->load->view('my_livestock_projects_view',$data);
+    $this->load->view('footer');
+  }
+  
+  function my_livestock_projects()
+  {
+    $data['my_redirect']= current_url();
+    $data['baseurl']= base_url();
+    $data['new_url'] = site_url('view_project/show_project');
+    $data['sortby_breed_asc'] = site_url('my_projects/sortby/livestock/breed/asc');
+    $data['sortby_breed_desc'] = site_url('my_projects/sortby/livestock/breed/desc');
+    $data['sortby_pid_asc'] = site_url('my_projects/sortby/livestock/pid/asc');
+    $data['sortby_pid_desc'] = site_url('my_projects/sortby/livestock/pid/desc');
+    $data['sortby_fa_asc'] = site_url('my_projects/sortby/livestock/fa/asc');
+    $data['sortby_fa_desc'] = site_url('my_projects/sortby/livestock/fa/desc');
+    $data['sortby_place_asc'] = site_url('my_projects/sortby/livestock/place/asc');
+    $data['sortby_place_desc'] = site_url('my_projects/sortby/livestock/place/desc');
+   
+    $session_data = $this->session->userdata('logged_in');
+    $user_id = $session_data['user_id'];
+    
+    $count = $this->livestock->get_total_user_lproj($user_id);
+    
+    $this->load->library('pagination');
+    
+    $offset = $this->uri->segment(3);
+    $config['base_url'] = base_url().'my_projects/my_livestock_projects';
+    $config['total_rows'] = $count;
+    $config['last_link'] = FALSE;
+    $config['per_page'] = 15;
+   
+    $data['result_livestock'] = $this->livestock->get_user_lproj($config['per_page'], $offset, $user_id);
+    $this->pagination->initialize($config);
+  
+    $this->load->view('home_header');
+    $this->load->view('my_livestock_projects_view',$data);
+    $this->load->view('footer');
+  }
+  
+  function my_poultry_projects()
+  {
+    $data['my_redirect']= current_url();
+    $data['baseurl']= base_url();
+    $data['new_url'] = site_url('view_project/show_project');
+    $data['sortby_breed_asc'] = site_url('my_projects/sortby/poultry/breed/asc');
+    $data['sortby_breed_desc'] = site_url('my_projects/sortby/poultry/breed/desc');
+    $data['sortby_pid_asc'] = site_url('my_projects/sortby/poultry/pid/asc');
+    $data['sortby_pid_desc'] = site_url('my_projects/sortby/poultry/pid/desc');
+    $data['sortby_fa_asc'] = site_url('my_projects/sortby/poultry/fa/asc');
+    $data['sortby_fa_desc'] = site_url('my_projects/sortby/poultry/fa/desc');
+    $data['sortby_place_asc'] = site_url('my_projects/sortby/poultry/place/asc');
+    $data['sortby_place_desc'] = site_url('my_projects/sortby/poultry/place/desc');
+   
+    $session_data = $this->session->userdata('logged_in');
+    $user_id = $session_data['user_id'];
+    
+    $count = $this->poultry->get_total_user_pproj($user_id);
+    
+    $this->load->library('pagination');
+    
+    $offset = $this->uri->segment(3);
+    $config['base_url'] = base_url().'my_projects/my_poultry_projects';
+    $config['total_rows'] = $count;
+    $config['last_link'] = FALSE;
+    $config['per_page'] = 15;
+   
+    $data['result_poultry'] = $this->poultry->get_user_pproj($config['per_page'], $offset, $user_id);
+    $this->pagination->initialize($config);
+  
+    $this->load->view('home_header');
+    $this->load->view('my_poultry_projects_view',$data);
+    $this->load->view('footer');
   }
   
   function edit_project()
