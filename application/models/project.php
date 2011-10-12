@@ -185,11 +185,31 @@ Class Project extends CI_Model
  function count_keyword_result($search_text)
  {
     $this->db->from('project');
-    $this->db->like('farm_animal',$search_text);
+    $this->db->select('breed, proj_id, proj_desc')->where('is_deleted',0);
+    $this->db->where('farm_animal',$search_text)->where('is_deleted',0);
+    $this->db->or_where('breed',$search_text)->where('is_deleted',0);
+    //$this->db->or_where('proj_desc',$search_text)->where('is_deleted',0);
     
     $query = $this->db->get();
     
     return $query->num_rows();
+ }
+ 
+ function get_basic_search_result($num, $offset, $srch_text)
+ {
+  $this->db->select('breed, proj_id, proj_desc')->where('is_deleted',0);
+  $this->db->from('project');
+  $this->db->where('farm_animal',$srch_text)->where('is_deleted',0);
+  $this->db->or_where('breed',$srch_text)->where('is_deleted',0);
+  $this->db->limit($num, $offset);
+  $query = $this->db->get();
+  
+  if($query->num_rows() > 0)
+    {
+        return $query->result();
+    }
+    
+  else return FALSE;
  }
  
  function get_keyword_category($search_text)
