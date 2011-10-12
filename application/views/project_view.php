@@ -264,7 +264,7 @@
               </div>
             </td>
           </tr>
-          <tr><td><?php echo $row->filedesc; ?></td></tr>
+          <tr><td><?php echo "Video Description: ".$row->filedesc; ?></td></tr>
           </tbody>
         </table>
       <br/>
