@@ -29,6 +29,7 @@
             <h2>Search results on: <i><span style="color:#151538; font-weight:bold"><?php echo $search_text; ?></span></i></h2>
         <?php
             foreach ($results as $row) {
+              $pid = $row->proj_id;
         ?>
         <table class="project_table" BGCOLOR="#B2D1E5">
           <thead class="table_header" align="center"><tr rowspan="6"><td>&nbsp;</td><td>Breed</td></tr></thead>
@@ -37,7 +38,7 @@
               if ($dimgpath) { foreach($dimgpath as $row){
             ?>
             <a href="<?php echo $row->filepath;  ?>" target="_blank"><img src="<?php echo $row->filepath;  ?>" id="image" width="50px" height="50px"></a>
-            <?php } } 
+            <?php } }
               else {
                 echo "Image not available.";
                 } ?>
