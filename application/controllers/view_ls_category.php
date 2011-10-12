@@ -22,7 +22,6 @@ class View_ls_category extends CI_Controller {
   function bovidae()
   {
    $this->load->helper(array('form', 'url'));
-   $this->get_viewtype();
    $data['my_redirect']= current_url();
    $data['new_url1']= site_url('view_project/view_map');
    $data['baseurl']= base_url();
@@ -53,6 +52,7 @@ class View_ls_category extends CI_Controller {
   
   $this->pagination->initialize($config);
    
+   $this->get_viewtype();
    $this->load->view('ls_view', $data);
    $this->load->view('footer');
   }
