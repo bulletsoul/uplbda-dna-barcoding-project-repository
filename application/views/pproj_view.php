@@ -59,6 +59,7 @@
     </TR><?php
     }
     } else echo "No published Poultry project yet!"; ?>
+    <tr><td colspan="5" align="center"><?php echo $this->pagination->create_links(); ?></td></tr>
     </TBODY>
    </TABLE>
       </div>
