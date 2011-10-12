@@ -245,26 +245,27 @@
       
       <!-- Videos -->
       <table class="project_table" BGCOLOR="#B2D1E5">
-        <THEAD ALIGN="center" class="table_header"><TR><TD colspan="2">Videos</TD></TR></THEAD>
+        <THEAD ALIGN="center" class="table_header">
+        <tr><td width="450px">Video(s)</td><td>Descriptions</td></tr></THEAD></THEAD>
           <tbody BGCOLOR="#E9F2F9">
+            <?php
+              if ($videopath != NULL){
+                foreach($videopath as $row){?>
           <tr>
             <td align="center">
               <div id="vid_area">
-              <?php
-              if ($videopath != NULL){
-                foreach($videopath as $row){?>
                   <a href="<?php echo $row->filepath;  ?>"><video width="400" height="310" controls="controls">
                      <source src="<?php echo $row->filepath;  ?>" />
                      Your browser does not support the video element.
                 </video></a>
-              <?php } } 
+              </div>
+            </td>
+            <td><?php echo $row->filedesc; ?></td>
+            <?php } } 
               else {
                 echo "Video not available.";
                 } ?>
-              </div>
-            </td>
           </tr>
-          <tr><td><?php echo "Video Description: ".$row->filedesc; ?></td></tr>
           </tbody>
         </table>
       <br/>
