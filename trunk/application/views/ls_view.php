@@ -38,7 +38,7 @@
     if ($list){
       ?>
       <script language="JavaScript"><!--
-function onClick() {
+function ls_view() {
   var Current = document.formName4.selectName4.selectedIndex;
   
   if (Current == 0) window.location = sortby_pid_asc.value;
@@ -63,7 +63,7 @@ function onClick() {
 <option value="a_place">Place (Ascending)
 <option value="d_place">Place (Descending)
 </select>
-<input name="submitName4" type="submit" value="Sort" onClick="onClick();return false;">
+<input name="submitName4" type="submit" value="Sort" onClick="ls_view();return false;">
 </form>
       <TABLE BGCOLOR="#B2D1E5" class="project_table">
       <THEAD ALIGN="center" class="table_header">
