@@ -29,7 +29,18 @@ class View_pproj extends CI_Controller {
   }
   else $data['new_url'] = site_url('view_project/show_project_inc');
   $this->get_viewtype();
-  $data['list'] = $this->poultry->get_poultry();
+  
+  $count = $this->poultry->get_total_poultry();
+   
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'view_pproj/index';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  
+  $data['list'] = $this->poultry->get_poultry($config['per_page'], $offset);
+  $this->pagination->initialize($config);
+  
   $this->load->view('pproj_view', $data);
   $this->load->view('footer');
  }
