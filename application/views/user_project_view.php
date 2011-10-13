@@ -73,7 +73,7 @@
               </TD>
             </TR>
             <tr>
-              <td colspan="2" align="center"><a href="javascript:signup();" id="basic_modal" class="basic" name="basic">Register to view complete details.</a></td>
+              <td colspan="2" align="center"><a href="javascript:signup();" id="basic_modal" class="basic" name="basic">Register or sign in to view complete details.</a></td>
             </tr>
           </TBODY>
         </TABLE><br/>
@@ -101,7 +101,7 @@
               </TD>
             </TR>
             <tr>
-              <td colspan="2" align="center"><a href="javascript:signup();" class="basic" name="basic">Register to view complete details.</a></td>
+              <td colspan="2" align="center"><a href="javascript:signup();" class="basic" name="basic">Register or sign in to view complete details.</a></td>
             </tr>
           </TBODY>
           <?php }}} ?>
@@ -198,7 +198,7 @@
 <script type='text/javascript' src='<?php echo base_url(); ?>css/js/jquery.js'></script>
 <script type='text/javascript' src='<?php echo base_url(); ?>css/js/jquery.simplemodal.js'></script>
 <script type='text/javascript'>
-$.ajaxSetup ({  
+  $.ajaxSetup ({  
             cache: false  
         });
 	
@@ -303,5 +303,4 @@ $.ajaxSetup ({
   var pattern = new RegExp(/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/i);
   return pattern.test(emailAddress);
  }
- 
 </script>
