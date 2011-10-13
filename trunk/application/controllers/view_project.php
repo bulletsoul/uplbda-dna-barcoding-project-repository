@@ -25,6 +25,7 @@ class View_project extends CI_Controller {
   function show_project()
  {
   $proj_id = $this->uri->segment(3);
+  $data['curr_url'] = current_url();
   $data['redirect_url'] = site_url('signup/check_user');
   $data['barcode_url'] = site_url('view_project/view_straight_barcode');
   $data['new_url'] = site_url('view_project/show_project');
@@ -84,6 +85,7 @@ class View_project extends CI_Controller {
   $this->load->helper(array('form', 'url'));
   $this->load->helper(array('thumbnail'));
   $proj_id = $this->uri->segment(3);
+  $data['curr_url'] = current_url();
   $data['redirect_url'] = site_url('signup/check_user');
   $data['complete_proj_url'] = site_url('view_project/show_project_complete');
   $data['proj_id'] = $proj_id;
