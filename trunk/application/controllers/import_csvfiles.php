@@ -102,7 +102,7 @@ class Import_csvfiles extends CI_Controller {
        $proj_id = $row->proj_id;
       }
 	 
-      $ls_category = "Bovidae";      
+      $ls_category = 'bovidae';      
       $registerdata_bovidae = array(
        'proj_id'   => $proj_id,
        'ls_category' => $ls_category,
@@ -153,7 +153,7 @@ class Import_csvfiles extends CI_Controller {
        $proj_id = $row->proj_id;
       }
 	 
-      $ls_category = "Capridae";      
+      $ls_category = 'capridae';      
       $registerdata_capridae = array(
        'proj_id'   => $proj_id,
        'ls_category' => $ls_category,
@@ -203,7 +203,7 @@ class Import_csvfiles extends CI_Controller {
        $proj_id = $row->proj_id;
       }
 	 
-      $ls_category = "Monogastrics";      
+      $ls_category = 'monogastrics';      
       $registerdata_monogastrics = array(
        'proj_id'   => $proj_id,
        'ls_category' => $ls_category,
