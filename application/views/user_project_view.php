@@ -129,7 +129,6 @@
         </TBODY>
        </TABLE><br/>
         
-        
     <!-- Images -->
       <table class="project_table" BGCOLOR="#B2D1E5">
         <THEAD ALIGN="center" class="table_header"><TR><TD colspan="2">Images</TD></TR>
@@ -139,16 +138,34 @@
           <tr>
             <td>
               <div id="img_area">
-              <input type="hidden">
+              <input type="hidden">                
               <?php
               if ($dimgpath){
-              foreach($dimgpath as $row){ ?>
-                <a href="javascript:signup();" class="basic" name="basic">
-                <img src="<?php echo $row->filepath;  ?>" id="image" width="50px" height="50px"></a>
-              <?php } } 
+              foreach($dimgpath as $row){
+                $new_path1 = substr($row->filepath, 8);
+                $new_path2 = substr($new_path1, 0, -3);
+                $new_path3 = $new_path2.'png';
+               $im = imagecreatefromjpeg($new_path1);
+                if($im && imagefilter($im, IMG_FILTER_GRAYSCALE))
+                {
+                    imagejpeg($im, $new_path3);
+                }
+                else
+                {
+                    echo '';
+                }
+                imagedestroy($im);
+                ?>
+                <a href="javascript:signup();" class="basic" name="basic" alt="img" title="<?php echo $new_path3;  ?>"/>
+                <img src="<?php echo "/uplbda/".$new_path3;  ?>" width="50px" height="50px" /></a>
+              <?php
+               } } 
               else {
                 echo "Image not available.";
                 }?>
+                <?php
+                
+                ?>
               </div>
             </td>
             </tr>
