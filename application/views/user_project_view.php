@@ -4,6 +4,7 @@
     <div class="user_project_view" id="user_project_view">
         <input type="hidden" id="proj_id" value="<?php echo $proj_id; ?>">
         <input type="hidden" id="complete_proj_url" value="<?php echo $complete_proj_url; ?>">
+        <input type="hidden" id="curr_url" value="<?php echo $curr_url; ?>">
         <!-- PROJECT DETAILS -->
         <?php 
           if($project_details){
@@ -286,17 +287,22 @@
   
   function reg_user(username, email, password)
   {
-    $.ajax({
-      type: "GET",
-      data: ({username:username, email:email, password:password}),
-      url: "<?php echo site_url('signup/register_user'); ?>",
-      success: function(){
-        window.location = my_complete_proj_url.value;
-      },
-      error: function(){
-        alert('mali');
-      }
-    });
+    if ($('#error_username').html() == "Username is available."){
+      $.ajax({
+        type: "GET",
+        data: ({username:username, email:email, password:password}),
+        url: "<?php echo site_url('signup/register_user'); ?>",
+        success: function(){
+          window.location = my_complete_proj_url.value;
+        },
+        error: function(){
+          alert('Error.');
+        }
+      });
+    } else {
+      alert('Username already existing.');
+      window.location = curr_url.value;
+    }
   }
     
  function isValidEmailAddress(emailAddress) {
