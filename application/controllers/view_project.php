@@ -7,6 +7,7 @@ class View_project extends CI_Controller {
    parent::__construct();
    $this->load->helper('form');
    $this->load->helper('url');
+   $this->load->helper('thumbnail');
    $this->load->model('user','',TRUE);
    $this->load->model('docs','',TRUE);
    $this->load->model('images','',TRUE);
@@ -81,6 +82,7 @@ class View_project extends CI_Controller {
  function show_project_inc()
  {
   $this->load->helper(array('form', 'url'));
+  $this->load->helper(array('thumbnail'));
   $proj_id = $this->uri->segment(3);
   $data['redirect_url'] = site_url('signup/check_user');
   $data['complete_proj_url'] = site_url('view_project/show_project_complete');
@@ -91,6 +93,8 @@ class View_project extends CI_Controller {
   foreach($proj_details as $row){
    $data['breed_name'] = $row->breed;
   }
+  $dimgpath = $this->images->get_dfilepath($proj_id);
+  $data['dimgpath'] = $dimgpath;
   $proj_category = $this->project->get_proj_category($proj_id);
   foreach($proj_category as $item){
    if($item->proj_category == "livestock")
@@ -182,12 +186,7 @@ class View_project extends CI_Controller {
   $place = $this->project->get_place($proj_id);
     foreach ($place as $item){
       foreach ($item as $row){
-       if (($geocode = $this->cigooglemapapi->getGeoCode($row)) === false)
-         $data['is_marker'] = "false";
-        else {
-         $data['is_marker'] = "true";
          $this->cigooglemapapi->addMarkerByAddress("$row",$row,"<b>$row</b>");
-        }
       }
     }
   $this->load->view('gmap', $data); 
