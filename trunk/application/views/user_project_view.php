@@ -126,9 +126,39 @@
         </TR>
         <?php }} ?>
         </TBODY>
-       </TABLE>
+       </TABLE><br/>
+        
+        
+    <!-- Images -->
+      <table class="project_table" BGCOLOR="#B2D1E5">
+        <THEAD ALIGN="center" class="table_header"><TR><TD colspan="2">Images</TD></TR>
+          </THEAD>
+          <tbody BGCOLOR="#E9F2F9">
+          <tr></tr>
+          <tr>
+            <td>
+              <div id="img_area">
+              <input type="hidden">
+              <?php
+              if ($dimgpath){
+              foreach($dimgpath as $row){ ?>
+                <a href="javascript:signup();" class="basic" name="basic">
+                <img src="<?php echo $row->filepath;  ?>" id="image" width="50px" height="50px"></a>
+              <?php } } 
+              else {
+                echo "Image not available.";
+                }?>
+              </div>
+            </td>
+            </tr>
+          </tbody>
+        </table>
+      <br/>
+        
     </div>
   </div>
+  
+  
   <div class="hidden">
     <div id="basic-modal-content" class="simplemodal-data" style="display: block; ">
     <table id="signup">
@@ -157,6 +187,8 @@
 			<td align="right"><br/><a href="javascript:reg_user(username.value, email.value, password.value);"><button id="signup_button">Register</button></a></td>
                 </tr>
     </table>
+    <br/>
+    
   </div>
   <div style='display:none'>
 			<img src='<?php echo base_url(); ?>css/images/x.png' alt='' />
