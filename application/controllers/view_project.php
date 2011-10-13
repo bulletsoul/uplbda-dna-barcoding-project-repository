@@ -7,7 +7,6 @@ class View_project extends CI_Controller {
    parent::__construct();
    $this->load->helper('form');
    $this->load->helper('url');
-   $this->load->helper('thumbnail');
    $this->load->model('user','',TRUE);
    $this->load->model('docs','',TRUE);
    $this->load->model('images','',TRUE);
@@ -83,7 +82,6 @@ class View_project extends CI_Controller {
  function show_project_inc()
  {
   $this->load->helper(array('form', 'url'));
-  $this->load->helper(array('thumbnail'));
   $proj_id = $this->uri->segment(3);
   $data['curr_url'] = current_url();
   $data['redirect_url'] = site_url('signup/check_user');
