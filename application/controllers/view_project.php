@@ -189,7 +189,7 @@ class View_project extends CI_Controller {
          $this->cigooglemapapi->addMarkerByAddress("$row",$row,"<b>$row</b>");
       }
     }
-  $this->load->view('gmap', $data); 
+  $this->load->view('gmap'); 
   $this->load->view('footer');
   
  }
