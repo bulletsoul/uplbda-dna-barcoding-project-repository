@@ -22,15 +22,7 @@ class Signup extends CI_Controller {
  }
  
  function check_user()
- {
-  /*$this->load->helper('url');
-  $proj_id = $this->uri->segment(3);
-  $data['proj_id'] = $proj_id;
-  $data['redirect_url'] = site_url('verify_signup/verify_signup_table');
-  $this->load->view('user_plain_header');
-  $this->load->view('signup_table', $data);
-  $this->load->view('footer');*/
-  
+ {  
   $username = $this->input->get_post('username');
   $result = $this->user->user_exists($username);
   if($result)
@@ -44,14 +36,55 @@ class Signup extends CI_Controller {
  
  function register_user()
  {
+  $username = $this->input->get('username');
+  $password = $this->input->get('password');
+  $email = $this->input->get('email');
+  
   $registerdata = array(
-   'username'   => $this->input->get('username'),
-   'password'   => md5($this->input->get('password')),
-   'email'      => $this->input->get('email')
+   'username'   => $username,
+   'password'   => md5($password),
+   'email'      => $email
   );
   
   $this->db->insert('users',$registerdata);
+  $result = $this->user->login($username, $password);
+    
+      $sess_array = array();
+      foreach($result as $row)
+      {
+        $sess_array = array(
+          'user_id' => $row->user_id,
+          'username' => $row->username
+        );
+        
+        $this->session->set_userdata('logged_in', $sess_array);
+        $this->session->set_userdata('user_id', $row->user_id);
+      }
   
+ }
+ 
+ function login_user()
+ {
+  $username = $this->input->get('username');
+  $password = $this->input->get('password');
+  
+  $result = $this->user->login($username, $password);
+  
+  if($result)
+    {
+      $sess_array = array();
+      foreach($result as $row)
+      {
+        $sess_array = array(
+          'user_id' => $row->user_id,
+          'username' => $row->username
+        );
+        $this->session->set_userdata('logged_in', $sess_array);
+        $this->session->set_userdata('user_id', $row->user_id);
+      }
+      echo "valid";
+    }
+    else echo "invalid";
  }
 }
 
