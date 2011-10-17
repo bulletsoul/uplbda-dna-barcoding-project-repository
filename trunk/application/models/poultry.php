@@ -3,7 +3,7 @@ Class Poultry extends CI_Model
 {
     function get_poultry($num, $offset)
     {
-        $this->db->order_by('farm_animal', 'asc');
+        $this->db->order_by('breed', 'asc');
         $this->db->where('proj_category', "poultry")->where('is_deleted',0);
         $this->db->join('poultry', 'poultry.proj_id = project.proj_id');
         
@@ -17,6 +17,7 @@ Class Poultry extends CI_Model
         else return FALSE;
     }
     
+    //my_projects
     function get_sorted_by($num, $offset, $user_id, $col_name, $order) {
         $this->db->from('project');
         if (($col_name == 'breed') && ($order == 'asc')){$this->db->order_by('breed','asc');}
@@ -42,6 +43,7 @@ Class Poultry extends CI_Model
         else return FALSE;
     }
     
+    //view all projects
     function get_all_sorted_by($num, $offset, $col_name, $order) {
         $this->db->from('project');
         if (($col_name == 'breed') && ($order == 'asc')){$this->db->order_by('breed','asc');}
