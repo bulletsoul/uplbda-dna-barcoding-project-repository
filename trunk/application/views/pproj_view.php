@@ -7,7 +7,6 @@
   <div class="body">
     <div class="body_resize">
       <div class="left" id="home_left">
-        <input type="hidden" id="proj_id" value="<?php echo $proj_id; ?>">
         <input type="hidden" id="my_redirect" value="<?php echo $my_redirect; ?>"/>
         <input type="hidden" id="baseurl" value="<?php echo $baseurl; ?>"/>
         <input type="hidden" id="new_url" value="<?php echo $new_url; ?>"/>
