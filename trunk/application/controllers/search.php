@@ -17,65 +17,15 @@ class Search extends CI_Controller {
   
  }
  
- function advanced_search()
- {
-  $this->load->helper(array('form'));
-  if($this->session->userdata('logged_in'))
-  {
-   $data['new_url'] = site_url('view_project/show_project_complete'); 
-  }
-  else $data['new_url'] = site_url('view_project/show_project_inc');
-  $search_text = $this->input->post('search_text');
-  $count = $this->project->count_keyword_result($search_text);
-  
-  $offset = $this->uri->segment(2,0);
-  
-  $this->load->library('pagination');
-  
-  $config['uri_segment'] = 3;
-  $config['base_url'] = base_url().'search/basic_search';
-  $config['total_rows'] = $count;
-  $config['per_page'] = $count;
-  
-  $this->pagination->initialize($config);
-  
-  $proj_type = $this->input->post('proj_type');
-  $ls_category = $this->input->post('ls_category');
-  $sex = $this->input->post('sex');
-  $color = $this->input->post('color');
-  $origin = $this->input->post('origin');
-  
-  $this->db->select('breed, project.proj_id')->where('is_deleted',0);
-  $this->db->from('project');
-  $this->db->order_by('breed','asc');
-  $this->db->where('proj_category',$proj_type)->where('is_deleted',0);
-  $this->db->where('sex',$sex)->where('is_deleted',0);
-  $this->db->like('origin',$origin)->where('is_deleted',0);
-  if ($proj_type == 'livestock'){
-   $this->db->join('livestock', 'livestock.proj_id = project.proj_id');
-   $this->db->where('ls_category',$ls_category)->where('is_deleted',0);
-  }
-  else
-  {
-   $this->db->join('poultry', 'poultry.proj_id = project.proj_id');
-   $this->db->like('earlobe_color',$color)->where('is_deleted',0);
-   $this->db->or_like('shank_color',$color)->where('is_deleted',0);
-   $this->db->or_like('eye_color',$color)->where('is_deleted',0);
-   $this->db->or_like('bill_beak_color',$color)->where('is_deleted',0);
+ function get_viewtype()
+  {     
+    if($this->session->userdata('logged_in'))
+    {
+      $this->load->view('home_header');
+    }
+    else $this->load->view('user_header');   
   }
   
-  $this->db->limit($config['per_page'], $offset); // Only get the results for this "page"
-  $query = $this->db->get();
-  
-  $data['search_text'] = $search_text;
-  $data['results'] = $query->result();
-  $dimgpath = $this->images->get_dfilepath($proj_id);
-  $data['dimgpath'] = $dimgpath;
-  $this->load->view('search_header');
-  $this->load->view('search_results_view', $data);
-  $this->load->view('footer');
- }
- 
  function basic_search()
  {
   $this->load->helper(array('form'));
@@ -93,17 +43,16 @@ class Search extends CI_Controller {
   $config['base_url'] = base_url().'search/basic_search';
   $config['total_rows'] = $count;
   $config['per_page'] = 10;
+  $config['first_link'] = '<<';
+  $config['last_link'] = FALSE;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
   $data['results'] = $this->project->get_basic_search_result($config['per_page'], $offset, $search_text);
   $data['search_text'] = $search_text;
   $this->pagination->initialize($config);
   
-  /*$this->db->select('breed, proj_id, proj_desc')->where('is_deleted',0);
-  $this->db->where('farm_animal',$search_text)->where('is_deleted',0);
-  $this->db->or_where('breed',$search_text)->where('is_deleted',0);
-  $this->db->limit($config['per_page'], $offset); // Only get the results for this "page"
-  $query = $this->db->get('project');*/
-
-  $this->load->view('search_header');
+  $this->get_viewtype();
   $this->load->view('search_results_view', $data);
   $this->load->view('footer');
  }
