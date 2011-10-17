@@ -36,11 +36,7 @@
             );
           
           $nw_url = $new_url;?>  
-
-    <?php
-    if ($list){
-      ?>
-      <script language="JavaScript"><!--
+<script language="JavaScript"><!--
 function ls_view() {
   var Current = document.formName4.selectName4.selectedIndex;
   
@@ -54,8 +50,13 @@ function ls_view() {
   if (Current == 7) window.location = sortby_place_desc.value;  
 }
 //--></script>
-
-<form name="formName4" onSubmit="return false;" align="right">
+    <?php
+    if ($list){
+      ?>
+      <table class="project_table">
+        <tr>
+          <td><h3>Sorted by <?php echo $column;?> in <?php echo $order; ?> order</h3></td>
+          <td align="right"><form name="formName4" onSubmit="return false;">
 <select name="selectName4">
 <option value="a_pid">Project ID (Ascending)
 <option value="d_pid">Project ID (Descending)
@@ -67,7 +68,9 @@ function ls_view() {
 <option value="d_place">Place (Descending)
 </select>
 <input name="submitName4" type="submit" value="Sort" onClick="ls_view();return false;">
-</form>
+</form></td>
+        </tr>
+      </table>
       <TABLE BGCOLOR="#B2D1E5" class="project_table">
       <THEAD ALIGN="center" class="table_header">
     <TR>
