@@ -8,6 +8,7 @@ class View_pproj extends CI_Controller {
    $this->load->model('user','',TRUE);
    $this->load->model('project','',TRUE);
    $this->load->model('poultry','',TRUE);
+   $this->load->model('images','',TRUE);
  }
 
  function get_viewtype()
@@ -19,19 +20,22 @@ class View_pproj extends CI_Controller {
     else $this->load->view('user_header');   
   }
   
+  
  function index()
  {
   $this->load->helper(array('form', 'url'));
+  $proj_id = $this->uri->segment(4);
+  $data['proj_id'] = $proj_id;
   $data['my_redirect']= current_url();
   $data['baseurl']= base_url();
   $data['sortby_breed_asc'] = site_url('view_pproj/sortby/poultry/breed/asc');
-      $data['sortby_breed_desc'] = site_url('view_pproj/sortby/poultry/breed/desc');
-      $data['sortby_pid_asc'] = site_url('view_pproj/sortby/poultry/pid/asc');
-      $data['sortby_pid_desc'] = site_url('view_pproj/sortby/poultry/pid/desc');
-      $data['sortby_fa_asc'] = site_url('view_pproj/sortby/poultry/fa/asc');
-      $data['sortby_fa_desc'] = site_url('view_pproj/sortby/poultry/fa/desc');
-      $data['sortby_place_asc'] = site_url('view_pproj/sortby/poultry/place/asc');
-      $data['sortby_place_desc'] = site_url('view_pproj/sortby/poultry/place/desc');
+  $data['sortby_breed_desc'] = site_url('view_pproj/sortby/poultry/breed/desc');
+  $data['sortby_pid_asc'] = site_url('view_pproj/sortby/poultry/pid/asc');
+  $data['sortby_pid_desc'] = site_url('view_pproj/sortby/poultry/pid/desc');
+  $data['sortby_fa_asc'] = site_url('view_pproj/sortby/poultry/fa/asc');
+  $data['sortby_fa_desc'] = site_url('view_pproj/sortby/poultry/fa/desc');
+  $data['sortby_place_asc'] = site_url('view_pproj/sortby/poultry/place/asc');
+  $data['sortby_place_desc'] = site_url('view_pproj/sortby/poultry/place/desc');
   if($this->session->userdata('logged_in')){
    $data['new_url'] = site_url('view_project/show_project_complete');
   }
@@ -56,6 +60,8 @@ class View_pproj extends CI_Controller {
  function sortby()
  {
   $this->load->helper(array('form', 'url'));
+  $proj_id = $this->uri->segment(4);
+  $data['proj_id'] = $proj_id;
   $data['my_redirect']= current_url();
   $data['baseurl']= base_url();
   
@@ -72,6 +78,8 @@ class View_pproj extends CI_Controller {
   $data['sortby_fa_desc'] = site_url('view_pproj/sortby/poultry/fa/desc');
   $data['sortby_place_asc'] = site_url('view_pproj/sortby/poultry/place/asc');
   $data['sortby_place_desc'] = site_url('view_pproj/sortby/poultry/place/desc');
+  $dimgpath = $this->images->get_dfilepath($proj_id);
+  $data['dimgpath'] = $dimgpath;
   
   if($this->session->userdata('logged_in')){
    $data['new_url'] = site_url('view_project/show_project_complete');
