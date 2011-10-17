@@ -3,8 +3,7 @@ Class Livestock extends CI_Model
 {
     /* Called by Controller: sortby */
     function get_sorted_by($num, $offset, $col_name, $order, $category)
-    {
-        $this->db->from('project');
+    {        
         if (($col_name == 'breed') && ($order == 'asc')){$this->db->order_by('breed','asc');}
 	if (($col_name == 'breed') && ($order == 'desc')){$this->db->order_by('breed','desc');}
         if (($col_name == 'fa') && ($order == 'asc')){$this->db->order_by('farm_animal','asc');}
@@ -15,9 +14,8 @@ Class Livestock extends CI_Model
 	if (($col_name == 'place') && ($order == 'desc')){$this->db->order_by('place','desc');}
         $this->db->where('ls_category', $category)->where('is_deleted',0);
         $this->db->join('livestock', 'livestock.proj_id = project.proj_id');
-	$this->db->limit($num, $offset);
-      
-        $query = $this->db->get();
+	      
+        $query = $this->db->get('project', $num, $offset);
       
         if($query->num_rows() > 0)
         {
@@ -52,7 +50,6 @@ Class Livestock extends CI_Model
     
     function get_bovidae($num, $offset)
     {
-        //$this->db->from('project');
         $this->db->where('ls_category', "Bovidae")->where('is_deleted',0);
         $this->db->join('livestock', 'livestock.proj_id = project.proj_id');
 	      
