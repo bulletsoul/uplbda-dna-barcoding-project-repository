@@ -29,7 +29,8 @@ class View_ls_category extends CI_Controller {
    $data['new_url1']= site_url('view_project/view_map');
    $data['baseurl']= base_url();
 
-$data['sortby_breed_desc'] = site_url('sortby/breed_desc_bovidae');
+   $data['sortby_breed_asc'] = site_url('sortby/breed_asc_bovidae');
+   $data['sortby_breed_desc'] = site_url('sortby/breed_desc_bovidae');
    $data['sortby_pid_asc'] = site_url('sortby/pid_asc_bovidae');
    $data['sortby_pid_desc'] = site_url('sortby/pid_desc_bovidae');
    $data['sortby_fa_asc'] = site_url('sortby/fa_asc_bovidae');
@@ -75,6 +76,7 @@ $data['sortby_breed_desc'] = site_url('sortby/breed_desc_bovidae');
    $data['new_url1']= site_url('view_project/view_map');
    $data['baseurl']= base_url();
 
+   $data['sortby_breed_asc'] = site_url('sortby/breed_asc_capridae');
    $data['sortby_breed_desc'] = site_url('sortby/breed_desc_capridae');
    $data['sortby_pid_asc'] = site_url('sortby/pid_asc_capridae');
    $data['sortby_pid_desc'] = site_url('sortby/pid_desc_capridae');
@@ -119,7 +121,8 @@ $data['sortby_breed_desc'] = site_url('sortby/breed_desc_bovidae');
    $data['new_url1']= site_url('view_project/view_map');
    $data['baseurl']= base_url();
 
-$data['sortby_breed_desc'] = site_url('sortby/breed_desc_monogastrics');
+   $data['sortby_breed_asc'] = site_url('sortby/breed_asc_monogastrics');
+   $data['sortby_breed_desc'] = site_url('sortby/breed_desc_monogastrics');
    $data['sortby_pid_asc'] = site_url('sortby/pid_asc_monogastrics');
    $data['sortby_pid_desc'] = site_url('sortby/pid_desc_monogastrics');
    $data['sortby_fa_asc'] = site_url('sortby/fa_asc_monogastrics');
@@ -150,7 +153,7 @@ $data['sortby_breed_desc'] = site_url('sortby/breed_desc_monogastrics');
   $this->pagination->initialize($config);
    $this->load->view('ls_view', $data);
    $this->load->view('footer');
-
+  }
 }
 
 /* End of file view_ls_category.php */
