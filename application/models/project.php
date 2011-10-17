@@ -198,8 +198,8 @@ Class Project extends CI_Model
  {
   $this->db->select('breed, proj_id, proj_desc')->where('is_deleted',0);
   $this->db->from('project');
-  $this->db->where('farm_animal',$srch_text);
-  $this->db->or_where('breed',$srch_text);
+  $this->db->where('farm_animal',$srch_text)->where('is_deleted',0);
+  $this->db->or_where('breed',$srch_text)->where('is_deleted',0);
   $this->db->limit($num, $offset);
   $query = $this->db->get();
   
