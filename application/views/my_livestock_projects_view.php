@@ -27,10 +27,8 @@
           $nw_url = $new_url; ?>
 
 <h2>My Livestock Projects</h2></a>
-          <?php
-          if($result_livestock){ ?>
-          <script language="JavaScript"><!--
-function onClick() {
+<script language="JavaScript"><!--
+function ls_view() {
   var Current = document.formName4.selectName4.selectedIndex;
   
   if (Current == 0) window.location = sortby_pid_asc.value;
@@ -43,8 +41,12 @@ function onClick() {
   if (Current == 7) window.location = sortby_place_desc.value;  
 }
 //--></script>
-
-<form name="formName4" onSubmit="return false;" align="right">
+          <?php
+          if($result_livestock){ ?>
+       <table class="project_table">
+        <tr>
+          <td><h3>Sorted by <?php echo $column;?> in <?php echo $order; ?> order</h3></td>
+          <td align="right"><form name="formName4" onSubmit="return false;">
 <select name="selectName4">
 <option value="a_pid">Project ID (Ascending)
 <option value="d_pid">Project ID (Descending)
@@ -55,8 +57,10 @@ function onClick() {
 <option value="a_place">Place (Ascending)
 <option value="d_place">Place (Descending)
 </select>
-<input name="submitName4" type="submit" value="Sort" onClick="onClick();return false;">
-</form>
+<input name="submitName4" type="submit" value="Sort" onClick="ls_view();return false;">
+</form></td>
+        </tr>
+      </table>
           <TABLE class="project_table" BGCOLOR="#B2D1E5">
               <THEAD ALIGN="center" class="table_header">
                 <TR>
