@@ -16,28 +16,28 @@
 				var script = "<?php echo base_url(); ?>application/uploadify/uploadify.php";
 				if ("<?php echo $type; ?>" == "Dorsal Images")
 				{
-			              fileExt = "*.jpg;*.bmp;*.jpeg*;*.gif;*.png";
+			              fileExt = "*.jpg;*.jpeg*;*.png;*.JPG;*.JPEG;*.PNG";
 				      ftype = "Dorsal";
 				      fileDesc = "Image File";
 				      folder = "/uplbda/application/uploads/images/dorsal";
 				}
 				else if ("<?php echo $type; ?>" == "Ventral Images")
 				{
-			              fileExt = "*.jpg;*.bmp;*.jpeg*;*.gif;*.png";
+			              fileExt = "*.jpg;*.jpeg*;*.png;*.JPG;*.JPEG;*.PNG";
 				      ftype = "Ventral";
 				      fileDesc = "Image File";
 				      folder = "/uplbda/application/uploads/images/ventral";
 				}
 				else if ("<?php echo $type; ?>" == "Lateral Images")
 				{
-			              fileExt = "*.jpg;*.bmp;*.jpeg*;*.gif;*.png";
+			              fileExt = "*.jpg;*.jpeg*;*.png;*.JPG;*.JPEG;*.PNG";
 				      ftype = "Lateral";
 				      fileDesc = "Image File";
 				      folder = "/uplbda/application/uploads/images/lateral";
 				}
 				else if ("<?php echo $type; ?>" == "Other Images")
 				{
-			              fileExt = "*.jpg;*.bmp;*.jpeg*;*.gif;*.png";
+			              fileExt = "*.jpg;*.jpeg*;*.png;*.JPG;*.JPEG;*.PNG";
 				      ftype = "Other";
 				      fileDesc = "Image File";
 				      folder = "/uplbda/application/uploads/images/other";
@@ -82,9 +82,10 @@
 									var filetype = ftype;
 									$.post("/uplbda/application/uploadify/insert.php", { name: fileObj.name, path: fileObj.filePath, proj_id: $('#proj_id').val(), filetype: filetype }, function(info) {
 										});
+									//$.post("/uplbda/application/uploadify/thumbnail_generator.php", {name: fileObj.name, path: fileObj.filePath, proj_id: $('#proj_id').val(), filetype: filetype }, function (thumbs){});
 						        },
 							'onAllComplete' : function(event,data){
-									//alert(info); // alert UPLOADED FILE(s)
+									var filetype = ftype;
 									if(ftype == "Document")
 									{
 									    window.location = set_doc_filedesc_url.value;
