@@ -156,7 +156,7 @@
                 }
                 imagedestroy($im);
                 ?>
-                <a href="javascript:signup();" class="basic" name="basic" alt="img" title="<?php echo $new_path3;  ?>"/>
+                <a href="javascript:signup();" class="basic" name="basic"/>
                 <img src="<?php echo "/uplbda/".$new_path3;  ?>" width="50px" height="50px" /></a>
               <?php
                } } 
