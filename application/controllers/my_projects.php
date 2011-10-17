@@ -82,19 +82,542 @@ class My_projects extends CI_Controller {
     $this->load->view('footer');
   }
   
+  function index_livestock()
+  {
+    return $data = array (
+    'my_redirect' => current_url(),
+    'baseurl' => base_url(),
+    'new_url' => site_url('view_project/show_project'),
+    'sortby_breed_asc' => site_url('my_projects/sortby_breed_asc_livestock'),
+    'sortby_breed_desc' => site_url('my_projects/sortby_breed_desc_livestock'),
+    'sortby_pid_asc' => site_url('my_projects/sortby_pid_asc_livestock'),
+    'sortby_pid_desc' => site_url('my_projects/sortby_pid_desc_livestock'),
+    'sortby_fa_asc' => site_url('my_projects/sortby_fa_asc_livestock'),
+    'sortby_fa_desc' => site_url('my_projects/sortby_fa_desc_livestock'),
+    'sortby_place_asc' => site_url('my_projects/sortby_place_asc_livestock'),
+    'sortby_place_desc' => site_url('my_projects/sortby_place_desc_livestock')
+    );
+  }
+  
+  function index_poultry()
+  {
+    return $data = array (
+    'my_redirect' => current_url(),
+    'baseurl' => base_url(),
+    'new_url' => site_url('view_project/show_project'),
+    'sortby_breed_asc' => site_url('my_projects/sortby_breed_asc_poultry'),
+    'sortby_breed_desc' => site_url('my_projects/sortby_breed_desc_poultry'),
+    'sortby_pid_asc' => site_url('my_projects/sortby_pid_asc_poultry'),
+    'sortby_pid_desc' => site_url('my_projects/sortby_pid_desc_poultry'),
+    'sortby_fa_asc' => site_url('my_projects/sortby_fa_asc_poultry'),
+    'sortby_fa_desc' => site_url('my_projects/sortby_fa_desc_poultry'),
+    'sortby_place_asc' => site_url('my_projects/sortby_place_asc_poultry'),
+    'sortby_place_desc' => site_url('my_projects/sortby_place_desc_poultry')
+    );
+  }
+  
+  function sortby_breed_asc_livestock()
+  {
+    $data = $this->index_livestock();
+    $data['column'] = 'Breed';
+    $data['order'] = 'ascending';
+   
+    $session_data = $this->session->userdata('logged_in');
+    $user_id = $session_data['user_id'];
+    
+    $count = $this->livestock->get_total_user_lproj($user_id);
+    
+    $this->load->library('pagination');
+    
+    $offset = $this->uri->segment(3);
+    $config['base_url'] = base_url().'my_projects/sortby_breed_asc_livestock';
+    $config['total_rows'] = $count;
+    $config['last_link'] = FALSE;
+    $config['first_link'] = '<<';
+    $config['per_page'] = 15;
+    $config['next_link'] = 'Next >';
+    $config['prev_link'] = '< Previous';
+    $config['display_pages'] = FALSE;
+   
+    $data['result_livestock'] = $this->livestock->get_all_sorted_by($config['per_page'], $offset, $user_id, 'breed', 'asc');
+    $this->pagination->initialize($config);
+  
+    $this->load->view('home_header');
+    $this->load->view('my_livestock_projects_view',$data);
+    $this->load->view('footer');
+  }
+  
+  function sortby_breed_desc_livestock()
+  {
+    $data = $this->index_livestock();
+    $data['column'] = 'Breed';
+    $data['order'] = 'descending';
+   
+    $session_data = $this->session->userdata('logged_in');
+    $user_id = $session_data['user_id'];
+    
+    $count = $this->livestock->get_total_user_lproj($user_id);
+    
+    $this->load->library('pagination');
+    
+    $offset = $this->uri->segment(3);
+    $config['base_url'] = base_url().'my_projects/sortby_breed_desc_livestock';
+    $config['total_rows'] = $count;
+    $config['first_link'] = '<<';
+    $config['last_link'] = FALSE;
+    $config['per_page'] = 15;
+    $config['next_link'] = 'Next >';
+    $config['prev_link'] = '< Previous';
+    $config['display_pages'] = FALSE;
+   
+    $data['result_livestock'] = $this->livestock->get_all_sorted_by($config['per_page'], $offset, $user_id, 'breed', 'desc');
+    $this->pagination->initialize($config);
+  
+    $this->load->view('home_header');
+    $this->load->view('my_livestock_projects_view',$data);
+    $this->load->view('footer');
+  }
+  
+  function sortby_pid_asc_livestock()
+  {
+    $data = $this->index_livestock();
+    $data['column'] = 'Project ID';
+    $data['order'] = 'ascending';
+   
+    $session_data = $this->session->userdata('logged_in');
+    $user_id = $session_data['user_id'];
+    
+    $count = $this->livestock->get_total_user_lproj($user_id);
+    
+    $this->load->library('pagination');
+    
+    $offset = $this->uri->segment(3);
+    $config['base_url'] = base_url().'my_projects/sortby_pid_asc_livestock';
+    $config['total_rows'] = $count;
+    $config['first_link'] = '<<';
+    $config['last_link'] = FALSE;
+    $config['per_page'] = 15;
+    $config['next_link'] = 'Next >';
+    $config['prev_link'] = '< Previous';
+    $config['display_pages'] = FALSE;
+   
+    $data['result_livestock'] = $this->livestock->get_all_sorted_by($config['per_page'], $offset, $user_id, 'pid', 'asc');
+    $this->pagination->initialize($config);
+  
+    $this->load->view('home_header');
+    $this->load->view('my_livestock_projects_view',$data);
+    $this->load->view('footer');
+  }
+  
+  function sortby_pid_desc_livestock()
+  {
+    $data = $this->index_livestock();
+    $data['column'] = 'Project ID';
+    $data['order'] = 'descending';
+   
+    $session_data = $this->session->userdata('logged_in');
+    $user_id = $session_data['user_id'];
+    
+    $count = $this->livestock->get_total_user_lproj($user_id);
+    
+    $this->load->library('pagination');
+    
+    $offset = $this->uri->segment(3);
+    $config['base_url'] = base_url().'my_projects/sortby_pid_desc_livestock';
+    $config['total_rows'] = $count;
+    $config['first_link'] = '<<';
+    $config['last_link'] = FALSE;
+    $config['per_page'] = 15;
+    $config['next_link'] = 'Next >';
+    $config['prev_link'] = '< Previous';
+    $config['display_pages'] = FALSE;
+   
+    $data['result_livestock'] = $this->livestock->get_all_sorted_by($config['per_page'], $offset, $user_id, 'pid', 'desc');
+    $this->pagination->initialize($config);
+  
+    $this->load->view('home_header');
+    $this->load->view('my_livestock_projects_view',$data);
+    $this->load->view('footer');
+  }
+  
+  function sortby_place_asc_livestock()
+  {
+    $data = $this->index_livestock();
+    $data['column'] = 'Place';
+    $data['order'] = 'ascending';
+   
+    $session_data = $this->session->userdata('logged_in');
+    $user_id = $session_data['user_id'];
+    
+    $count = $this->livestock->get_total_user_lproj($user_id);
+    
+    $this->load->library('pagination');
+    
+    $offset = $this->uri->segment(3);
+    $config['base_url'] = base_url().'my_projects/sortby_place_asc_livestock';
+    $config['total_rows'] = $count;
+    $config['first_link'] = '<<';
+    $config['last_link'] = FALSE;
+    $config['per_page'] = 15;
+    $config['next_link'] = 'Next >';
+    $config['prev_link'] = '< Previous';
+    $config['display_pages'] = FALSE;
+   
+    $data['result_livestock'] = $this->livestock->get_all_sorted_by($config['per_page'], $offset, $user_id, 'place', 'asc');
+    $this->pagination->initialize($config);
+  
+    $this->load->view('home_header');
+    $this->load->view('my_livestock_projects_view',$data);
+    $this->load->view('footer');
+  }
+  
+  function sortby_place_desc_livestock()
+  {
+    $data = $this->index_livestock();
+    $data['column'] = 'Place';
+    $data['order'] = 'descending';
+   
+    $session_data = $this->session->userdata('logged_in');
+    $user_id = $session_data['user_id'];
+    
+    $count = $this->livestock->get_total_user_lproj($user_id);
+    
+    $this->load->library('pagination');
+    
+    $offset = $this->uri->segment(3);
+    $config['base_url'] = base_url().'my_projects/sortby_place_desc_livestock';
+    $config['total_rows'] = $count;
+    $config['first_link'] = '<<';
+    $config['last_link'] = FALSE;
+    $config['per_page'] = 15;
+    $config['next_link'] = 'Next >';
+    $config['prev_link'] = '< Previous';
+    $config['display_pages'] = FALSE;
+   
+    $data['result_livestock'] = $this->livestock->get_all_sorted_by($config['per_page'], $offset, $user_id, 'place', 'desc');
+    $this->pagination->initialize($config);
+  
+    $this->load->view('home_header');
+    $this->load->view('my_livestock_projects_view',$data);
+    $this->load->view('footer');
+  }
+  
+  function sortby_fa_asc_livestock()
+  {
+    $data = $this->index_livestock();
+    $data['column'] = 'Farm animal';
+    $data['order'] = 'ascending';
+   
+    $session_data = $this->session->userdata('logged_in');
+    $user_id = $session_data['user_id'];
+    
+    $count = $this->livestock->get_total_user_lproj($user_id);
+    
+    $this->load->library('pagination');
+    
+    $offset = $this->uri->segment(3);
+    $config['base_url'] = base_url().'my_projects/sortby_fa_asc_livestock';
+    $config['total_rows'] = $count;
+    $config['first_link'] = '<<';
+    $config['last_link'] = FALSE;
+    $config['per_page'] = 15;
+    $config['next_link'] = 'Next >';
+    $config['prev_link'] = '< Previous';
+    $config['display_pages'] = FALSE;
+   
+    $data['result_livestock'] = $this->livestock->get_all_sorted_by($config['per_page'], $offset, $user_id, 'fa', 'asc');
+    $this->pagination->initialize($config);
+  
+    $this->load->view('home_header');
+    $this->load->view('my_livestock_projects_view',$data);
+    $this->load->view('footer');
+  }
+  
+  function sortby_fa_desc_livestock()
+  {
+    $data = $this->index_livestock();
+    $data['column'] = 'Farm animal';
+    $data['order'] = 'descending';
+   
+    $session_data = $this->session->userdata('logged_in');
+    $user_id = $session_data['user_id'];
+    
+    $count = $this->livestock->get_total_user_lproj($user_id);
+    
+    $this->load->library('pagination');
+    
+    $offset = $this->uri->segment(3);
+    $config['base_url'] = base_url().'my_projects/sortby_fa_desc_livestock';
+    $config['total_rows'] = $count;
+    $config['first_link'] = '<<';
+    $config['last_link'] = FALSE;
+    $config['per_page'] = 15;
+    $config['next_link'] = 'Next >';
+    $config['prev_link'] = '< Previous';
+    $config['display_pages'] = FALSE;
+   
+    $data['result_livestock'] = $this->livestock->get_all_sorted_by($config['per_page'], $offset, $user_id, 'fa', 'desc');
+    $this->pagination->initialize($config);
+  
+    $this->load->view('home_header');
+    $this->load->view('my_livestock_projects_view',$data);
+    $this->load->view('footer');
+  }
+  
+  function sortby_breed_asc_poultry()
+  {
+    $data = $this->index_poultry();
+    $data['column'] = 'Breed';
+    $data['order'] = 'ascending';
+   
+    $session_data = $this->session->userdata('logged_in');
+    $user_id = $session_data['user_id'];
+    
+    $count = $this->poultry->get_total_user_pproj($user_id);
+    
+    $this->load->library('pagination');
+    
+    $offset = $this->uri->segment(3);
+    $config['base_url'] = base_url().'my_projects/sortby_breed_asc_poultry';
+    $config['total_rows'] = $count;
+    $config['first_link'] = '<<';
+    $config['last_link'] = FALSE;
+    $config['per_page'] = 15;
+    $config['next_link'] = 'Next >';
+    $config['prev_link'] = '< Previous';
+    $config['display_pages'] = FALSE;
+   
+    $data['result_poultry'] = $this->poultry->get_sorted_by($config['per_page'], $offset, $user_id, 'breed', 'asc');
+    $this->pagination->initialize($config);
+  
+    $this->load->view('home_header');
+    $this->load->view('my_poultry_projects_view',$data);
+    $this->load->view('footer');
+  }
+  
+  function sortby_breed_desc_poultry()
+  {
+    $data = $this->index_poultry();
+    $data['column'] = 'Breed';
+    $data['order'] = 'descending';
+   
+    $session_data = $this->session->userdata('logged_in');
+    $user_id = $session_data['user_id'];
+    
+    $count = $this->poultry->get_total_user_pproj($user_id);
+    
+    $this->load->library('pagination');
+    
+    $offset = $this->uri->segment(3);
+    $config['base_url'] = base_url().'my_projects/sortby_breed_desc_poultry';
+    $config['total_rows'] = $count;
+    $config['first_link'] = '<<';
+    $config['last_link'] = FALSE;
+    $config['per_page'] = 15;
+    $config['next_link'] = 'Next >';
+    $config['prev_link'] = '< Previous';
+    $config['display_pages'] = FALSE;
+   
+    $data['result_poultry'] = $this->poultry->get_sorted_by($config['per_page'], $offset, $user_id, 'breed', 'desc');
+    $this->pagination->initialize($config);
+  
+    $this->load->view('home_header');
+    $this->load->view('my_poultry_projects_view',$data);
+    $this->load->view('footer');
+  }
+  
+  function sortby_pid_asc_poultry()
+  {
+    $data = $this->index_poultry();
+    $data['column'] = 'Project ID';
+    $data['order'] = 'ascending';
+   
+    $session_data = $this->session->userdata('logged_in');
+    $user_id = $session_data['user_id'];
+    
+    $count = $this->poultry->get_total_user_pproj($user_id);
+    
+    $this->load->library('pagination');
+    
+    $offset = $this->uri->segment(3);
+    $config['base_url'] = base_url().'my_projects/sortby_pid_asc_poultry';
+    $config['total_rows'] = $count;
+    $config['first_link'] = '<<';
+    $config['last_link'] = FALSE;
+    $config['per_page'] = 15;
+    $config['next_link'] = 'Next >';
+    $config['prev_link'] = '< Previous';
+    $config['display_pages'] = FALSE;
+   
+    $data['result_poultry'] = $this->poultry->get_sorted_by($config['per_page'], $offset, $user_id, 'pid', 'asc');
+    $this->pagination->initialize($config);
+  
+    $this->load->view('home_header');
+    $this->load->view('my_poultry_projects_view',$data);
+    $this->load->view('footer');
+  }
+  
+  function sortby_pid_desc_poultry()
+  {
+    $data = $this->index_poultry();
+    $data['column'] = 'Project ID';
+    $data['order'] = 'descending';
+   
+    $session_data = $this->session->userdata('logged_in');
+    $user_id = $session_data['user_id'];
+    
+    $count = $this->poultry->get_total_user_pproj($user_id);
+    
+    $this->load->library('pagination');
+    
+    $offset = $this->uri->segment(3);
+    $config['base_url'] = base_url().'my_projects/sortby_pid_desc_poultry';
+    $config['total_rows'] = $count;
+    $config['first_link'] = '<<';
+    $config['last_link'] = FALSE;
+    $config['per_page'] = 15;
+    $config['next_link'] = 'Next >';
+    $config['prev_link'] = '< Previous';
+    $config['display_pages'] = FALSE;
+   
+    $data['result_poultry'] = $this->poultry->get_sorted_by($config['per_page'], $offset, $user_id, 'pid', 'desc');
+    $this->pagination->initialize($config);
+  
+    $this->load->view('home_header');
+    $this->load->view('my_poultry_projects_view',$data);
+    $this->load->view('footer');
+  }
+  
+  function sortby_place_asc_poultry()
+  {
+    $data = $this->index_poultry();
+    $data['column'] = 'Place';
+    $data['order'] = 'ascending';
+   
+    $session_data = $this->session->userdata('logged_in');
+    $user_id = $session_data['user_id'];
+    
+    $count = $this->poultry->get_total_user_pproj($user_id);
+    
+    $this->load->library('pagination');
+    
+    $offset = $this->uri->segment(3);
+    $config['base_url'] = base_url().'my_projects/sortby_place_asc_poultry';
+    $config['total_rows'] = $count;
+    $config['first_link'] = '<<';
+    $config['last_link'] = FALSE;
+    $config['per_page'] = 15;
+    $config['next_link'] = 'Next >';
+    $config['prev_link'] = '< Previous';
+    $config['display_pages'] = FALSE;
+   
+    $data['result_poultry'] = $this->poultry->get_sorted_by($config['per_page'], $offset, $user_id, 'place', 'asc');
+    $this->pagination->initialize($config);
+  
+    $this->load->view('home_header');
+    $this->load->view('my_poultry_projects_view',$data);
+    $this->load->view('footer');
+  }
+  
+  function sortby_place_desc_poultry()
+  {
+    $data = $this->index_poultry();
+    $data['column'] = 'Place';
+    $data['order'] = 'descending';
+   
+    $session_data = $this->session->userdata('logged_in');
+    $user_id = $session_data['user_id'];
+    
+    $count = $this->poultry->get_total_user_pproj($user_id);
+    
+    $this->load->library('pagination');
+    
+    $offset = $this->uri->segment(3);
+    $config['base_url'] = base_url().'my_projects/sortby_place_desc_poultry';
+    $config['total_rows'] = $count;
+    $config['first_link'] = '<<';
+    $config['last_link'] = FALSE;
+    $config['per_page'] = 15;
+    $config['next_link'] = 'Next >';
+    $config['prev_link'] = '< Previous';
+    $config['display_pages'] = FALSE;
+   
+    $data['result_poultry'] = $this->poultry->get_sorted_by($config['per_page'], $offset, $user_id, 'place', 'desc');
+    $this->pagination->initialize($config);
+  
+    $this->load->view('home_header');
+    $this->load->view('my_poultry_projects_view',$data);
+    $this->load->view('footer');
+  }
+  
+  function sortby_fa_asc_poultry()
+  {
+    $data = $this->index_poultry();
+    $data['column'] = 'Farm animal';
+    $data['order'] = 'ascending';
+   
+    $session_data = $this->session->userdata('logged_in');
+    $user_id = $session_data['user_id'];
+    
+    $count = $this->poultry->get_total_user_pproj($user_id);
+    
+    $this->load->library('pagination');
+    
+    $offset = $this->uri->segment(3);
+    $config['base_url'] = base_url().'my_projects/sortby_fa_asc_poultry';
+    $config['total_rows'] = $count;
+    $config['first_link'] = '<<';
+    $config['last_link'] = FALSE;
+    $config['per_page'] = 15;
+    $config['next_link'] = 'Next >';
+    $config['prev_link'] = '< Previous';
+    $config['display_pages'] = FALSE;
+   
+    $data['result_poultry'] = $this->poultry->get_sorted_by($config['per_page'], $offset, $user_id, 'fa', 'asc');
+    $this->pagination->initialize($config);
+  
+    $this->load->view('home_header');
+    $this->load->view('my_poultry_projects_view',$data);
+    $this->load->view('footer');
+  }
+  
+  function sortby_fa_desc_poultry()
+  {
+    $data = $this->index_poultry();
+    $data['column'] = 'Farm animal';
+    $data['order'] = 'descending';
+   
+    $session_data = $this->session->userdata('logged_in');
+    $user_id = $session_data['user_id'];
+    
+    $count = $this->poultry->get_total_user_pproj($user_id);
+    
+    $this->load->library('pagination');
+    
+    $offset = $this->uri->segment(3);
+    $config['base_url'] = base_url().'my_projects/sortby_fa_desc_poultry';
+    $config['total_rows'] = $count;
+    $config['first_link'] = '<<';
+    $config['last_link'] = FALSE;
+    $config['per_page'] = 15;
+    $config['next_link'] = 'Next >';
+    $config['prev_link'] = '< Previous';
+    $config['display_pages'] = FALSE;
+   
+    $data['result_poultry'] = $this->poultry->get_sorted_by($config['per_page'], $offset, $user_id, 'fa', 'desc');
+    $this->pagination->initialize($config);
+  
+    $this->load->view('home_header');
+    $this->load->view('my_poultry_projects_view',$data);
+    $this->load->view('footer');
+  }
+  
+  
   function my_livestock_projects()
   {
-    $data['my_redirect']= current_url();
-    $data['baseurl']= base_url();
-    $data['new_url'] = site_url('view_project/show_project');
-    $data['sortby_breed_asc'] = site_url('my_projects/sortby/livestock/breed/asc');
-    $data['sortby_breed_desc'] = site_url('my_projects/sortby/livestock/breed/desc');
-    $data['sortby_pid_asc'] = site_url('my_projects/sortby/livestock/pid/asc');
-    $data['sortby_pid_desc'] = site_url('my_projects/sortby/livestock/pid/desc');
-    $data['sortby_fa_asc'] = site_url('my_projects/sortby/livestock/fa/asc');
-    $data['sortby_fa_desc'] = site_url('my_projects/sortby/livestock/fa/desc');
-    $data['sortby_place_asc'] = site_url('my_projects/sortby/livestock/place/asc');
-    $data['sortby_place_desc'] = site_url('my_projects/sortby/livestock/place/desc');
+    $data = $this->index_livestock();
+    $data['column'] = 'Breed';
+    $data['order'] = 'ascending';
    
     $session_data = $this->session->userdata('logged_in');
     $user_id = $session_data['user_id'];
@@ -108,6 +631,9 @@ class My_projects extends CI_Controller {
     $config['total_rows'] = $count;
     $config['last_link'] = FALSE;
     $config['per_page'] = 15;
+    $config['next_link'] = 'Next >';
+    $config['prev_link'] = '< Previous';
+    $config['display_pages'] = FALSE;
    
     $data['result_livestock'] = $this->livestock->get_user_lproj($config['per_page'], $offset, $user_id);
     $this->pagination->initialize($config);
@@ -119,17 +645,9 @@ class My_projects extends CI_Controller {
   
   function my_poultry_projects()
   {
-    $data['my_redirect']= current_url();
-    $data['baseurl']= base_url();
-    $data['new_url'] = site_url('view_project/show_project');
-    $data['sortby_breed_asc'] = site_url('my_projects/sortby/poultry/breed/asc');
-    $data['sortby_breed_desc'] = site_url('my_projects/sortby/poultry/breed/desc');
-    $data['sortby_pid_asc'] = site_url('my_projects/sortby/poultry/pid/asc');
-    $data['sortby_pid_desc'] = site_url('my_projects/sortby/poultry/pid/desc');
-    $data['sortby_fa_asc'] = site_url('my_projects/sortby/poultry/fa/asc');
-    $data['sortby_fa_desc'] = site_url('my_projects/sortby/poultry/fa/desc');
-    $data['sortby_place_asc'] = site_url('my_projects/sortby/poultry/place/asc');
-    $data['sortby_place_desc'] = site_url('my_projects/sortby/poultry/place/desc');
+    $data = $this->index_poultry();
+    $data['column'] = 'Breed';
+    $data['order'] = 'ascending';
    
     $session_data = $this->session->userdata('logged_in');
     $user_id = $session_data['user_id'];
@@ -142,7 +660,11 @@ class My_projects extends CI_Controller {
     $config['base_url'] = base_url().'my_projects/my_poultry_projects';
     $config['total_rows'] = $count;
     $config['last_link'] = FALSE;
+    $config['first_link'] = '<<';
     $config['per_page'] = 15;
+    $config['next_link'] = 'Next >';
+    $config['prev_link'] = '< Previous';
+    $config['display_pages'] = FALSE;
    
     $data['result_poultry'] = $this->poultry->get_user_pproj($config['per_page'], $offset, $user_id);
     $this->pagination->initialize($config);
@@ -229,14 +751,6 @@ class My_projects extends CI_Controller {
     $this->project->delete_project($proj_id);
   }
   
-  function view_gallery()
-  {
-    $this->load->view('home_header');
-    $this->load->view('gallery_view');
-    $this->load->view('footer');
-  }
-
-
 }
 
 /* End of file my_projects.php */
