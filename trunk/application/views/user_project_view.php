@@ -175,11 +175,82 @@
         
     </div>
   </div>
-  
+  <div class="hidden">
+    <input type="hidden" id="current_url" value="<?php echo $curr_url; ?>">
+    <input type="hidden" id="comp_url" value="<?php echo $complete_proj_url; ?>">
+    <?php foreach($project_details as $row){
+      $$complete_proj_url = $row->proj_id;
+      $my_comp_proj_url = "$complete_proj_url/${$complete_proj_url}";
+      }
+    ?>
+    <input type="hidden" id="my_comp_proj_url" value="<?php echo $my_comp_proj_url; ?>">
+    <table id="signin" style="display:block; margin: 30px;">
+      <tr><td colspan="2"><h2>Sign in</h2></td></tr>
+         <tr><td colspan="2"><label id="error_uname"></label></td></tr>
+		<tr>
+			<td><label for="uname">Username:</label></td>
+			<td><input type="text" size="20" id="uname" name="uname" /></td>
+		</tr>
+                <tr><td colspan="2"><label id="error_pword"></label></td></tr>
+		<tr>
+			<td><label for="pword">Password:</label></td>
+			<td><input type="password" size="20" id="pword" name="pword"/></td>
+		</tr>
+                <tr>
+			<td>&nbsp;</td>
+			<td align="right"><br/><a href="javascript:login_user(uname.value, pword.value);"><button id="signup_button">Sign in</button></a></td>
+                </tr>
+    </table>
+    <script type="text/javascript">
+      $("#uname").keyup(function(){
+        $.ajax({
+              type: "GET",
+              url: "<?php echo site_url('signup/check_user'); ?>",
+              data: ({username:uname.value}),
+              success: function(msg){
+                if(msg=="existing")
+                {
+                    $('#error_uname').html("Username is existing.").css('color','yellow');
+                }
+                else
+		{
+                    $("#error_uname").html("Username is not yet existing.").css('color','yellow');
+                }
+              },
+              error: function(){
+                alert('error');
+                }
+              });
+      });
+      
+  function login_user(username, password)
+  {
+    if ($('#error_uname').html() == "Username is existing."){
+    $.ajax({
+        type: "GET",
+        data: ({username:username, password:password}),
+        url: "<?php echo site_url('signup/login_user'); ?>",
+        success: function(msg){
+          if(msg=="valid")
+            window.location = my_comp_proj_url.value;
+          else {
+            alert('Invalid username or password.');
+            window.location = current_url.value;
+          }
+        },
+        error: function(){
+          alert('Error.');
+        }
+      });
+    }
+  }
+    </script>
+  </div>
   
   <div class="hidden">
     <div id="basic-modal-content" class="simplemodal-data" style="display: block; ">
     <table id="signup">
+      <tr><td><h2>Sign up</h2></td><td align="right"><a href="#" id="signin_link">Sign in</a></td></tr>
          <tr><td colspan="2"><label id="error_username"></label></td></tr>
 		<tr>
 			<td><label for="username">Username:</label></td>
@@ -208,10 +279,11 @@
     <br/>
     
   </div>
-  <div style='display:none'>
+    <div style='display:none'>
 			<img src='<?php echo base_url(); ?>css/images/x.png' alt='' />
-		</div>
+    </div>
   </div>
+  
 <!-- Load jQuery, SimpleModal and Basic JS files -->
 <script type='text/javascript' src='<?php echo base_url(); ?>css/js/jquery.js'></script>
 <script type='text/javascript' src='<?php echo base_url(); ?>css/js/jquery.simplemodal.js'></script>
@@ -226,7 +298,6 @@
         opacity:50,
         overlayCss: {backgroundColor:"black"}
       });
-      
       
       $('#username').keyup(function() {
         
@@ -254,7 +325,6 @@
               });
           }
       }); //end of keyup  
-      
       
       $("#email").keyup(function(){
         var email = $("#email").val();
@@ -302,6 +372,10 @@
     });
   }
   
+  $("#signin_link").click(function(){
+    $('#signup').replaceWith($('#signin'));
+  });
+    
   function reg_user(username, email, password)
   {
     if ($('#error_username').html() == "Username is available."){
@@ -321,8 +395,8 @@
       window.location = curr_url.value;
     }
   }
-    
- function isValidEmailAddress(emailAddress) {
+  
+ function isValidEmailAddress(emailAddress){
   var pattern = new RegExp(/^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/i);
   return pattern.test(emailAddress);
  }
