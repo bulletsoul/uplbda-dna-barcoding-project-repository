@@ -62,7 +62,7 @@ function onClick() {
                 <TR>
                   <TD>Project ID</TD>
                   <TD width="200">Breed</TD>
-                  <TD width="100">Farm Animal</TD>
+                  <TD width="70">Farm Animal</TD>
                   <TD width="200">Place</TD>
                   <TD width="40">Edit</TD>
                   <TD width="40">Delete</TD>
@@ -76,7 +76,7 @@ function onClick() {
                 <TR>
                   <td align="center"><?php echo $lrow->proj_id; ?></td>
                   <TD id="breed"><?php echo $lrow->breed; ?></TD>
-                  <TD><?php echo $lrow->farm_animal; ?></TD>
+                  <TD align="center"><?php echo $lrow->farm_animal; ?></TD>
                   <TD><?php echo $lrow->place; ?></TD>
                   <TD align="center">
                     <?php
