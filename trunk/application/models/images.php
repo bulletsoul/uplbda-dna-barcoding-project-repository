@@ -154,7 +154,6 @@ Class Images extends CI_Model
         
         else return FALSE;
     }
-    
 }
 
 /* End of file images.php */
