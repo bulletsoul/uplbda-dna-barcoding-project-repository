@@ -33,27 +33,13 @@
           
           $nw_url = $new_url; ?>
         <h2>Poultry</h2>
-        
    <?php
-    
     if ($list){
       ?>
-      <script language="JavaScript"><!--
-function onClick() {
-  var Current = document.formName4.selectName4.selectedIndex;
-  
-  if (Current == 0) window.location = sortby_pid_asc.value;
-  if (Current == 1) window.location = sortby_pid_desc.value;
-  if (Current == 2) window.location = sortby_breed_asc.value;
-  if (Current == 3) window.location = sortby_breed_desc.value;
-  if (Current == 4) window.location = sortby_fa_asc.value;
-  if (Current == 5) window.location = sortby_fa_desc.value;
-  if (Current == 6) window.location = sortby_place_asc.value;
-  if (Current == 7) window.location = sortby_place_desc.value;  
-}
-//--></script>
-
-<form name="formName4" onSubmit="return false;" align="right">
+      <table class="project_table">
+        <tr>
+          <td><h3>Sorted by <?php echo $column;?> in <?php echo $order; ?> order</h3></td>
+          <td align="right"><form name="formName4" onSubmit="return false;">
 <select name="selectName4">
 <option value="a_pid">Project ID (Ascending)
 <option value="d_pid">Project ID (Descending)
@@ -64,8 +50,10 @@ function onClick() {
 <option value="a_place">Place (Ascending)
 <option value="d_place">Place (Descending)
 </select>
-<input name="submitName4" type="submit" value="Sort" onClick="onClick();return false;">
-</form>
+<input name="submitName4" type="submit" value="Sort" onClick="ls_view();return false;">
+</form></td>
+        </tr>
+      </table>
       <TABLE BGCOLOR="#B2D1E5" class="project_table">
       <THEAD ALIGN="center" class="table_header">
     <TR>
@@ -80,7 +68,6 @@ function onClick() {
    foreach ($list as $row)
    {
     ?>
-    
     <TBODY BGCOLOR="#E9F2F9">
     <TR>
       <TD width="60" align="center">
