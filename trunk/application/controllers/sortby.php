@@ -26,6 +26,130 @@ class Sortby extends CI_Controller {
    'baseurl' => base_url()
    );
  }
+ 
+ function sortby_place_asc_livestock()
+  {
+    $data = $this->index_livestock();
+    $data['column'] = 'Place';
+    $data['order'] = 'ascending';
+   
+    $session_data = $this->session->userdata('logged_in');
+    $user_id = $session_data['user_id'];
+    
+    $count = $this->livestock->get_total_user_lproj($user_id);
+    
+    $this->load->library('pagination');
+    
+    $offset = $this->uri->segment(3);
+    $config['base_url'] = base_url().'my_projects/sortby_place_asc_livestock';
+    $config['total_rows'] = $count;
+    $config['first_link'] = '<<';
+  $config['last_link'] = FALSE;
+    $config['per_page'] = 15;
+    $config['next_link'] = 'Next >';
+    $config['prev_link'] = '< Previous';
+    $config['display_pages'] = FALSE;
+   
+    $data['result_livestock'] = $this->livestock->get_all_sorted_by($config['per_page'], $offset, $user_id, 'place', 'asc');
+    $this->pagination->initialize($config);
+  
+    $this->load->view('home_header');
+    $this->load->view('my_livestock_projects_view',$data);
+    $this->load->view('footer');
+  }
+  
+  function sortby_place_desc_livestock()
+  {
+    $data = $this->index_livestock();
+    $data['column'] = 'Place';
+    $data['order'] = 'descending';
+   
+    $session_data = $this->session->userdata('logged_in');
+    $user_id = $session_data['user_id'];
+    
+    $count = $this->livestock->get_total_user_lproj($user_id);
+    
+    $this->load->library('pagination');
+    
+    $offset = $this->uri->segment(3);
+    $config['base_url'] = base_url().'my_projects/sortby_place_desc_livestock';
+    $config['total_rows'] = $count;
+    $config['first_link'] = '<<';
+  $config['last_link'] = FALSE;
+    $config['per_page'] = 15;
+    $config['next_link'] = 'Next >';
+    $config['prev_link'] = '< Previous';
+    $config['display_pages'] = FALSE;
+   
+    $data['result_livestock'] = $this->livestock->get_all_sorted_by($config['per_page'], $offset, $user_id, 'place', 'desc');
+    $this->pagination->initialize($config);
+  
+    $this->load->view('home_header');
+    $this->load->view('my_livestock_projects_view',$data);
+    $this->load->view('footer');
+  }
+  
+  function sortby_fa_asc_livestock()
+  {
+    $data = $this->index_livestock();
+    $data['column'] = 'Farm animal';
+    $data['order'] = 'ascending';
+   
+    $session_data = $this->session->userdata('logged_in');
+    $user_id = $session_data['user_id'];
+    
+    $count = $this->livestock->get_total_user_lproj($user_id);
+    
+    $this->load->library('pagination');
+    
+    $offset = $this->uri->segment(3);
+    $config['base_url'] = base_url().'my_projects/sortby_fa_asc_livestock';
+    $config['total_rows'] = $count;
+    $config['first_link'] = '<<';
+  $config['last_link'] = FALSE;
+    $config['per_page'] = 15;
+    $config['next_link'] = 'Next >';
+    $config['prev_link'] = '< Previous';
+    $config['display_pages'] = FALSE;
+   
+    $data['result_livestock'] = $this->livestock->get_all_sorted_by($config['per_page'], $offset, $user_id, 'fa', 'asc');
+    $this->pagination->initialize($config);
+  
+    $this->load->view('home_header');
+    $this->load->view('my_livestock_projects_view',$data);
+    $this->load->view('footer');
+  }
+  
+  function sortby_fa_desc_livestock()
+  {
+    $data = $this->index_livestock();
+    $data['column'] = 'Farm animal';
+    $data['order'] = 'descending';
+   
+    $session_data = $this->session->userdata('logged_in');
+    $user_id = $session_data['user_id'];
+    
+    $count = $this->livestock->get_total_user_lproj($user_id);
+    
+    $this->load->library('pagination');
+    
+    $offset = $this->uri->segment(3);
+    $config['base_url'] = base_url().'my_projects/sortby_fa_desc_livestock';
+    $config['total_rows'] = $count;
+    $config['first_link'] = '<<';
+  $config['last_link'] = FALSE;
+    $config['per_page'] = 15;
+    $config['next_link'] = 'Next >';
+    $config['prev_link'] = '< Previous';
+    $config['display_pages'] = FALSE;
+   
+    $data['result_livestock'] = $this->livestock->get_all_sorted_by($config['per_page'], $offset, $user_id, 'fa', 'desc');
+    $this->pagination->initialize($config);
+  
+    $this->load->view('home_header');
+    $this->load->view('my_livestock_projects_view',$data);
+    $this->load->view('footer');
+  }
 
  function breed_asc_poultry()
  {
@@ -46,6 +170,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/breed_asc_poultry';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+$config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -59,7 +185,7 @@ class Sortby extends CI_Controller {
 
  function breed_desc_poultry()
  {
-  $data = $this->index_poultry();
+   $data = $this->index_poultry();
    $data['column'] = 'Breed';
    $data['order'] = 'descending';
    
@@ -76,6 +202,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/breed_desc_poultry';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+$config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -106,6 +234,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/pid_asc_poultry';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+$config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -136,6 +266,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/pid_desc_poultry';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+$config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -166,6 +298,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/fa_asc_poultry';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+$config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -196,6 +330,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/fa_desc_poultry';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+$config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -226,6 +362,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/place_asc_poultry';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+$config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -256,6 +394,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/place_desc_poultry';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+$config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -375,6 +515,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/breed_asc_capridae';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+$config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -406,6 +548,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/breed_asc_monogastrics';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+$config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -437,6 +581,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/pid_asc_bovidae';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+$config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -468,6 +614,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/pid_asc_capridae';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+  $config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -499,6 +647,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/pid_asc_monogastrics';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+  $config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -530,6 +680,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/fa_asc_bovidae';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+  $config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -561,6 +713,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/fa_asc_capridae';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+  $config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -592,6 +746,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/fa_asc_monogastrics';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+  $config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -623,6 +779,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/place_asc_bovidae';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+  $config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -654,6 +812,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/place_asc_capridae';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+  $config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -685,6 +845,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/place_asc_monogastrics';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+  $config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -716,6 +878,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/breed_desc_bovidae';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+  $config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -747,6 +911,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/breed_desc_capridae';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+  $config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -778,6 +944,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/breed_desc_monogastrics';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+  $config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -809,6 +977,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/pid_desc_bovidae';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+  $config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -840,6 +1010,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/pid_desc_capridae';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+  $config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -871,6 +1043,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/pid_desc_monogastrics';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+  $config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -902,6 +1076,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/fa_desc_bovidae';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+  $config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -933,6 +1109,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/fa_desc_capridae';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+  $config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -964,6 +1142,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/fa_desc_monogastrics';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+  $config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -995,6 +1175,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/place_desc_bovidae';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+  $config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -1026,6 +1208,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/place_desc_capridae';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+  $config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
@@ -1057,6 +1241,8 @@ class Sortby extends CI_Controller {
   $config['base_url'] = base_url().'sortby/place_desc_monogastrics';
   $config['total_rows'] = $count;
   $config['per_page'] = 15;
+  $config['first_link'] = '<<';
+  $config['last_link'] = FALSE;
   $config['next_link'] = 'Next >';
   $config['prev_link'] = '< Previous';
   $config['display_pages'] = FALSE;
