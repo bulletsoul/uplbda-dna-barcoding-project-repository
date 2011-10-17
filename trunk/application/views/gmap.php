@@ -13,9 +13,9 @@
     </style>
     </head>
     <body onload="onLoad()">
+      <input hidden="">
       <div class="user_project_view" id="user_project_view">
     <!-- googlemap-->
-    <?php if ($is_marker == "true") { ?>
         <TABLE class="google_map" BGCOLOR="#B2D1E5" text-align="center">
         <tr><td>
         <?php $this->cigooglemapapi->printMap(); ?>
@@ -23,7 +23,6 @@
         <?php $this->cigooglemapapi->printSidebar(); ?>
         </td></tr>
         </TABLE>
-        <?php } else echo "Google Map did not find the specified place."; ?>
         <br/><br/>
       </div>
     
