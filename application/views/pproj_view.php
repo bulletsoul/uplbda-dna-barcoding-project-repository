@@ -7,6 +7,7 @@
   <div class="body">
     <div class="body_resize">
       <div class="left" id="home_left">
+        <input type="hidden" id="proj_id" value="<?php echo $proj_id; ?>">
         <input type="hidden" id="my_redirect" value="<?php echo $my_redirect; ?>"/>
         <input type="hidden" id="baseurl" value="<?php echo $baseurl; ?>"/>
         <input type="hidden" id="new_url" value="<?php echo $new_url; ?>"/>
@@ -68,6 +69,7 @@ function onClick() {
       <TABLE BGCOLOR="#B2D1E5" class="project_table">
       <THEAD ALIGN="center" class="table_header">
     <TR>
+      <TD></TD>
       <TD>Project ID</TD>
       <TD width="200">Breed</TD>
       <TD>Farm Animal</TD>
@@ -81,13 +83,30 @@ function onClick() {
     
     <TBODY BGCOLOR="#E9F2F9">
     <TR>
-      <TD align="center"><?php echo $row->proj_id; ?></TD>
+      <TD width="60" align="center">
+        <?php $dimgpath = $this->images->get_single_dfilepath($row->proj_id);
+              if ($dimgpath) { foreach($dimgpath as $row2){
+                $str = '<img src="<?php echo $row2->filepath;  ?>" id="image" width="60px" height="50px">';
+            ?>
+            <div class="thumbnail-item">
+              <a href="#"><img src="<?php echo $row2->filepath;  ?>" id="image" width="60px" height="50px"></a>
+              <div class="tooltip">
+                <img src="<?php echo $row2->filepath;  ?>" alt="" width="330" height="185" />
+                <span class="overlay"></span>
+              </div> 
+            </div> 
+            <?php } }
+              else {
+                echo "Image not available.";
+                } ?>
+      </TD>
+      <TD align="center" width="30"><?php echo $row->proj_id; ?></TD>
       <TD width="200"><?php
       $$nw_url = $row->proj_id;
       $proj_url = "$nw_url/${$nw_url}";
       echo anchor_popup($proj_url,$row->breed, $atts); ?>
       </TD>
-      <TD><?php echo $row->farm_animal; ?></TD>
+      <TD width="50" align="center"><?php echo $row->farm_animal; ?></TD>
       <TD><?php echo $row->place; ?></TD> 
     </TR><?php
     }
@@ -98,6 +117,41 @@ function onClick() {
       </div>
     </div>
   </div>
-  
+ <script type="text/javascript">
+      // Load this script once the document is ready
+$(document).ready(function () {
+         
+    // Get all the thumbnail
+    $('div.thumbnail-item').mouseenter(function(e) {
+ 
+        // Calculate the position of the image tooltip
+        x = e.pageX - $(this).offset().left;
+        y = e.pageY - $(this).offset().top;
+ 
+        // Set the z-index of the current item, 
+        // make sure it's greater than the rest of thumbnail items
+        // Set the position and display the image tooltip
+        $(this).css('z-index','15')
+        .children("div.tooltip")
+        .css({'top': y + 10,'left': x + 20,'display':'block'});
+             
+    }).mousemove(function(e) {
+             
+        // Calculate the position of the image tooltip          
+        x = e.pageX - $(this).offset().left;
+        y = e.pageY - $(this).offset().top;
+             
+        // This line causes the tooltip will follow the mouse pointer
+        $(this).children("div.tooltip").css({'top': y + 10,'left': x + 20});
+             
+    }).mouseleave(function() {
+             
+        // Reset the z-index and hide the image tooltip 
+        $(this).css('z-index','1')
+        .children("div.tooltip")
+        .animate({"opacity": "hide"}, "fast");
+    });
+ 
+});</script> 
 
       
