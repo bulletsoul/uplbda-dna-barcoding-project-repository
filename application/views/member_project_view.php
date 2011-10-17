@@ -186,6 +186,17 @@
               <div id="img_area">
               <?php
               if ($dimgpath != NULL){
+                $imagefolder="/uplbda/application/uploads/images/dorsal/";
+		$thumbsfolder="/uplbda/application/uploads/images/dorsal/thumbs/";
+                $pics=$this->images->directory($imagefolder,"jpg,JPG,JPEG,jpeg,png,PNG");
+                $pics=$this->images->ditchtn($pics,"tn_");
+                if ($pics[0]!="")
+                {
+                        foreach ($pics as $p)
+                        {
+                                $this->images->createthumb($p,"tn_".$p,150,150);
+                        }
+                }
               foreach($dimgpath as $row){ ?>
                 <a href="<?php echo $row->filepath;  ?>" target="_blank"><img src="<?php echo $row->filepath;  ?>" id="image" width="100px" height="100px"></a>
               <?php } } 
