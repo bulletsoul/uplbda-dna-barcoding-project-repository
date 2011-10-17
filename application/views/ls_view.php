@@ -88,7 +88,8 @@ function ls_view() {
     <TR>
       <TD width="60" align="center">
         <?php $dimgpath = $this->images->get_single_dfilepath($row->proj_id);
-              if ($dimgpath) { foreach($dimgpath as $row2){
+              if ($dimgpath) {
+                foreach($dimgpath as $row2){
             ?>
             <div class="thumbnail-item">
               <a href="#"><img src="<?php echo $row2->filepath;  ?>" id="image" width="60px" height="50px"></a>
