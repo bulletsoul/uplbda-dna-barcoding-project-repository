@@ -11,24 +11,310 @@ class Sortby extends CI_Controller {
    $this->load->model('project','',TRUE);
  }
 
- function index()
+ function index_poultry()
  {
-  $this->load->helper('url');
-    $data['my_redirect']= current_url();
-    $data['baseurl']= base_url();
-    $data['new_url'] = site_url('view_project/show_project');
-    if($this->session->userdata('logged_in'))
-    {
-      $session_data = $this->session->userdata('logged_in');
-      $user_id = $session_data['user_id'];
-      $data['result_poultry'] = $this->poultry->get_user_pproj($user_id);
-      $data['result_livestock'] = $this->livestock->get_user_lproj($user_id);
-      $this->load->view('home_header');
-      $this->load->view('edit_proj_view', $data);
-      $this->load->view('footer');
-    }
+   return $data = array ('sortby_breed_asc' => site_url('sortby/breed_asc_poultry'),
+   'sortby_breed_desc' => site_url('sortby/breed_desc_poultry'),
+   'sortby_pid_asc' => site_url('sortby/pid_asc_poultry'),
+   'sortby_pid_desc' => site_url('sortby/pid_desc_poultry'),
+   'sortby_fa_asc' => site_url('sortby/fa_asc_poultry'),
+   'sortby_fa_desc' => site_url('sortby/fa_desc_poultry'),
+   'sortby_place_asc' => site_url('sortby/place_asc_poultry'),
+   'sortby_place_desc' => site_url('sortby/place_desc_poultry'),
+   'my_redirect' => current_url(),
+   'new_url1' => site_url('view_project/view_map'),
+   'baseurl' => base_url()
+   );
  }
 
+ function breed_asc_poultry()
+ {
+  $data = $this->index_poultry();
+   $data['column'] = 'Breed';
+   $data['order'] = 'ascending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   $this->get_viewtype();
+   
+   $count = $this->poultry->get_total_poultry();
+   
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/breed_asc_poultry';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  
+  $data['list'] = $this->poultry->get_all_sorted_by($config['per_page'], $offset, 'breed', 'asc');
+  $this->pagination->initialize($config);
+  
+  $this->load->view('pproj_view', $data);
+  $this->load->view('footer');
+ }
+
+ function breed_desc_poultry()
+ {
+  $data = $this->index_poultry();
+   $data['column'] = 'Breed';
+   $data['order'] = 'descending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   $this->get_viewtype();
+   
+   $count = $this->poultry->get_total_poultry();
+   
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/breed_desc_poultry';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  
+  $data['list'] = $this->poultry->get_all_sorted_by($config['per_page'], $offset, 'breed', 'desc');
+  $this->pagination->initialize($config);
+  
+  $this->load->view('pproj_view', $data);
+  $this->load->view('footer');
+ }
+ 
+ function pid_asc_poultry()
+ {
+  $data = $this->index_poultry();
+   $data['column'] = 'Project ID';
+   $data['order'] = 'ascending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   $this->get_viewtype();
+   
+   $count = $this->poultry->get_total_poultry();
+   
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/pid_asc_poultry';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  
+  $data['list'] = $this->poultry->get_all_sorted_by($config['per_page'], $offset, 'pid', 'asc');
+  $this->pagination->initialize($config);
+  
+  $this->load->view('pproj_view', $data);
+  $this->load->view('footer');
+ }
+
+ function pid_desc_poultry()
+ {
+  $data = $this->index_poultry();
+   $data['column'] = 'Project ID';
+   $data['order'] = 'descending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   $this->get_viewtype();
+   
+   $count = $this->poultry->get_total_poultry();
+   
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/pid_desc_poultry';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  
+  $data['list'] = $this->poultry->get_all_sorted_by($config['per_page'], $offset, 'pid', 'desc');
+  $this->pagination->initialize($config);
+  
+  $this->load->view('pproj_view', $data);
+  $this->load->view('footer');
+ }
+ 
+ function fa_asc_poultry()
+ {
+  $data = $this->index_poultry();
+   $data['column'] = 'Farm animal';
+   $data['order'] = 'ascending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   $this->get_viewtype();
+   
+   $count = $this->poultry->get_total_poultry();
+   
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/fa_asc_poultry';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  
+  $data['list'] = $this->poultry->get_all_sorted_by($config['per_page'], $offset, 'fa', 'asc');
+  $this->pagination->initialize($config);
+  
+  $this->load->view('pproj_view', $data);
+  $this->load->view('footer');
+ }
+
+ function fa_desc_poultry()
+ {
+  $data = $this->index_poultry();
+   $data['column'] = 'Farm animal';
+   $data['order'] = 'descending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   $this->get_viewtype();
+   
+   $count = $this->poultry->get_total_poultry();
+   
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/fa_desc_poultry';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  
+  $data['list'] = $this->poultry->get_all_sorted_by($config['per_page'], $offset, 'fa', 'desc');
+  $this->pagination->initialize($config);
+  
+  $this->load->view('pproj_view', $data);
+  $this->load->view('footer');
+ }
+
+ function place_asc_poultry()
+ {
+  $data = $this->index_poultry();
+   $data['column'] = 'Place';
+   $data['order'] = 'ascending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   $this->get_viewtype();
+   
+   $count = $this->poultry->get_total_poultry();
+   
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/place_asc_poultry';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  
+  $data['list'] = $this->poultry->get_all_sorted_by($config['per_page'], $offset, 'place', 'asc');
+  $this->pagination->initialize($config);
+  
+  $this->load->view('pproj_view', $data);
+  $this->load->view('footer');
+ }
+
+ function place_desc_poultry()
+ {
+  $data = $this->index_poultry();
+   $data['column'] = 'Place';
+   $data['order'] = 'descending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   $this->get_viewtype();
+   
+   $count = $this->poultry->get_total_poultry();
+   
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/place_desc_poultry';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  
+  $data['list'] = $this->poultry->get_all_sorted_by($config['per_page'], $offset, 'place', 'desc');
+  $this->pagination->initialize($config);
+  
+  $this->load->view('pproj_view', $data);
+  $this->load->view('footer');
+ }
+ 
+ function index_bovidae()
+ {
+   return $data = array ('sortby_breed_asc' => site_url('sortby/breed_asc_bovidae'),
+   'sortby_breed_desc' => site_url('sortby/breed_desc_bovidae'),
+   'sortby_pid_asc' => site_url('sortby/pid_asc_bovidae'),
+   'sortby_pid_desc' => site_url('sortby/pid_desc_bovidae'),
+   'sortby_fa_asc' => site_url('sortby/fa_asc_bovidae'),
+   'sortby_fa_desc' => site_url('sortby/fa_desc_bovidae'),
+   'sortby_place_asc' => site_url('sortby/place_asc_bovidae'),
+   'sortby_place_desc' => site_url('sortby/place_desc_bovidae'),
+   'my_redirect' => current_url(),
+   'new_url1' => site_url('view_project/view_map'),
+   'baseurl' => base_url()
+   );
+ }
+
+ function index_monogastrics()
+ {
+   return $data = array ('sortby_breed_asc' => site_url('sortby/breed_asc_monogastrics'),
+   'sortby_breed_desc' => site_url('sortby/breed_desc_monogastrics'),
+   'sortby_pid_asc' => site_url('sortby/pid_asc_monogastrics'),
+   'sortby_pid_desc' => site_url('sortby/pid_desc_monogastrics'),
+   'sortby_fa_asc' => site_url('sortby/fa_asc_monogastrics'),
+   'sortby_fa_desc' => site_url('sortby/fa_desc_monogastrics'),
+   'sortby_place_asc' => site_url('sortby/place_asc_monogastrics'),
+   'sortby_place_desc' => site_url('sortby/place_desc_monogastrics'),
+   'my_redirect' => current_url(),
+   'new_url1' => site_url('view_project/view_map'),
+   'baseurl' => base_url()
+   );
+ }
+ 
+ function index_capridae()
+ {
+   return $data = array ('sortby_breed_asc' => site_url('sortby/breed_asc_capridae'),
+   'sortby_breed_desc' => site_url('sortby/breed_desc_capridae'),
+   'sortby_pid_asc' => site_url('sortby/pid_asc_capridae'),
+   'sortby_pid_desc' => site_url('sortby/pid_desc_capridae'),
+   'sortby_fa_asc' => site_url('sortby/fa_asc_capridae'),
+   'sortby_fa_desc' => site_url('sortby/fa_desc_capridae'),
+   'sortby_place_asc' => site_url('sortby/place_asc_capridae'),
+   'sortby_place_desc' => site_url('sortby/place_desc_capridae'),
+   'my_redirect' => current_url(),
+   'new_url1' => site_url('view_project/view_map'),
+   'baseurl' => base_url()
+   );
+ }
+ 
  function get_viewtype()
  {     
   if($this->session->userdata('logged_in'))
@@ -38,89 +324,750 @@ class Sortby extends CI_Controller {
   }
   else $this->load->view('user_header');   
  }
- 
- function get_ls_category($ls_category)
- {
-  if ($ls_category == 'bovidae')
-   {
-    return "Bovidae";
-   }
    
-   if ($ls_category == 'capridae')
-   {
-    return "Capridae";
-   }
-   
-   if ($ls_category == 'monogastrics')
-   {
-    return "Monogastrics";
-   }
- }
- 
- function my_projects()
+ function breed_asc_bovidae()
  {
-  $this->load->helper(array('form', 'url'));
-  $this->get_viewtype();
-  $col_name = $this->uri->segment(3);
-  $category = $this->uri->segment(4);
-  $ls_category = $this->uri->segment(5);
-  $data['my_redirect']= current_url();
-  $data['baseurl']= base_url();
-  $data['new_url'] = site_url('view_project/show_project');
-  if($this->session->userdata('logged_in')){
+  $data = $this->index_bovidae();
+   $data['column'] = 'Breed';
+   $data['order'] = 'ascending';
+   
+   if($this->session->userdata('logged_in')){
     $data['new_url'] = site_url('view_project/show_project_complete');
    }
    else $data['new_url'] = site_url('view_project/show_project_inc');
-  $session_data = $this->session->userdata('logged_in');
-  $user_id = $session_data['user_id'];
-  
-  if($category == 'livestock')
-  {
-   $data['result_poultry'] = $this->poultry->get_user_pproj($user_id);
-   $data['result_livestock'] = $this->livestock->get_all_sorted_by($col_name, $user_id);
-   $this->load->view('edit_proj_view', $data);
-  }
-  
-  if ($category == 'poultry')
-  {
-   $data['result_poultry'] = $this->poultry->get_sorted_by($col_name, $user_id);
-   $data['result_livestock'] = $this->livestock->get_user_lproj($user_id);
-   $this->load->view('edit_proj_view', $data);
-  }
-  
-  $this->load->view('footer');
- }
-
- function view_projects()
- {
-  $this->get_viewtype();
-  $col_name = $this->uri->segment(3);
-  $category = $this->uri->segment(4);
-  $ls_category = $this->uri->segment(5);
-  $data['my_redirect']= current_url();
-  $data['baseurl']= base_url();
-  $data['new_url'] = site_url('view_project/show_project');
-  if($this->session->userdata('logged_in')){
-   $data['new_url'] = site_url('view_project/show_project_complete');
-  }
-   else $data['new_url'] = site_url('view_project/show_project_inc');
-  
-  if ($category == 'livestock')
-   {
-    $data['ls_category'] = $category = $this->get_ls_category($ls_category);
-    $data['list'] = $this->livestock->get_sorted_by($category, $col_name);
-    $this->load->view('ls_view', $data);
-   }
    
-   if ($category == 'poultry')
-   {
-    $data['list'] = $this->poultry->get_sorted_by($col_name);
-    $this->load->view('pproj_view', $data);
-   }
+   $count = $this->livestock->get_total_bovidae();
+   $data['ls_category'] = "Bovidae";
   
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/breed_asc_bovidae';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  $data['list'] = $this->livestock->get_sorted_by($config['per_page'], $offset, 'breed', 'asc', 'bovidae');
+  
+  $this->pagination->initialize($config);
+   
+  $this->get_viewtype();
+  $this->load->view('ls_view', $data);
   $this->load->view('footer');
  }
  
+ function breed_asc_capridae()
+ {
+  $data = $this->index_capridae();
+   $data['column'] = 'Breed';
+   $data['order'] = 'ascending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   
+   $count = $this->livestock->get_total_capridae();
+   $data['ls_category'] = "Capridae";
+  
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/breed_asc_capridae';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  $data['list'] = $this->livestock->get_sorted_by($config['per_page'], $offset, 'breed', 'asc', 'capridae');
+  
+  $this->pagination->initialize($config);
+   
+  $this->get_viewtype();
+  $this->load->view('ls_view', $data);
+  $this->load->view('footer');
+ }
+ 
+ function breed_asc_monogastrics()
+ {
+  $data = $this->index_monogastrics();
+   $data['column'] = 'Breed';
+   $data['order'] = 'ascending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   
+   $count = $this->livestock->get_total_monogastrics();
+   $data['ls_category'] = "Monogastrics";
+  
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/breed_asc_monogastrics';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  $data['list'] = $this->livestock->get_sorted_by($config['per_page'], $offset, 'breed', 'asc', 'monogastrics');
+  
+  $this->pagination->initialize($config);
+   
+  $this->get_viewtype();
+  $this->load->view('ls_view', $data);
+  $this->load->view('footer');
+ }
+ 
+ function pid_asc_bovidae()
+ {
+  $data = $this->index_bovidae();
+   $data['column'] = 'Project ID';
+   $data['order'] = 'ascending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   
+   $count = $this->livestock->get_total_bovidae();
+   $data['ls_category'] = "Bovidae";
+  
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/pid_asc_bovidae';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  $data['list'] = $this->livestock->get_sorted_by($config['per_page'], $offset, 'pid', 'asc', 'bovidae');
+  
+  $this->pagination->initialize($config);
+   
+  $this->get_viewtype();
+  $this->load->view('ls_view', $data);
+  $this->load->view('footer');
+ }
+ 
+ function pid_asc_capridae()
+ {
+  $data = $this->index_capridae();
+   $data['column'] = 'Project ID';
+   $data['order'] = 'ascending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   
+   $count = $this->livestock->get_total_capridae();
+   $data['ls_category'] = "Capridae";
+  
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/pid_asc_capridae';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  $data['list'] = $this->livestock->get_sorted_by($config['per_page'], $offset, 'pid', 'asc', 'capridae');
+  
+  $this->pagination->initialize($config);
+   
+  $this->get_viewtype();
+  $this->load->view('ls_view', $data);
+  $this->load->view('footer');
+ }
+ 
+ function pid_asc_monogastrics()
+ {
+  $data = $this->index_monogastrics();
+   $data['column'] = 'Project ID';
+   $data['order'] = 'ascending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   
+   $count = $this->livestock->get_total_monogastrics();
+   $data['ls_category'] = "Monogastrics";
+  
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/pid_asc_monogastrics';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  $data['list'] = $this->livestock->get_sorted_by($config['per_page'], $offset, 'pid', 'asc', 'monogastrics');
+  
+  $this->pagination->initialize($config);
+   
+  $this->get_viewtype();
+  $this->load->view('ls_view', $data);
+  $this->load->view('footer');
+ }
+ 
+ function fa_asc_bovidae()
+ {
+   $data = $this->index_bovidae();
+   $data['column'] = 'Farm animal';
+   $data['order'] = 'ascending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   
+   $count = $this->livestock->get_total_bovidae();
+   $data['ls_category'] = "Bovidae";
+  
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/fa_asc_bovidae';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  $data['list'] = $this->livestock->get_sorted_by($config['per_page'], $offset, 'fa', 'asc', 'bovidae');
+  
+  $this->pagination->initialize($config);
+   
+  $this->get_viewtype();
+  $this->load->view('ls_view', $data);
+  $this->load->view('footer');
+ }
+ 
+ function fa_asc_capridae()
+ {
+   $data = $this->index_capridae();
+   $data['column'] = 'Farm animal';
+   $data['order'] = 'ascending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   
+   $count = $this->livestock->get_total_capridae();
+   $data['ls_category'] = "Capridae";
+  
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/fa_asc_capridae';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  $data['list'] = $this->livestock->get_sorted_by($config['per_page'], $offset, 'fa', 'asc', 'capridae');
+  
+  $this->pagination->initialize($config);
+   
+  $this->get_viewtype();
+  $this->load->view('ls_view', $data);
+  $this->load->view('footer');
+ }
+ 
+ function fa_asc_monogastrics()
+ {
+   $data = $this->index_monogastrics();
+   $data['column'] = 'Farm animal';
+   $data['order'] = 'ascending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   
+   $count = $this->livestock->get_total_monogastrics();
+   $data['ls_category'] = "Monogastrics";
+  
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/fa_asc_monogastrics';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  $data['list'] = $this->livestock->get_sorted_by($config['per_page'], $offset, 'fa', 'asc', 'monogastrics');
+  
+  $this->pagination->initialize($config);
+   
+  $this->get_viewtype();
+  $this->load->view('ls_view', $data);
+  $this->load->view('footer');
+ }
+ 
+ function place_asc_bovidae()
+ {
+   $data = $this->index_bovidae();
+   $data['column'] = 'Farm animal';
+   $data['order'] = 'ascending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   
+   $count = $this->livestock->get_total_bovidae();
+   $data['ls_category'] = "Bovidae";
+  
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/place_asc_bovidae';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  $data['list'] = $this->livestock->get_sorted_by($config['per_page'], $offset, 'place', 'asc', 'bovidae');
+  
+  $this->pagination->initialize($config);
+   
+  $this->get_viewtype();
+  $this->load->view('ls_view', $data);
+  $this->load->view('footer');
+ }
+ 
+ function place_asc_capridae()
+ {
+   $data = $this->index_capridae();
+   $data['column'] = 'Farm animal';
+   $data['order'] = 'ascending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   
+   $count = $this->livestock->get_total_capridae();
+   $data['ls_category'] = "Capridae";
+  
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/place_asc_capridae';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  $data['list'] = $this->livestock->get_sorted_by($config['per_page'], $offset, 'place', 'asc', 'capridae');
+  
+  $this->pagination->initialize($config);
+   
+  $this->get_viewtype();
+  $this->load->view('ls_view', $data);
+  $this->load->view('footer');
+ }
+ 
+ function place_asc_monogastrics()
+ {
+   $data = $this->index_monogastrics();
+   $data['column'] = 'Farm animal';
+   $data['order'] = 'ascending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   
+   $count = $this->livestock->get_total_monogastrics();
+   $data['ls_category'] = "Monogastrics";
+  
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/place_asc_monogastrics';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  $data['list'] = $this->livestock->get_sorted_by($config['per_page'], $offset, 'place', 'asc', 'monogastrics');
+  
+  $this->pagination->initialize($config);
+   
+  $this->get_viewtype();
+  $this->load->view('ls_view', $data);
+  $this->load->view('footer');
+ }
+ 
+ function breed_desc_bovidae()
+ {
+  $data = $this->index_bovidae();
+   $data['column'] = 'Breed';
+   $data['order'] = 'descending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   
+   $count = $this->livestock->get_total_bovidae();
+   $data['ls_category'] = "Bovidae";
+  
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/breed_desc_bovidae';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  $data['list'] = $this->livestock->get_sorted_by($config['per_page'], $offset, 'breed', 'desc', 'bovidae');
+  
+  $this->pagination->initialize($config);
+   
+  $this->get_viewtype();
+  $this->load->view('ls_view', $data);
+  $this->load->view('footer');
+ }
+ 
+ function breed_desc_capridae()
+ {
+  $data = $this->index_capridae();
+   $data['column'] = 'Breed';
+   $data['order'] = 'descending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   
+   $count = $this->livestock->get_total_capridae();
+   $data['ls_category'] = "Capridae";
+  
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/breed_desc_capridae';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  $data['list'] = $this->livestock->get_sorted_by($config['per_page'], $offset, 'breed', 'desc', 'capridae');
+  
+  $this->pagination->initialize($config);
+   
+  $this->get_viewtype();
+  $this->load->view('ls_view', $data);
+  $this->load->view('footer');
+ }
+ 
+ function breed_desc_monogastrics()
+ {
+  $data = $this->index_monogastrics();
+   $data['column'] = 'Breed';
+   $data['order'] = 'descending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   
+   $count = $this->livestock->get_total_monogastrics();
+   $data['ls_category'] = "Monogastrics";
+  
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/breed_desc_monogastrics';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  $data['list'] = $this->livestock->get_sorted_by($config['per_page'], $offset, 'breed', 'desc', 'monogastrics');
+  
+  $this->pagination->initialize($config);
+   
+  $this->get_viewtype();
+  $this->load->view('ls_view', $data);
+  $this->load->view('footer');
+ }
+ 
+ function pid_desc_bovidae()
+ {
+  $data = $this->index_bovidae();
+   $data['column'] = 'Project ID';
+   $data['order'] = 'descending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   
+   $count = $this->livestock->get_total_bovidae();
+   $data['ls_category'] = "Bovidae";
+  
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/pid_desc_bovidae';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  $data['list'] = $this->livestock->get_sorted_by($config['per_page'], $offset, 'pid', 'desc', 'bovidae');
+  
+  $this->pagination->initialize($config);
+   
+  $this->get_viewtype();
+  $this->load->view('ls_view', $data);
+  $this->load->view('footer');
+ }
+ 
+ function pid_desc_capridae()
+ {
+  $data = $this->index_capridae();
+   $data['column'] = 'Project ID';
+   $data['order'] = 'descending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   
+   $count = $this->livestock->get_total_capridae();
+   $data['ls_category'] = "Capridae";
+  
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/pid_desc_capridae';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  $data['list'] = $this->livestock->get_sorted_by($config['per_page'], $offset, 'pid', 'desc', 'capridae');
+  
+  $this->pagination->initialize($config);
+   
+  $this->get_viewtype();
+  $this->load->view('ls_view', $data);
+  $this->load->view('footer');
+ }
+ 
+ function pid_desc_monogastrics()
+ {
+  $data = $this->index_monogastrics();
+   $data['column'] = 'Project ID';
+   $data['order'] = 'descending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   
+   $count = $this->livestock->get_total_monogastrics();
+   $data['ls_category'] = "Monogastrics";
+  
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/pid_desc_monogastrics';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  $data['list'] = $this->livestock->get_sorted_by($config['per_page'], $offset, 'pid', 'desc', 'monogastrics');
+  
+  $this->pagination->initialize($config);
+   
+  $this->get_viewtype();
+  $this->load->view('ls_view', $data);
+  $this->load->view('footer');
+ }
+ 
+ function fa_desc_bovidae()
+ {
+   $data = $this->index_bovidae();
+   $data['column'] = 'Farm animal';
+   $data['order'] = 'descending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   
+   $count = $this->livestock->get_total_bovidae();
+   $data['ls_category'] = "Bovidae";
+  
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/fa_desc_bovidae';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  $data['list'] = $this->livestock->get_sorted_by($config['per_page'], $offset, 'fa', 'desc', 'bovidae');
+  
+  $this->pagination->initialize($config);
+   
+  $this->get_viewtype();
+  $this->load->view('ls_view', $data);
+  $this->load->view('footer');
+ }
+ 
+ function fa_desc_capridae()
+ {
+   $data = $this->index_capridae();
+   $data['column'] = 'Farm animal';
+   $data['order'] = 'descending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   
+   $count = $this->livestock->get_total_capridae();
+   $data['ls_category'] = "Capridae";
+  
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/fa_desc_capridae';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  $data['list'] = $this->livestock->get_sorted_by($config['per_page'], $offset, 'fa', 'desc', 'capridae');
+  
+  $this->pagination->initialize($config);
+   
+  $this->get_viewtype();
+  $this->load->view('ls_view', $data);
+  $this->load->view('footer');
+ }
+ 
+ function fa_desc_monogastrics()
+ {
+   $data = $this->index_monogastrics();
+   $data['column'] = 'Farm animal';
+   $data['order'] = 'descending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   
+   $count = $this->livestock->get_total_monogastrics();
+   $data['ls_category'] = "Monogastrics";
+  
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/fa_desc_monogastrics';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  $data['list'] = $this->livestock->get_sorted_by($config['per_page'], $offset, 'fa', 'desc', 'monogastrics');
+  
+  $this->pagination->initialize($config);
+   
+  $this->get_viewtype();
+  $this->load->view('ls_view', $data);
+  $this->load->view('footer');
+ }
+ 
+ function place_desc_bovidae()
+ {
+   $data = $this->index_bovidae();
+   $data['column'] = 'Farm animal';
+   $data['order'] = 'descending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   
+   $count = $this->livestock->get_total_bovidae();
+   $data['ls_category'] = "Bovidae";
+  
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/place_desc_bovidae';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  $data['list'] = $this->livestock->get_sorted_by($config['per_page'], $offset, 'place', 'desc', 'bovidae');
+  
+  $this->pagination->initialize($config);
+   
+  $this->get_viewtype();
+  $this->load->view('ls_view', $data);
+  $this->load->view('footer');
+ }
+ 
+ function place_desc_capridae()
+ {
+   $data = $this->index_capridae();
+   $data['column'] = 'Farm animal';
+   $data['order'] = 'descending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   
+   $count = $this->livestock->get_total_capridae();
+   $data['ls_category'] = "Capridae";
+  
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/place_desc_capridae';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  $data['list'] = $this->livestock->get_sorted_by($config['per_page'], $offset, 'place', 'desc', 'capridae');
+  
+  $this->pagination->initialize($config);
+   
+  $this->get_viewtype();
+  $this->load->view('ls_view', $data);
+  $this->load->view('footer');
+ }
+ 
+ function place_desc_monogastrics()
+ {
+   $data = $this->index_monogastrics();
+   $data['column'] = 'Farm animal';
+   $data['order'] = 'descending';
+   
+   if($this->session->userdata('logged_in')){
+    $data['new_url'] = site_url('view_project/show_project_complete');
+   }
+   else $data['new_url'] = site_url('view_project/show_project_inc');
+   
+   $count = $this->livestock->get_total_monogastrics();
+   $data['ls_category'] = "Monogastrics";
+  
+  $this->load->library('pagination');
+  $offset = $this->uri->segment(3);
+  $config['base_url'] = base_url().'sortby/place_desc_monogastrics';
+  $config['total_rows'] = $count;
+  $config['per_page'] = 15;
+  $config['next_link'] = 'Next >';
+  $config['prev_link'] = '< Previous';
+  $config['display_pages'] = FALSE;
+  $data['list'] = $this->livestock->get_sorted_by($config['per_page'], $offset, 'place', 'desc', 'monogastrics');
+  
+  $this->pagination->initialize($config);
+   
+  $this->get_viewtype();
+  $this->load->view('ls_view', $data);
+  $this->load->view('footer');
+ }
 }
 
 /* End of file sortby.php */
