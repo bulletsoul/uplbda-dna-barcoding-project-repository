@@ -8,6 +8,7 @@ class View_ls_category extends CI_Controller {
     $this->load->model('project','',TRUE);
     $this->load->model('livestock','',TRUE);
     $this->load->model('user','', TRUE);
+    $this->load->model('images','', TRUE);
   }
   
   function get_viewtype()
@@ -22,17 +23,19 @@ class View_ls_category extends CI_Controller {
   function bovidae()
   {
    $this->load->helper(array('form', 'url'));
+   $proj_id = $this->uri->segment(4);
+   $data['proj_id'] = $proj_id;
    $data['my_redirect']= current_url();
    $data['new_url1']= site_url('view_project/view_map');
    $data['baseurl']= base_url();
    $data['sortby_breed_asc'] = site_url('view_ls_category/sortby/bovidae/breed/asc');
-      $data['sortby_breed_desc'] = site_url('view_ls_category/sortby/bovidae/breed/desc');
-      $data['sortby_pid_asc'] = site_url('view_ls_category/sortby/bovidae/pid/asc');
-      $data['sortby_pid_desc'] = site_url('view_ls_category/sortby/bovidae/pid/desc');
-      $data['sortby_fa_asc'] = site_url('view_ls_category/sortby/bovidae/fa/asc');
-      $data['sortby_fa_desc'] = site_url('view_ls_category/sortby/bovidae/fa/desc');
-      $data['sortby_place_asc'] = site_url('view_ls_category/sortby/bovidae/place/asc');
-      $data['sortby_place_desc'] = site_url('view_ls_category/sortby/bovidae/place/desc');
+   $data['sortby_breed_desc'] = site_url('view_ls_category/sortby/bovidae/breed/desc');
+   $data['sortby_pid_asc'] = site_url('view_ls_category/sortby/bovidae/pid/asc');
+   $data['sortby_pid_desc'] = site_url('view_ls_category/sortby/bovidae/pid/desc');
+   $data['sortby_fa_asc'] = site_url('view_ls_category/sortby/bovidae/fa/asc');
+   $data['sortby_fa_desc'] = site_url('view_ls_category/sortby/bovidae/fa/desc');
+   $data['sortby_place_asc'] = site_url('view_ls_category/sortby/bovidae/place/asc');
+   $data['sortby_place_desc'] = site_url('view_ls_category/sortby/bovidae/place/desc');
    if($this->session->userdata('logged_in')){
     $data['new_url'] = site_url('view_project/show_project_complete');
    }
@@ -60,18 +63,20 @@ class View_ls_category extends CI_Controller {
   function capridae()
   {
    $this->load->helper(array('form', 'url'));
+   $proj_id = $this->uri->segment(4);
+   $data['proj_id'] = $proj_id;
    $this->get_viewtype();
    $data['my_redirect']= current_url();
    $data['new_url1']= site_url('view_project/view_map');
    $data['baseurl']= base_url();
    $data['sortby_breed_asc'] = site_url('view_ls_category/sortby/capridae/breed/asc');
-      $data['sortby_breed_desc'] = site_url('view_ls_category/sortby/capridae/breed/desc');
-      $data['sortby_pid_asc'] = site_url('view_ls_category/sortby/capridae/pid/asc');
-      $data['sortby_pid_desc'] = site_url('view_ls_category/sortby/capridae/pid/desc');
-      $data['sortby_fa_asc'] = site_url('view_ls_category/sortby/capridae/fa/asc');
-      $data['sortby_fa_desc'] = site_url('view_ls_category/sortby/capridae/fa/desc');
-      $data['sortby_place_asc'] = site_url('view_ls_category/sortby/capridae/place/asc');
-      $data['sortby_place_desc'] = site_url('view_ls_category/sortby/capridae/place/desc');
+   $data['sortby_breed_desc'] = site_url('view_ls_category/sortby/capridae/breed/desc');
+   $data['sortby_pid_asc'] = site_url('view_ls_category/sortby/capridae/pid/asc');
+   $data['sortby_pid_desc'] = site_url('view_ls_category/sortby/capridae/pid/desc');
+   $data['sortby_fa_asc'] = site_url('view_ls_category/sortby/capridae/fa/asc');
+   $data['sortby_fa_desc'] = site_url('view_ls_category/sortby/capridae/fa/desc');
+   $data['sortby_place_asc'] = site_url('view_ls_category/sortby/capridae/place/asc');
+   $data['sortby_place_desc'] = site_url('view_ls_category/sortby/capridae/place/desc');
    if($this->session->userdata('logged_in')){
     $data['new_url'] = site_url('view_project/show_project_complete');
    }
@@ -98,6 +103,8 @@ class View_ls_category extends CI_Controller {
   function monogastrics()
   {
    $this->load->helper(array('form', 'url'));
+   $proj_id = $this->uri->segment(4);
+   $data['proj_id'] = $proj_id;
    $this->get_viewtype();
    $data['my_redirect']= current_url();
    $data['new_url1']= site_url('view_project/view_map');
@@ -109,7 +116,7 @@ class View_ls_category extends CI_Controller {
    $data['sortby_fa_asc'] = site_url('view_ls_category/sortby/monogastrics/fa/asc');
    $data['sortby_fa_desc'] = site_url('view_ls_category/sortby/monogastrics/fa/desc');
    $data['sortby_place_asc'] = site_url('view_ls_category/sortby/monogastrics/place/asc');
-   $data['sortby_place_desc'] = site_url('view_ls_category/sortby/monogastrics/place/desc'); 
+   $data['sortby_place_desc'] = site_url('view_ls_category/sortby/monogastrics/place/desc');
    
    if($this->session->userdata('logged_in')){
     $data['new_url'] = site_url('view_project/show_project_complete');
@@ -136,6 +143,8 @@ class View_ls_category extends CI_Controller {
   function sortby()
   {
     $this->load->helper(array('form', 'url'));
+    $proj_id = $this->uri->segment(4);
+    $data['proj_id'] = $proj_id;
     $this->get_viewtype();
     $data['my_redirect']= current_url();
     $data['new_url1']= site_url('view_project/view_map');
