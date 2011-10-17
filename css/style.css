@@ -137,4 +137,14 @@ div#slideshow { float: left; width: 100%; height: 341px; }
 #update_button {margin: auto 170px auto 170px; padding: 3px 15px 3px 15px;}
 .signup_pos {width:100%;margin-left:250px; padding:10px; font: normal 13px Arial, Helvetica, sans-serif;}
 
-#search_result_table{border: 1; width: 630px !important; padding: 2px; background-color: gray;}
+#search_result_table{border: 1px; width: 630px !important; padding: 2px; background-color: gray; }
+
+.thumbnail-item { position: relative; float: left; margin: 0px 5px; }
+ 
+.thumbnail-item a { display: block; }
+ 
+.thumbnail-item img.thumbnail {border:3px solid #ccc; }
+         
+.tooltip { display: none; position: absolute; padding: 8px 0 0 8px; }
+ 
+.tooltip span.overlay { background: url(images/overlay.png) no-repeat; position: absolute; top: 0px; left: 0px; display: block; width: 350px; height: 200px;}
