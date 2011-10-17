@@ -26,12 +26,9 @@
           
           $nw_url = $new_url; ?>
                 
-        <h2>My Poultry Projects</h2>
-        <?php
-          if($result_poultry){
-        ?>
-        <script language="JavaScript"><!--
-function onClick() {
+        <h2>My Poultry Projects</h2></a>
+<script type="text/javascript"><!--
+function ls_view() {
   var Current = document.formName4.selectName4.selectedIndex;
   
   if (Current == 0) window.location = sortby_pid_asc.value;
@@ -44,8 +41,12 @@ function onClick() {
   if (Current == 7) window.location = sortby_place_desc.value;  
 }
 //--></script>
-
-<form name="formName4" onSubmit="return false;" align="right">
+          <?php
+          if($result_poultry){ ?>
+       <table class="project_table">
+        <tr>
+          <td><h3>Sorted by <?php echo $column;?> in <?php echo $order; ?> order</h3></td>
+          <td align="right"><form name="formName4" onSubmit="return false;">
 <select name="selectName4">
 <option value="a_pid">Project ID (Ascending)
 <option value="d_pid">Project ID (Descending)
@@ -56,8 +57,10 @@ function onClick() {
 <option value="a_place">Place (Ascending)
 <option value="d_place">Place (Descending)
 </select>
-<input name="submitName4" type="submit" value="Sort" onClick="onClick();return false;">
-</form>
+<input name="submitName4" type="submit" value="Sort" onClick="ls_view();return false;">
+</form></td>
+        </tr>
+      </table>
         <TABLE class="project_table" BGCOLOR="#B2D1E5">
           <THEAD ALIGN="center" rowspan="2" class="table_header">
             <TR>
@@ -81,7 +84,7 @@ function onClick() {
               <TD align="center"><?php
                 $$nw_url = $prow->proj_id;
                 $proj_url = "$nw_url/${$nw_url}";
-                $str = '<img src="/uplbda/css/images/logo.png" alt="icon" title="EDIT '.$prow->breed.'" width="12" height="12"/>';
+                $str = '<img src="/uplbda/css/images/logo.png" alt="edit" title="EDIT '.$prow->breed.'" width="12" height="12"/>';
                 echo anchor_popup($proj_url,$str,$atts) ?></TD>
               <TD align="center"><a href="javascript:delete_project('<?php echo $prow->breed; ?>','<?php echo $prow->proj_id; ?>')"><img src="<?php echo base_url(); ?>css/images/delete.png" alt="icon" title="<?php echo "DELETE "; echo $prow->breed; ?>" width="12" height="12"></a></TD>
             </TR>
