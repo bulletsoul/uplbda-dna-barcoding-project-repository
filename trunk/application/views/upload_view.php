@@ -82,7 +82,6 @@
 									var filetype = ftype;
 									$.post("/uplbda/application/uploadify/insert.php", { name: fileObj.name, path: fileObj.filePath, proj_id: $('#proj_id').val(), filetype: filetype }, function(info) {
 										});
-									//$.post("/uplbda/application/uploadify/thumbnail_generator.php", {name: fileObj.name, path: fileObj.filePath, proj_id: $('#proj_id').val(), filetype: filetype }, function (thumbs){});
 						        },
 							'onAllComplete' : function(event,data){
 									var filetype = ftype;
@@ -118,7 +117,22 @@
                     $set_vid_filedesc_url = "$nw_url9/${$nw_url9}";
 	
                     $$nw_url = $proj_id;
-                    $proj_url = "$nw_url/${$nw_url}";?>
+                    $proj_url = "$nw_url/${$nw_url}";
+		    
+		    if($type == "Ventral Images" || $type == "Dorsal Images" || $type == "Lateral Images" || $type == "Other Images")
+		    {
+			?>
+			<i>Note: Images to be uploaded should be at most 1MB.</i><br/><br/>
+			<?php
+		    }
+		    if($type == "Videos")
+		    {
+			?>
+			<i>Note: Maximum file size of videos to be uploaded is 250MB.</i><br/>
+			<i>The speed may vary depending on the speed of your internet connection.</i><br/><br/>
+			<?php
+		    }
+		    ?>
 	 <input type="hidden" id="set_doc_filedesc_url" value="<?php echo $set_doc_filedesc_url; ?>"/>
 	 <input type="hidden" id="set_vid_filedesc_url" value="<?php echo $set_vid_filedesc_url; ?>"/>
 	
