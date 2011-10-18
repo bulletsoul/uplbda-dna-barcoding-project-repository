@@ -25,8 +25,8 @@
     
     php_flag file_uploads On 
     php_value upload_tmp_dir temporarydir
-    php_value upload_max_filesize 50M
-    php_value post_max_size 50M
+    php_value upload_max_filesize 250M
+    php_value post_max_size 300M
     php_value session.gc_maxlifetime 3600
     
 
