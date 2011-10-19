@@ -83,6 +83,8 @@ class Process_edit_proj extends CI_Controller {
   $data['nw_url6'] = site_url('upload/lateral_img');
   $data['nw_url7'] = site_url('upload/other_img');
   $data['nw_url3'] = site_url('upload/vid');
+  $data['nw_url8'] = site_url('upload/set_doc_file_desc');
+  $data['nw_url9'] = site_url('upload/set_vid_file_desc');
   $data['proj_id'] = $proj_id;
   $proj_details = $this->project->get_project_details($proj_id);
   $data['project_details'] = $proj_details;
