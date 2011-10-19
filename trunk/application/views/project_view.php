@@ -260,11 +260,16 @@
                 </video></a>
               </div>
             </td>
-            <td><?php echo $row->filedesc; ?></td>
-            <?php } } 
-              else {
+            <td>
+              <?php echo $row->filedesc;?></td>
+              <?php } } 
+              else {?>
+              <td>
+              <?php
                 echo "Video not available.";
                 } ?>
+            </td>
+              <td></td>
           </tr>
           </tbody>
         </table>
@@ -283,14 +288,21 @@
               <div id="docs_area">
                 <a href="<?php echo $row->filepath;  ?>" target="_blank" > <?php echo $row->filename; ?><br/></a>
             </td>
+            </tr>
+          <tr>
             <td>
                 <?php echo $row->filedesc; ?>
-              </div>
-            </td>
+              </div></td>
+            
             <?php } } 
-              else {
+              else {?>
+              <td>
+                <div id="docs_area">
+              <?php
                 echo "Document not available.";
                 }?>
+                </td>
+              <td></div></td>
           </tr>
           </tbody>
         </table>
