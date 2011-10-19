@@ -186,26 +186,16 @@
               <div id="img_area">
               <?php
               if ($dimgpath != NULL){
-                $imagefolder="/uplbda/application/uploads/images/dorsal/";
-		$thumbsfolder="/uplbda/application/uploads/images/dorsal/thumbs/";
-                $pics=$this->images->directory($imagefolder,"jpg,JPG,JPEG,jpeg,png,PNG");
-                $pics=$this->images->ditchtn($pics,"tn_");
-                if ($pics[0]!="")
-                {
-                        foreach ($pics as $p)
-                        {
-                                $this->images->createthumb($p,"tn_".$p,150,150);
-                        }
-                }
-              foreach($dimgpath as $row){ ?>
+                foreach($dimgpath as $row){?>
                 <a href="<?php echo $row->filepath;  ?>" target="_blank"><img src="<?php echo $row->filepath;  ?>" id="image" width="100px" height="100px"></a>
-              <?php } } 
+               <?php } } 
               else {
                 echo "Image not available.";
-                }?>
+                }?>              
               </div>
             </td>
             </tr>
+          <tr>
           <tr>
             <td width="80px" class="table_header">Ventral Views</td>
             <td>
@@ -272,11 +262,16 @@
                 </video></a>
               </div>
             </td>
-            <td><?php echo $row->filedesc; ?></td>
-            <?php } } 
-              else {
+            <td>
+              <?php echo $row->filedesc;?></td>
+              <?php } } 
+              else {?>
+              <td>
+              <?php
                 echo "Video not available.";
                 } ?>
+            </td>
+              <td></td>
           </tr>
           </tbody>
         </table>
@@ -295,14 +290,21 @@
               <div id="docs_area">
                 <a href="<?php echo $row->filepath;  ?>" target="_blank" > <?php echo $row->filename; ?><br/></a>
             </td>
+            </tr>
+          <tr>
             <td>
                 <?php echo $row->filedesc; ?>
-                <?php } } 
-              else {
+              </div></td>
+            
+            <?php } } 
+              else {?>
+              <td>
+                <div id="docs_area">
+              <?php
                 echo "Document not available.";
                 }?>
-              </div>
-            </td>
+                </td>
+              <td></div></td>
           </tr>
           </tbody>
         </table>
