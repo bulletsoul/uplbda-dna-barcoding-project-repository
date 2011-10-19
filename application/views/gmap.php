@@ -17,6 +17,20 @@
       <div class="user_project_view" id="user_project_view">
     <!-- googlemap-->
         <TABLE class="google_map" BGCOLOR="#B2D1E5" text-align="center">
+          <THEAD ALIGN="center" class="table_header"><TR><TD colspan="2"><h3>
+          <?php
+          $proj_id = $this->uri->segment(3);
+          $place = $this->project->get_place($proj_id);
+          foreach ($place as $item){
+            foreach ($item as $row){
+               echo $row;
+            }
+          }
+          ?>
+          </h3></TD></TR></THEAD>
+        <TR><TD>
+        <i>Note: If the map does not show anything, Google Map did not find the specified place.</i>
+        </TD></TR>
         <tr><td>
         <?php $this->cigooglemapapi->printMap(); ?>
         </td><td>
