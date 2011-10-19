@@ -71,8 +71,8 @@
     <TR>
       <TD width="60" align="center">
         <?php $dimgpath = $this->images->get_single_dfilepath($row->proj_id);
-              if ($dimgpath) { foreach($dimgpath as $row2){
-                $str = '<img src="<?php echo $row2->filepath;  ?>" id="image" width="60px" height="50px">';
+              if ($dimgpath) {
+                foreach($dimgpath as $row2){
             ?>
             <div class="thumbnail-item">
               <a href="#"><img src="<?php echo $row2->filepath;  ?>" id="image" width="60px" height="50px"></a>
@@ -93,7 +93,12 @@
       echo anchor_popup($proj_url,$row->breed, $atts); ?>
       </TD>
       <TD width="50" align="center"><?php echo $row->farm_animal; ?></TD>
-      <TD><?php echo $row->place; ?></TD> 
+      <TD><?php
+    if($row->place){
+      $nw_url1 = $new_url1; 
+      $$nw_url1 = $row->proj_id;
+      $proj_url = "$nw_url1/${$nw_url1}";
+      echo anchor_popup($proj_url,$row->place, $atts);} ?></TD> 
     </TR><?php
     }
     } else echo "No published Poultry project yet!"; ?>
