@@ -117,9 +117,9 @@ else {
  $data['error'] = "error";
 }
 $this->show_project();
- }
-
 }
+}
+
 
 /* End of file process_add_filedesc.php */
 /* Location: ./application/controllers/process_add_filedesc.php */
