@@ -23,8 +23,8 @@
             
             <?php $ctr = 0;
             $ftype = "Documents";
+            $docname = $this->docs->get_docname($proj_id);
               if ($docname != NULL){
-                
                   foreach($docname as $row){ $ctr++;
                   $str[$ctr] = "filedesc".$ctr;
                   
