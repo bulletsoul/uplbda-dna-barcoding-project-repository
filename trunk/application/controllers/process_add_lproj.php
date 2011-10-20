@@ -70,7 +70,7 @@ class Process_add_lproj extends CI_Controller {
         'owner' => $this->input->post('owner'),
         'proj_desc' => $this->input->post('proj_desc')
      );
-            
+               
             $breed = $this->input->get_post('breed');
             
             $this->db->insert('project',$registerdata_proj);
@@ -96,7 +96,7 @@ class Process_add_lproj extends CI_Controller {
         'tail_length' => $this->input->post('tail_length')
      );
          $this->db->insert('livestock',$registerdata_livestock);
-         
+               
          redirect('home', 'refresh');
    }
 
@@ -114,19 +114,12 @@ class Process_add_lproj extends CI_Controller {
  
  function dnaseq_check($str)
  {
-  if (!preg_match("/[ACTG]|[actg]{8,}+/", $str))
+  if (!preg_match("/[ACTG]|[atcg]{8,}+/", $str))
   {
    $this->form_validation->set_message('dnaseq_check', 'Invalid DNA sequence format.');
-  }
-  else {
-   if ($this->project->is_seq_existing($str))
-   {
-   $this->form_validation->set_message('dnaseq_check', anchor('add_pproj', 'DNA sequence already existing. Click to add another project.'));
    return FALSE;
-   }
-   
-   else return TRUE;
   }
+  else return TRUE;
  }
  
  function dateformat_check($str)
@@ -136,17 +129,17 @@ class Process_add_lproj extends CI_Controller {
    $this->form_validation->set_message('dateformat_check', 'Please enter the date in the mm/dd/yyyy format.');
    return FALSE;
   }
-  
-  else {return TRUE;}
+  else return TRUE;
  }
  
  function float_check($str)
  {  
-  if (! preg_match("/[0-9]\.[0-9]/", $str))
+  if (! preg_match("/^([0-9]\.[0-9])*$/", $str))
   {
    $this->form_validation->set_message('float_check', 'Please enter the input in decimal form.');
    return FALSE;
   }
+  
   else return TRUE;
  }
  
