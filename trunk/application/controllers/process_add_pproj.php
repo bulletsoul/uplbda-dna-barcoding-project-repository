@@ -119,7 +119,7 @@ class Process_add_pproj extends CI_Controller {
  
  function float_check($str)
  {  
-  if (! preg_match("/[0-9]\.[0-9]/", $str))
+  if (! preg_match("/^([0-9]\.[0-9])*$/", $str))
   {
    $this->form_validation->set_message('float_check', 'Please enter the input in decimal form.');
    return FALSE;
@@ -145,13 +145,7 @@ class Process_add_pproj extends CI_Controller {
    $this->form_validation->set_message('dnaseq_check', 'Invalid DNA sequence format.');
    return FALSE;
   }
-  
-  else if ($this->project->is_seq_existing($str))
-  {
-   $this->form_validation->set_message('dnaseq_check', anchor('add_pproj', 'DNA sequence already existing. Click to add another project.'));
-   return FALSE;
-  }
-  
+    
   else return TRUE;
  }
  
