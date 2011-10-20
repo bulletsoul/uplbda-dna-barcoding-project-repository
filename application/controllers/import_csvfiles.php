@@ -220,7 +220,7 @@ class Import_csvfiles extends CI_Controller {
        'tail_length' => $item['tail'],
        'leg_length' => $item['leg'],
        'snout_length' => $item['snout'],
-       'ear_length' => $item['ear']
+       'ear_length' => $item['ears']
       );
       $this->db->insert('livestock',$registerdata_monogastrics);
      }
