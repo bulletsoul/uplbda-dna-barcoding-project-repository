@@ -54,7 +54,7 @@ function ls_view() {
       ?>
       <table class="project_table">
         <tr>
-          <td><h3>Sorted by <?php echo $column;?> in <?php echo $order; ?> order</h3></td>
+          <td><h3 style="color:#800000">Sorted by <label style="color:#008000"><?php echo $column;?></label> in <label style="color:#008000"><?php echo $order; ?></label> order</h3></td>
           <td align="right"><form name="formName4" onSubmit="return false;">
 <select name="selectName4">
 <option value="a_pid">Project ID (Ascending)
