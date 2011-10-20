@@ -37,7 +37,7 @@ Class Docs extends CI_Model
         $this->db->select('filename');
         $this->db->from('docs');
         $this->db->where('proj_id', $proj_id);
-        $this->db->where('filedesc', '');
+        $this->db->where('filedesc', NULL);
         
         $query = $this->db->get();
         
