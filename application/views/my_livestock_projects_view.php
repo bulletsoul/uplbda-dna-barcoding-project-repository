@@ -45,7 +45,7 @@ function ls_view() {
           if($result_livestock){ ?>
        <table class="project_table">
         <tr>
-          <td><h3>Sorted by <?php echo $column;?> in <?php echo $order; ?> order</h3></td>
+          <td><h3 style="color:#800000">Sorted by <label style="color:#008000"><?php echo $column;?></label> in <label style="color:#008000"><?php echo $order; ?></label> order</h3></td>
           <td align="right"><form name="formName4" onSubmit="return false;">
 <select name="selectName4">
 <option value="a_pid">Project ID (Ascending)
@@ -86,13 +86,12 @@ function ls_view() {
                     <?php
                     $$nw_url = $lrow->proj_id;
                     $proj_url = "$nw_url/${$nw_url}";
-                    $str = '<img src="/uplbda/css/images/logo.png" alt="icon" title="EDIT '.$lrow->breed.'" width="12" height="12"/>';
+                    $str = '<img src="/uplbda/css/images/logo.png" alt="icon" title="EDIT '.$lrow->breed.'" width="13" height="13"/>';
                     echo anchor_popup($proj_url,$str,$atts); ?>
-                  <TD align="center"><a href="javascript:delete_project('<?php echo $lrow->breed; ?>','<?php echo $lrow->proj_id; ?>')"><img src="<?php echo base_url(); ?>css/images/delete.png" alt="icon" title="<?php echo "DELETE "; echo $lrow->breed; ?>" width="12" height="12"></a></TD>
+                  <TD align="center"><a href="javascript:delete_project('<?php echo $lrow->breed; ?>','<?php echo $lrow->proj_id; ?>')"><img src="<?php echo base_url(); ?>css/images/delete.png" alt="icon" title="<?php echo "DELETE "; echo $lrow->breed; ?>" width="13" height="13"></a></TD>
                   </TD>
                 </TR>
                 <script type="text/javascript">
-                var my_redirect = document.getElementById("new_url").val();
         $.ajaxSetup ({  
             cache: false
         });
