@@ -32,49 +32,65 @@
     <td align="right"><?php echo anchor('my_projects/my_del_pproj', 'Deleted poultry   projects');?></td>
   </tr>
 </table>
-<script type="text/javascript"><!--
-function ls_view() {
-  var Current = document.formName4.selectName4.selectedIndex;
-  
-  if (Current == 0) window.location = sortby_pid_asc.value;
-  if (Current == 1) window.location = sortby_pid_desc.value;
-  if (Current == 2) window.location = sortby_breed_asc.value;
-  if (Current == 3) window.location = sortby_breed_desc.value;
-  if (Current == 4) window.location = sortby_fa_asc.value;
-  if (Current == 5) window.location = sortby_fa_desc.value;
-  if (Current == 6) window.location = sortby_place_asc.value;
-  if (Current == 7) window.location = sortby_place_desc.value;  
-}
-//--></script>
+<br/>
           <?php
           if($result_poultry){ ?>
-       <table class="project_table">
-        <tr>
-          <td><h3 style="color:#800000">Sorted by <label style="color:#008000"><?php echo $column;?></label> in <label style="color:#008000"><?php echo $order; ?></label> order</h3></td>
-          <td align="right"><form name="formName4" onSubmit="return false;">
-<select name="selectName4">
-<option value="a_pid">Project ID (Ascending)
-<option value="d_pid">Project ID (Descending)
-<option value="a_breed">Breed (Ascending)
-<option value="d_breed">Breed (Descending)
-<option value="a_fa">Farm Animal (Ascending)
-<option value="d_fa">Farm Animal (Descending)
-<option value="a_place">Place (Ascending)
-<option value="d_place">Place (Descending)
-</select>
-<input name="submitName4" type="submit" value="Sort" onClick="ls_view();return false;">
-</form></td>
-        </tr>
-      </table>
         <TABLE class="project_table" BGCOLOR="#B2D1E5">
           <THEAD ALIGN="center" rowspan="2" class="table_header">
             <TR>
-              <TD>Project ID</TD>
-              <TD width="200">Breed</TD>
-              <TD width="70">Farm Animal</TD>
-              <TD width="200">Place</TD>
-              <TD width="40">Edit</TD>
-              <TD width="40">Delete</TD>
+              <?php $seg2 = $this->uri->segment(2);
+                  if ($seg2 == 'my_poultry_projects') { ?>
+                  <th width="50"><a href="<?php echo base_url(); ?>my_projects/sortby_pid_asc_poultry">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_breed_asc_poultry">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <th width="90"><a href="<?php echo base_url(); ?>my_projects/sortby_fa_asc_poultry">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_place_asc_poultry">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  
+                  <?php } if ($seg2 == 'sortby_pid_asc_poultry') { ?>
+                  <th width="50"><a href="<?php echo base_url(); ?>my_projects/sortby_pid_desc_poultry">Project ID<br/><img src="<?php echo base_url(); ?>css/images/desc.gif" alt="icon" id="desc_header"></a></th>
+                  <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_breed_asc_poultry">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <th width="90"><a href="<?php echo base_url(); ?>my_projects/sortby_fa_asc_poultry">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_place_asc_poultry">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <?php } if ($seg2 == 'sortby_pid_desc_poultry') { ?>
+                  <th width="50"><a href="<?php echo base_url(); ?>my_projects/sortby_pid_asc_poultry">Project ID<br/><img src="<?php echo base_url(); ?>css/images/asc.gif" alt="icon" id="asc_header"></a></th>
+                  <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_breed_asc_poultry">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <th width="90"><a href="<?php echo base_url(); ?>my_projects/sortby_fa_asc_poultry">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_place_asc_poultry">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  
+                  <?php } if ($seg2 == 'sortby_breed_asc_poultry') { ?>
+                  <th width="50"><a href="<?php echo base_url(); ?>my_projects/sortby_pid_asc_poultry">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_breed_desc_poultry">Breed<br/><img src="<?php echo base_url(); ?>css/images/desc.gif" alt="icon" id="desc_header"></a></th>
+                  <th width="90"><a href="<?php echo base_url(); ?>my_projects/sortby_fa_asc_poultry">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_place_asc_poultry">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <?php } if ($seg2 == 'sortby_breed_desc_poultry') { ?>  
+                  <th width="50"><a href="<?php echo base_url(); ?>my_projects/sortby_pid_asc_poultry">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_breed_asc_poultry">Breed<br/><img src="<?php echo base_url(); ?>css/images/asc.gif" alt="icon" id="asc_header"></a></th>
+                  <th width="90"><a href="<?php echo base_url(); ?>my_projects/sortby_fa_asc_poultry">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_place_asc_poultry">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  
+                  <?php } if ($seg2 == 'sortby_fa_asc_poultry') { ?>
+                  <th width="50"><a href="<?php echo base_url(); ?>my_projects/sortby_pid_asc_poultry">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_breed_asc_poultry">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <th width="90"><a href="<?php echo base_url(); ?>my_projects/sortby_fa_desc_poultry">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/desc.gif" alt="icon" id="desc_header"></a></th>
+                  <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_place_asc_poultry">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <?php } if ($seg2 == 'sortby_fa_desc_poultry') { ?>
+                  <th width="50"><a href="<?php echo base_url(); ?>my_projects/sortby_pid_asc_poultry">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_breed_asc_poultry">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <th width="90"><a href="<?php echo base_url(); ?>my_projects/sortby_fa_asc_poultry">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/asc.gif" alt="icon" id="asc_header"></a></th>
+                  <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_place_asc_poultry">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  
+                  <?php } if ($seg2 == 'sortby_place_asc_poultry') { ?>
+                  <th width="50"><a href="<?php echo base_url(); ?>my_projects/sortby_pid_asc_poultry">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_breed_asc_poultry">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <th width="90"><a href="<?php echo base_url(); ?>my_projects/sortby_fa_asc_poultry">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_place_desc_poultry">Place<br/><img src="<?php echo base_url(); ?>css/images/desc.gif" alt="icon" id="desc_header"></a></th>
+                  <?php } if ($seg2 == 'sortby_place_desc_poultry') { ?>
+                  <th width="50"><a href="<?php echo base_url(); ?>my_projects/sortby_pid_asc_poultry">Project ID<img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_breed_asc_poultry">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <th width="90"><a href="<?php echo base_url(); ?>my_projects/sortby_fa_asc_poultry">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_place_asc_poultry">Place<br/><img src="<?php echo base_url(); ?>css/images/asc.gif" alt="icon" id="asc_header"></a></th>
+                  <?php } ?>
+              <TD width="40">Edit<br/>&nbsp;</TD>
+              <TD width="40">Delete<br/>&nbsp;</TD>
             </TR>    
           </THEAD>
         <?php
