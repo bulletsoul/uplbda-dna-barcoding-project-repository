@@ -26,7 +26,12 @@
           
           $nw_url = $new_url; ?>
                 
-        <h2>My Poultry Projects</h2></a>
+        <table width="630px">
+  <tr>
+    <td><label style="font-size:20px">My Poultry Projects</label></td>
+    <td align="right"><?php echo anchor('my_projects/my_del_pproj', 'Deleted poultry   projects');?></td>
+  </tr>
+</table>
 <script type="text/javascript"><!--
 function ls_view() {
   var Current = document.formName4.selectName4.selectedIndex;
