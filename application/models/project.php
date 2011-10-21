@@ -245,6 +245,48 @@ Class Project extends CI_Model
         
         else return FALSE;
     }
+    
+ function restore_project($proj_id)
+ {
+    $data = array(
+     'is_deleted' => 0
+    );
+    $this->db->where('proj_id', $proj_id);
+    $this->db->update('project', $data);    
+ }
+ 
+ function get_del_poultry_category()
+ {
+    $this->db->from('project');
+    $this->db->where('proj_category', "poultry");
+    $this->db->where('is_deleted',1);
+    
+    $query = $this->db->get();
+
+    if($query->num_rows() == 1)
+    {
+	return $query->result_array();
+    }
+
+    else return FALSE;
+ }
+ 
+ function get_del_ls_category()
+ {
+    $this->db->from('project');
+    $this->db->where('proj_category', "livestock");
+    $this->db->where('is_deleted',1);
+    
+    $query = $this->db->get();
+
+    if($query->num_rows() == 1)
+    {
+	return $query->result_array();
+    }
+
+    else return FALSE;
+ }
+ 
 }
 
 /* End of file project.php */
