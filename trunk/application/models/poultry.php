@@ -86,10 +86,37 @@ Class Poultry extends CI_Model
         else return FALSE;
     }
     
+    function get_user_del_pproj($num, $offset, $user_id)
+    {
+        $this->db->from('project');
+        $this->db->order_by('breed','asc');
+        $this->db->where('user_id', $user_id)->where('is_deleted',1);
+        $this->db->join('poultry', 'poultry.proj_id = project.proj_id');
+        $this->db->limit($num, $offset);
+        
+        $query = $this->db->get();
+        
+        if($query->num_rows() > 0)
+        {
+            return $query->result();
+        }
+        
+        else return FALSE;
+    }
+    
     function get_total_user_pproj($user_id)
     {
         $this->db->from('project');
         $this->db->where('user_id', $user_id)->where('is_deleted',0);
+        $query = $this->db->get();
+        
+        return $query->num_rows();
+    }
+    
+    function get_total_del_pproj($user_id)
+    {
+        $this->db->from('project');
+        $this->db->where('user_id', $user_id)->where('is_deleted',1);
         $query = $this->db->get();
         
         return $query->num_rows();
