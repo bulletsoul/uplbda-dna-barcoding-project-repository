@@ -136,11 +136,41 @@ Class Livestock extends CI_Model
         else return FALSE;
     }
     
+    function get_user_del_lproj($num, $offset, $user_id)
+    {
+        $this->db->from('project');
+        $this->db->order_by('breed','asc');
+        $this->db->where('user_id', $user_id)->where('is_deleted', 1);
+        $this->db->join('livestock', 'livestock.proj_id = project.proj_id');
+	$this->db->limit($num, $offset);
+        
+        $query = $this->db->get();
+        
+        if($query->num_rows() > 0)
+        {
+            return $query->result();
+        }
+        
+        else return FALSE;
+    }
+    
     function get_total_user_lproj($user_id)
     {
         $this->db->from('project');
         $this->db->order_by('breed','asc');
         $this->db->where('user_id', $user_id)->where('is_deleted', 0);
+        $this->db->join('livestock', 'livestock.proj_id = project.proj_id');
+	
+	$query = $this->db->get();
+        
+        return $query->num_rows();
+    }
+    
+    function get_total_del_lproj($user_id)
+    {
+        $this->db->from('project');
+        $this->db->order_by('breed','asc');
+        $this->db->where('user_id', $user_id)->where('is_deleted', 1);
         $this->db->join('livestock', 'livestock.proj_id = project.proj_id');
 	
 	$query = $this->db->get();
