@@ -40,46 +40,46 @@
                 <TR>
                   <?php $seg2 = $this->uri->segment(2);
                   if ($seg2 == 'my_livestock_projects') { ?>
-                  <th width="50"><a href="<?php echo base_url(); ?>my_projects/sortby_pid_asc_livestock">Project ID<img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <th width="50"><a href="<?php echo base_url(); ?>my_projects/sortby_pid_asc_livestock">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
                   <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_breed_asc_livestock">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
                   <th width="90"><a href="<?php echo base_url(); ?>my_projects/sortby_fa_asc_livestock">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
                   <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_place_asc_livestock">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
                   
                   <?php } if ($seg2 == 'sortby_pid_asc_livestock') { ?>
-                  <th width="50"><a href="<?php echo base_url(); ?>my_projects/sortby_pid_desc_livestock">Project ID<img src="<?php echo base_url(); ?>css/images/desc.gif" alt="icon" id="desc_header"></a></th>
+                  <th width="50"><a href="<?php echo base_url(); ?>my_projects/sortby_pid_desc_livestock">Project ID<br/><img src="<?php echo base_url(); ?>css/images/desc.gif" alt="icon" id="desc_header"></a></th>
                   <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_breed_asc_livestock">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
                   <th width="90"><a href="<?php echo base_url(); ?>my_projects/sortby_fa_asc_livestock">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
                   <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_place_asc_livestock">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
                   <?php } if ($seg2 == 'sortby_pid_desc_livestock') { ?>
-                  <th width="50"><a href="<?php echo base_url(); ?>my_projects/sortby_pid_asc_livestock">Project ID<img src="<?php echo base_url(); ?>css/images/asc.gif" alt="icon" id="asc_header"></a></th>
+                  <th width="50"><a href="<?php echo base_url(); ?>my_projects/sortby_pid_asc_livestock">Project ID<br/><img src="<?php echo base_url(); ?>css/images/asc.gif" alt="icon" id="asc_header"></a></th>
                   <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_breed_asc_livestock">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
                   <th width="90"><a href="<?php echo base_url(); ?>my_projects/sortby_fa_asc_livestock">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
                   <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_place_asc_livestock">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
                   
                   <?php } if ($seg2 == 'sortby_breed_asc_livestock') { ?>
-                  <th width="50"><a href="<?php echo base_url(); ?>my_projects/sortby_pid_asc_livestock">Project ID<img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <th width="50"><a href="<?php echo base_url(); ?>my_projects/sortby_pid_asc_livestock">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
                   <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_breed_desc_livestock">Breed<br/><img src="<?php echo base_url(); ?>css/images/desc.gif" alt="icon" id="desc_header"></a></th>
                   <th width="90"><a href="<?php echo base_url(); ?>my_projects/sortby_fa_asc_livestock">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
                   <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_place_asc_livestock">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
                   <?php } if ($seg2 == 'sortby_breed_desc_livestock') { ?>  
-                  <th width="50"><a href="<?php echo base_url(); ?>my_projects/sortby_pid_asc_livestock">Project ID<img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <th width="50"><a href="<?php echo base_url(); ?>my_projects/sortby_pid_asc_livestock">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
                   <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_breed_asc_livestock">Breed<br/><img src="<?php echo base_url(); ?>css/images/asc.gif" alt="icon" id="asc_header"></a></th>
                   <th width="90"><a href="<?php echo base_url(); ?>my_projects/sortby_fa_asc_livestock">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
                   <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_place_asc_livestock">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
                   
                   <?php } if ($seg2 == 'sortby_fa_asc_livestock') { ?>
-                  <th width="50"><a href="<?php echo base_url(); ?>my_projects/sortby_pid_asc_livestock">Project ID<img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <th width="50"><a href="<?php echo base_url(); ?>my_projects/sortby_pid_asc_livestock">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
                   <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_breed_asc_livestock">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
                   <th width="90"><a href="<?php echo base_url(); ?>my_projects/sortby_fa_desc_livestock">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/desc.gif" alt="icon" id="desc_header"></a></th>
                   <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_place_asc_livestock">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
                   <?php } if ($seg2 == 'sortby_fa_desc_livestock') { ?>
-                  <th width="50"><a href="<?php echo base_url(); ?>my_projects/sortby_pid_asc_livestock">Project ID<img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <th width="50"><a href="<?php echo base_url(); ?>my_projects/sortby_pid_asc_livestock">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
                   <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_breed_asc_livestock">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
                   <th width="90"><a href="<?php echo base_url(); ?>my_projects/sortby_fa_asc_livestock">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/asc.gif" alt="icon" id="asc_header"></a></th>
                   <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_place_asc_livestock">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
                   
                   <?php } if ($seg2 == 'sortby_place_asc_livestock') { ?>
-                  <th width="50"><a href="<?php echo base_url(); ?>my_projects/sortby_pid_asc_livestock">Project ID<img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+                  <th width="50"><a href="<?php echo base_url(); ?>my_projects/sortby_pid_asc_livestock">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
                   <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_breed_asc_livestock">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
                   <th width="90"><a href="<?php echo base_url(); ?>my_projects/sortby_fa_asc_livestock">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
                   <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_place_desc_livestock">Place<br/><img src="<?php echo base_url(); ?>css/images/desc.gif" alt="icon" id="desc_header"></a></th>
@@ -89,8 +89,8 @@
                   <th width="90"><a href="<?php echo base_url(); ?>my_projects/sortby_fa_asc_livestock">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
                   <th width="150"><a href="<?php echo base_url(); ?>my_projects/sortby_place_asc_livestock">Place<br/><img src="<?php echo base_url(); ?>css/images/asc.gif" alt="icon" id="asc_header"></a></th>
                   <?php } ?>
-                  <th width="40">Edit</th>
-                  <th width="40">Delete</th>
+                  <TD width="40">Edit<br/>&nbsp;</TD>
+                  <TD width="40">Delete<br/>&nbsp;</TD>
                 </TR>    
               </THEAD>
           <?php
