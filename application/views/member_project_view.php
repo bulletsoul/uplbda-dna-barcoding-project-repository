@@ -154,7 +154,7 @@
               <div class="form-container">
                 <div class="controlset"><label for="A">A</label> <input id="A" type="text" name="a_val" value="red" /></div> 
                 <div class="controlset"><label for="C">C</label> <input id="C" type="text" name="C" value="blue" /></div> 
-                <div class="controlset"><label for="T">T</label> <input id="T" type="text" name="T" value="green" /></div>
+                <div class="controlset"><label for="T">T</label> <input id="T" type="text" name="T" value="#00ff00" /></div>
                 <div class="controlset"><label for="G">G</label> <input id="G" type="text" name="G" value="black" /></div>
                 <div class="controlset"><label for="dash">-</label> <input id="dash" type="text" name="dash" value="white" /></div> 
               </div>
@@ -170,7 +170,8 @@
             $proj_url = "$nw_url/${$nw_url}";
             echo anchor_popup($proj_url,'View barcode without line break');?>
           </td>
-          </tr><?php } ?>
+          </tr>
+          <?php } ?>
           </tbody>
         </table><br/>
         
