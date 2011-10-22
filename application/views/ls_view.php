@@ -6,7 +6,7 @@
 </script>
 <script type="text/javascript">
 </script>
-  <div class="body">
+  <div class="body" id="home_left">
     <div class="body_resize">
       <div class="left">
         <h2><?php echo $ls_category; ?></h2>
