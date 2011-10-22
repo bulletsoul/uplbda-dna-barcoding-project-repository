@@ -3,8 +3,8 @@
     $(document).ready(function(){
 	$('#published_proj').attr('class','active');
     });
-  </script>  
-  <div class="body">
+  </script>
+  <div class="body" id="home_left">
     <div class="body_resize">
       <div class="left" id="home_left">
         <input type="hidden" id="my_redirect" value="<?php echo $my_redirect; ?>"/>
@@ -19,6 +19,7 @@
         <input type="hidden" id="sortby_fa_desc" value="<?php echo $sortby_fa_desc; ?>"/>
         <input type="hidden" id="sortby_place_asc" value="<?php echo $sortby_place_asc; ?>"/>
         <input type="hidden" id="sortby_place_desc" value="<?php echo $sortby_place_desc; ?>"/>
+        
         <?php
           $atts = array(
               'width'      => '800',
@@ -136,7 +137,6 @@
     <tr><td colspan="5" align="center"><?php echo $this->pagination->create_links(); ?></td></tr>
     </TBODY>
    </TABLE>
-      </div>
     </div>
   </div>
  <script type="text/javascript">
