@@ -577,6 +577,34 @@ class My_projects extends CI_Controller {
     $this->load->view('footer');
   }
   
+  function my_del_lproj()
+  {
+    $data = $this->index_livestock();
+   
+    $session_data = $this->session->userdata('logged_in');
+    $user_id = $session_data['user_id'];
+    
+    $count = $this->livestock->get_total_del_lproj($user_id);
+    
+    $this->load->library('pagination');
+    
+    $offset = $this->uri->segment(3);
+    $config['base_url'] = base_url().'my_projects/my_del_lproj';
+    $config['total_rows'] = $count;
+    $config['last_link'] = FALSE;
+    $config['per_page'] = 15;
+    $config['next_link'] = 'Next >';
+    $config['prev_link'] = '< Previous';
+    $config['display_pages'] = FALSE;
+   
+    $data['result_livestock'] = $this->livestock->get_user_del_lproj($config['per_page'], $offset, $user_id);
+    $this->pagination->initialize($config);
+  
+    $this->load->view('home_header');
+    $this->load->view('my_deleted_lproj_view',$data);
+    $this->load->view('footer');
+  }
+   
   function my_poultry_projects()
   {
     $data = $this->index_poultry();
@@ -605,6 +633,35 @@ class My_projects extends CI_Controller {
   
     $this->load->view('home_header');
     $this->load->view('my_poultry_projects_view',$data);
+    $this->load->view('footer');
+  }
+  
+  function my_del_pproj()
+  {
+    $data = $this->index_poultry();
+   
+    $session_data = $this->session->userdata('logged_in');
+    $user_id = $session_data['user_id'];
+    
+    $count = $this->poultry->get_total_del_pproj($user_id);
+    
+    $this->load->library('pagination');
+    
+    $offset = $this->uri->segment(3);
+    $config['base_url'] = base_url().'my_projects/my_del_pproj';
+    $config['total_rows'] = $count;
+    $config['last_link'] = FALSE;
+    $config['first_link'] = '<<';
+    $config['per_page'] = 15;
+    $config['next_link'] = 'Next >';
+    $config['prev_link'] = '< Previous';
+    $config['display_pages'] = FALSE;
+   
+    $data['result_poultry'] = $this->poultry->get_user_del_pproj($config['per_page'], $offset, $user_id);
+    $this->pagination->initialize($config);
+  
+    $this->load->view('home_header');
+    $this->load->view('my_deleted_pproj_view',$data);
     $this->load->view('footer');
   }
   
@@ -689,6 +746,11 @@ class My_projects extends CI_Controller {
     $this->project->delete_project($proj_id);
   }
   
+  function restore_project()
+  {
+    $proj_id = $this->input->get('proj_id');
+    $this->project->restore_project($proj_id);
+  }  
 }
 
 /* End of file my_projects.php */
