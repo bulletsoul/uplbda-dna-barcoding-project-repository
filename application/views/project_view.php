@@ -127,8 +127,8 @@
         
         <table class="project_table" BGCOLOR="#B2D1E5">
           <thead ALIGN="center" style="font-weight: bold">
-            <tr>
-            <td>DNA Sequence</td>
+            <tr>  
+            <td>DNA Sequence (CO1 Sequence)</td>
           </tr>
           </thead>
           <tbody BGCOLOR="#E9F2F9">
@@ -142,7 +142,7 @@
       <table class="project_table" BGCOLOR="#B2D1E5">
           <thead ALIGN="center" style="font-weight: bold">
             <tr>
-            <td colspan="2">Illustrative Barcode</td>
+            <td colspan="2">Illustrative Barcode (CO1 Sequence)</td>
           </tr>
           </thead>
           <tbody BGCOLOR="#E9F2F9">
@@ -258,18 +258,28 @@
                      <source src="<?php echo $row->filepath;  ?>" />
                      Your browser does not support the video element.
                 </video></a>
-              </div>
             </td>
             <td>
-              <?php echo $row->filedesc;?></td>
+              <?php if ($row->filedesc == NULL)
+              {?>
+                <i>Description not available.</i>
+              <?php
+              }
+              else{
+              echo $row->filedesc; }?></div></td>
+          </tr>
               <?php } } 
               else {?>
+              
+          <tr>
               <td>
+                <div id="vid_area">
               <?php
-                echo "Video not available.";
-                } ?>
+                echo "Video not available.";?>
             </td>
-          </tr>
+              <td><i>Description not available.</i></div></td>
+          </tr><?php
+                } ?>
           </tbody>
         </table>
       <br/>
@@ -288,7 +298,13 @@
                 <a href="<?php echo $row->filepath;  ?>" target="_blank" > <?php echo $row->filename; ?><br/></a>
             </td>
             <td>
-              <?php echo $row->filedesc; ?>
+              <?php if ($row->filedesc == NULL)
+              {?>
+                <i>Description not available.</i>
+              <?php
+              }
+              else{
+              echo $row->filedesc; }?>
               </div>
             </td>
             </tr>
@@ -300,7 +316,7 @@
               <?php
                 echo "Document not available."; ?>
                 </td>
-              <td></div></td>
+              <td><i>Description not available.</i></div></td>
           </tr><?php
                 }?>
           </tbody>
