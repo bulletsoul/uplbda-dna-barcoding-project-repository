@@ -131,12 +131,12 @@
       <table class="project_table" BGCOLOR="#B2D1E5">
           <thead ALIGN="center" style="font-weight: bold">
             <tr>
-            <td>DNA Sequence</td>
+            <td>DNA Sequence (CO1 Sequence)</td>
           </tr>
           </thead>
           <tbody BGCOLOR="#E9F2F9">
           <tr>
-            <td id="dna_seq_text">
+            <td><div id="dna_seq_text" style='table-layout:fixed;width:620px;'></div>
             </td>
           </tr>
           </tbody>
@@ -145,7 +145,7 @@
       <table class="project_table" BGCOLOR="#B2D1E5">
           <thead ALIGN="center" style="font-weight: bold">
             <tr>
-            <td colspan="2">Illustrative Barcode</td>
+            <td colspan="2">Illustrative Barcode (CO1 Sequence)</td>
           </tr>
           </thead>
           <tbody BGCOLOR="#E9F2F9">
@@ -160,7 +160,7 @@
               </div>
             </td>
             <td style="padding-top: 0 !important">
-              <div id="dna_seq_area"></div>
+              <div id="dna_seq_area" style='table-layout:fixed;width:570px;'></div>
             </td>
           </tr>
           <?php if ($dna_seq) { ?>
@@ -196,7 +196,6 @@
               </div>
             </td>
             </tr>
-          <tr>
           <tr>
             <td width="80px" class="table_header">Ventral Views</td>
             <td>
@@ -261,19 +260,28 @@
                      <source src="<?php echo $row->filepath;  ?>" />
                      Your browser does not support the video element.
                 </video></a>
-              </div>
             </td>
             <td>
-              <?php echo $row->filedesc;?></td>
+              <?php if ($row->filedesc == NULL)
+              {?>
+                <i>Description not available.</i>
+              <?php
+              }
+              else{
+              echo $row->filedesc; }?></div></td>
+          </tr>
               <?php } } 
               else {?>
+              
+          <tr>
               <td>
+                <div id="vid_area">
               <?php
-                echo "Video not available.";
-                } ?>
+                echo "Video not available.";?>
             </td>
-              <td></td>
-          </tr>
+              <td><i>Description not available.</i></div></td>
+          </tr><?php
+                } ?>
           </tbody>
         </table>
       <br/>
@@ -291,22 +299,28 @@
               <div id="docs_area">
                 <a href="<?php echo $row->filepath;  ?>" target="_blank" > <?php echo $row->filename; ?><br/></a>
             </td>
-            </tr>
-          <tr>
             <td>
-                <?php echo $row->filedesc; ?>
-              </div></td>
-            
+              <?php if ($row->filedesc == NULL)
+              {?>
+                <i>Description not available.</i>
+              <?php
+              }
+              else{
+              echo $row->filedesc; }?>
+              </div>
+            </td>
+            </tr>
             <?php } } 
               else {?>
-              <td>
+              <tr>
+              <td >
                 <div id="docs_area">
               <?php
-                echo "Document not available.";
-                }?>
+                echo "Document not available."; ?>
                 </td>
-              <td></div></td>
-          </tr>
+              <td><i>Description not available.</i></div></td>
+          </tr><?php
+                }?>
           </tbody>
         </table>
 
