@@ -35,49 +35,157 @@
             );
           
           $nw_url = $new_url;?>  
-<script language="JavaScript"><!--
-function ls_view() {
-  var Current = document.formName4.selectName4.selectedIndex;
-  
-  if (Current == 0) window.location = sortby_pid_asc.value;
-  if (Current == 1) window.location = sortby_pid_desc.value;
-  if (Current == 2) window.location = sortby_breed_asc.value;
-  if (Current == 3) window.location = sortby_breed_desc.value;
-  if (Current == 4) window.location = sortby_fa_asc.value;
-  if (Current == 5) window.location = sortby_fa_desc.value;
-  if (Current == 6) window.location = sortby_place_asc.value;
-  if (Current == 7) window.location = sortby_place_desc.value;  
-}
-//--></script>
+
     <?php
     if ($list){
       ?>
-      <table class="project_table">
-        <tr>
-          <td><h3 style="color:#800000">Sorted by <label style="color:#008000"><?php echo $column;?></label> in <label style="color:#008000"><?php echo $order; ?></label> order</h3></td>
-          <td align="right"><form name="formName4" onSubmit="return false;">
-<select name="selectName4">
-<option value="a_pid">Project ID (Ascending)
-<option value="d_pid">Project ID (Descending)
-<option value="a_breed">Breed (Ascending)
-<option value="d_breed">Breed (Descending)
-<option value="a_fa">Farm Animal (Ascending)
-<option value="d_fa">Farm Animal (Descending)
-<option value="a_place">Place (Ascending)
-<option value="d_place">Place (Descending)
-</select>
-<input name="submitName4" type="submit" value="Sort" onClick="ls_view();return false;">
-</form></td>
-        </tr>
-      </table>
       <TABLE BGCOLOR="#B2D1E5" class="project_table">
       <THEAD ALIGN="center" class="table_header">
     <TR>
-      <TD></TD>
-      <TD>Project ID</TD>
-      <TD width="200">Breed</TD>
-      <TD>Farm Animal</TD>
-      <TD>Place</TD>
+      <td></td>
+      <?php $seg2 = $this->uri->segment(2);
+        if (($seg2 == 'bovidae') || ($seg2 == 'capridae') || ($seg2 == 'monogastrics')) { ?>
+        <th width="50"><a href="<?php echo base_url(); ?>sortby/pid_asc_bovidae">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="80"><a href="<?php echo base_url(); ?>sortby/breed_asc_bovidae">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="90"><a href="<?php echo base_url(); ?>sortby/fa_asc_bovidae">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="120"><a href="<?php echo base_url(); ?>sortby/place_asc_bovidae">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+      
+        <?php } if ($seg2 == 'pid_asc_bovidae') { ?>
+        <th width="50"><a href="<?php echo base_url(); ?>sortby/pid_desc_bovidae">Project ID<br/><img src="<?php echo base_url(); ?>css/images/desc.gif" alt="icon" id="desc_header"></a></th>
+        <th width="80"><a href="<?php echo base_url(); ?>sortby/breed_asc_bovidae">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="90"><a href="<?php echo base_url(); ?>sortby/fa_asc_bovidae">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="120"><a href="<?php echo base_url(); ?>sortby/place_asc_bovidae">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <?php } if ($seg2 == 'pid_desc_bovidae') { ?>
+        <th width="50"><a href="<?php echo base_url(); ?>sortby/pid_asc_bovidae">Project ID<br/><img src="<?php echo base_url(); ?>css/images/asc.gif" alt="icon" id="asc_header"></a></th>
+        <th width="80"><a href="<?php echo base_url(); ?>sortby/breed_asc_bovidae">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="90"><a href="<?php echo base_url(); ?>sortby/fa_asc_bovidae">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="120"><a href="<?php echo base_url(); ?>sortby/place_asc_bovidae">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        
+        <?php } if ($seg2 == 'breed_asc_bovidae') { ?>
+        <th width="50"><a href="<?php echo base_url(); ?>sortby/pid_asc_bovidae">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="80"><a href="<?php echo base_url(); ?>sortby/breed_desc_bovidae">Breed<br/><img src="<?php echo base_url(); ?>css/images/desc.gif" alt="icon" id="desc_header"></a></th>
+        <th width="90"><a href="<?php echo base_url(); ?>sortby/fa_asc_bovidae">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="120"><a href="<?php echo base_url(); ?>sortby/place_asc_bovidae">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <?php } if ($seg2 == 'breed_desc_bovidae') { ?>
+        <th width="50"><a href="<?php echo base_url(); ?>sortby/pid_asc_bovidae">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="80"><a href="<?php echo base_url(); ?>sortby/breed_asc_bovidae">Breed<br/><img src="<?php echo base_url(); ?>css/images/asc.gif" alt="icon" id="asc_header"></a></th>
+        <th width="90"><a href="<?php echo base_url(); ?>sortby/fa_asc_bovidae">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="120"><a href="<?php echo base_url(); ?>sortby/place_asc_bovidae">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        
+        <?php } if ($seg2 == 'fa_asc_bovidae') { ?>
+        <th width="50"><a href="<?php echo base_url(); ?>sortby/pid_asc_bovidae">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="80"><a href="<?php echo base_url(); ?>sortby/breed_asc_bovidae">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="90"><a href="<?php echo base_url(); ?>sortby/fa_desc_bovidae">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/desc.gif" alt="icon" id="desc_header"></a></th>
+        <th width="120"><a href="<?php echo base_url(); ?>sortby/place_asc_bovidae">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <?php } if ($seg2 == 'fa_desc_bovidae') { ?>
+        <th width="50"><a href="<?php echo base_url(); ?>sortby/pid_asc_bovidae">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="80"><a href="<?php echo base_url(); ?>sortby/breed_asc_bovidae">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="90"><a href="<?php echo base_url(); ?>sortby/fa_asc_bovidae">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/asc.gif" alt="icon" id="asc_header"></a></th>
+        <th width="120"><a href="<?php echo base_url(); ?>sortby/place_asc_bovidae">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        
+        <?php } if ($seg2 == 'place_asc_bovidae') { ?>
+        <th width="50"><a href="<?php echo base_url(); ?>sortby/pid_asc_bovidae">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="80"><a href="<?php echo base_url(); ?>sortby/breed_asc_bovidae">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="90"><a href="<?php echo base_url(); ?>sortby/fa_asc_bovidae">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="120"><a href="<?php echo base_url(); ?>sortby/place_desc_bovidae">Place<br/><img src="<?php echo base_url(); ?>css/images/desc.gif" alt="icon" id="desc_header"></a></th>
+        <?php } if ($seg2 == 'place_desc_bovidae') { ?>
+        <th width="50"><a href="<?php echo base_url(); ?>sortby/pid_asc_bovidae">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="80"><a href="<?php echo base_url(); ?>sortby/breed_asc_bovidae">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="90"><a href="<?php echo base_url(); ?>sortby/fa_asc_bovidae">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="120"><a href="<?php echo base_url(); ?>sortby/place_asc_bovidae">Place<br/><img src="<?php echo base_url(); ?>css/images/asc.gif" alt="icon" id="asc_header"></a></th>
+        
+        <!---------------------------CAPRIDAE------------------------------>
+        
+        <?php } if ($seg2 == 'pid_asc_capridae') { ?>
+        <th width="50"><a href="<?php echo base_url(); ?>sortby/pid_desc_capridae">Project ID<br/><img src="<?php echo base_url(); ?>css/images/desc.gif" alt="icon" id="desc_header"></a></th>
+        <th width="80"><a href="<?php echo base_url(); ?>sortby/breed_asc_capridae">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="90"><a href="<?php echo base_url(); ?>sortby/fa_asc_capridae">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="120"><a href="<?php echo base_url(); ?>sortby/place_asc_capridae">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <?php } if ($seg2 == 'pid_desc_capridae') { ?>
+        <th width="50"><a href="<?php echo base_url(); ?>sortby/pid_asc_capridae">Project ID<br/><img src="<?php echo base_url(); ?>css/images/asc.gif" alt="icon" id="asc_header"></a></th>
+        <th width="80"><a href="<?php echo base_url(); ?>sortby/breed_asc_capridae">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="90"><a href="<?php echo base_url(); ?>sortby/fa_asc_capridae">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="120"><a href="<?php echo base_url(); ?>sortby/place_asc_capridae">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        
+        <?php } if ($seg2 == 'breed_asc_capridae') { ?>
+        <th width="50"><a href="<?php echo base_url(); ?>sortby/pid_asc_capridae">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="80"><a href="<?php echo base_url(); ?>sortby/breed_desc_capridae">Breed<br/><img src="<?php echo base_url(); ?>css/images/desc.gif" alt="icon" id="desc_header"></a></th>
+        <th width="90"><a href="<?php echo base_url(); ?>sortby/fa_asc_capridae">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="120"><a href="<?php echo base_url(); ?>sortby/place_asc_capridae">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <?php } if ($seg2 == 'breed_desc_capridae') { ?>
+        <th width="50"><a href="<?php echo base_url(); ?>sortby/pid_asc_capridae">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="80"><a href="<?php echo base_url(); ?>sortby/breed_asc_capridae">Breed<br/><img src="<?php echo base_url(); ?>css/images/asc.gif" alt="icon" id="asc_header"></a></th>
+        <th width="90"><a href="<?php echo base_url(); ?>sortby/fa_asc_capridae">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="120"><a href="<?php echo base_url(); ?>sortby/place_asc_capridae">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        
+        <?php } if ($seg2 == 'fa_asc_capridae') { ?>
+        <th width="50"><a href="<?php echo base_url(); ?>sortby/pid_asc_capridae">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="80"><a href="<?php echo base_url(); ?>sortby/breed_asc_capridae">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="90"><a href="<?php echo base_url(); ?>sortby/fa_desc_capridae">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/desc.gif" alt="icon" id="desc_header"></a></th>
+        <th width="120"><a href="<?php echo base_url(); ?>sortby/place_asc_capridae">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <?php } if ($seg2 == 'fa_desc_capridae') { ?>
+        <th width="50"><a href="<?php echo base_url(); ?>sortby/pid_asc_capridae">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="80"><a href="<?php echo base_url(); ?>sortby/breed_asc_capridae">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="90"><a href="<?php echo base_url(); ?>sortby/fa_asc_capridae">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/asc.gif" alt="icon" id="asc_header"></a></th>
+        <th width="120"><a href="<?php echo base_url(); ?>sortby/place_asc_capridae">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        
+        <?php } if ($seg2 == 'place_asc_capridae') { ?>
+        <th width="50"><a href="<?php echo base_url(); ?>sortby/pid_asc_capridae">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="80"><a href="<?php echo base_url(); ?>sortby/breed_asc_capridae">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="90"><a href="<?php echo base_url(); ?>sortby/fa_asc_capridae">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="120"><a href="<?php echo base_url(); ?>sortby/place_desc_capridae">Place<br/><img src="<?php echo base_url(); ?>css/images/desc.gif" alt="icon" id="desc_header"></a></th>
+        <?php } if ($seg2 == 'place_desc_capridae') { ?>
+        <th width="50"><a href="<?php echo base_url(); ?>sortby/pid_asc_capridae">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="80"><a href="<?php echo base_url(); ?>sortby/breed_asc_capridae">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="90"><a href="<?php echo base_url(); ?>sortby/fa_asc_capridae">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="120"><a href="<?php echo base_url(); ?>sortby/place_asc_capridae">Place<br/><img src="<?php echo base_url(); ?>css/images/asc.gif" alt="icon" id="asc_header"></a></th>
+        
+        <!----------------------MONOGASTRICS--------------------------->
+        
+        <?php } if ($seg2 == 'pid_asc_monogastrics') { ?>
+        <th width="50"><a href="<?php echo base_url(); ?>sortby/pid_desc_monogastrics">Project ID<br/><img src="<?php echo base_url(); ?>css/images/desc.gif" alt="icon" id="desc_header"></a></th>
+        <th width="80"><a href="<?php echo base_url(); ?>sortby/breed_asc_monogastrics">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="90"><a href="<?php echo base_url(); ?>sortby/fa_asc_monogastrics">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="120"><a href="<?php echo base_url(); ?>sortby/place_asc_monogastrics">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <?php } if ($seg2 == 'pid_desc_monogastrics') { ?>
+        <th width="50"><a href="<?php echo base_url(); ?>sortby/pid_asc_monogastrics">Project ID<br/><img src="<?php echo base_url(); ?>css/images/asc.gif" alt="icon" id="asc_header"></a></th>
+        <th width="80"><a href="<?php echo base_url(); ?>sortby/breed_asc_monogastrics">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="90"><a href="<?php echo base_url(); ?>sortby/fa_asc_monogastrics">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="120"><a href="<?php echo base_url(); ?>sortby/place_asc_monogastrics">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        
+        <?php } if ($seg2 == 'breed_asc_monogastrics') { ?>
+        <th width="50"><a href="<?php echo base_url(); ?>sortby/pid_asc_monogastrics">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="80"><a href="<?php echo base_url(); ?>sortby/breed_desc_monogastrics">Breed<br/><img src="<?php echo base_url(); ?>css/images/desc.gif" alt="icon" id="desc_header"></a></th>
+        <th width="90"><a href="<?php echo base_url(); ?>sortby/fa_asc_monogastrics">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="120"><a href="<?php echo base_url(); ?>sortby/place_asc_monogastrics">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <?php } if ($seg2 == 'breed_desc_monogastrics') { ?>
+        <th width="50"><a href="<?php echo base_url(); ?>sortby/pid_asc_monogastrics">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="80"><a href="<?php echo base_url(); ?>sortby/breed_asc_monogastrics">Breed<br/><img src="<?php echo base_url(); ?>css/images/asc.gif" alt="icon" id="asc_header"></a></th>
+        <th width="90"><a href="<?php echo base_url(); ?>sortby/fa_asc_monogastrics">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="120"><a href="<?php echo base_url(); ?>sortby/place_asc_monogastrics">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        
+        <?php } if ($seg2 == 'fa_asc_monogastrics') { ?>
+        <th width="50"><a href="<?php echo base_url(); ?>sortby/pid_asc_monogastrics">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="80"><a href="<?php echo base_url(); ?>sortby/breed_asc_monogastrics">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="90"><a href="<?php echo base_url(); ?>sortby/fa_desc_monogastrics">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/desc.gif" alt="icon" id="desc_header"></a></th>
+        <th width="120"><a href="<?php echo base_url(); ?>sortby/place_asc_monogastrics">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <?php } if ($seg2 == 'fa_desc_monogastrics') { ?>
+        <th width="50"><a href="<?php echo base_url(); ?>sortby/pid_asc_monogastrics">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="80"><a href="<?php echo base_url(); ?>sortby/breed_asc_monogastrics">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="90"><a href="<?php echo base_url(); ?>sortby/fa_asc_monogastrics">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/asc.gif" alt="icon" id="asc_header"></a></th>
+        <th width="120"><a href="<?php echo base_url(); ?>sortby/place_asc_monogastrics">Place<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        
+        <?php } if ($seg2 == 'place_asc_monogastrics') { ?>
+        <th width="50"><a href="<?php echo base_url(); ?>sortby/pid_asc_monogastrics">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="80"><a href="<?php echo base_url(); ?>sortby/breed_asc_monogastrics">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="90"><a href="<?php echo base_url(); ?>sortby/fa_asc_monogastrics">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="120"><a href="<?php echo base_url(); ?>sortby/place_desc_monogastrics">Place<br/><img src="<?php echo base_url(); ?>css/images/desc.gif" alt="icon" id="desc_header"></a></th>
+        <?php } if ($seg2 == 'place_desc_monogastrics') { ?>
+        <th width="50"><a href="<?php echo base_url(); ?>sortby/pid_asc_monogastrics">Project ID<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="80"><a href="<?php echo base_url(); ?>sortby/breed_asc_monogastrics">Breed<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="90"><a href="<?php echo base_url(); ?>sortby/fa_asc_monogastrics">Farm Animal<br/><img src="<?php echo base_url(); ?>css/images/bg.gif" alt="icon" id="bg_header"></a></th>
+        <th width="120"><a href="<?php echo base_url(); ?>sortby/place_asc_monogastrics">Place<br/><img src="<?php echo base_url(); ?>css/images/asc.gif" alt="icon" id="asc_header"></a></th>
+        <?php } ?>
     </TR>    
     </THEAD>
       <?php
